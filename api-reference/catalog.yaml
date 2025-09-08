@@ -1,0 +1,643 @@
+openapi: "3.0.0"
+info:
+  title: "Product Catalog API"
+  version: "1.0.0"
+servers:
+  - url: https://api-0X.moengage.com/v1
+security:
+  - basicAuth: []
+paths:
+  /catalog:
+    post:
+      summary: Create catalog with attributes specification
+      description: Create a new catalog with a unique name and specify attributes data type
+      tags:
+        - Catalog metadata
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage secret API key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  pattern: '^[a-zA-Z0-9]+$'
+                  description: Unique name of the catalog. No special characters allowed.
+                attributes:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Attribute'
+              required:
+                - name
+            examples:
+              example1:
+                value:
+                  name: "exampleCatalog"
+                  attributes:
+                    - name: "attribute1"
+                      data_type: "string"
+                    - name: "attribute2"
+                      data_type: "float"
+      responses:
+        '201':
+          description: Catalog created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  catalog_id:
+                    type: string
+                    description: ID of the created catalog.
+                required:
+                  - catalog_id
+        '400':
+          description: Bad request. Possible issues could be duplicate name, invalid characters or invalid data type for the attribute.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                DuplicateName:
+                  value:
+                    error-code: name-not-unique
+                    message: "Catalog name already exists!"
+                InvalidName:
+                  value:
+                    error-code: name-invalid
+                    message: "Catalog name is invalid or has special characters"
+                InvalidAttributeDataType:
+                  value:
+                    error-code: invalid-attr-data-type
+                    message: "Data type provided is invalid"
+                MaxAttrsLimitBreached:
+                  value:
+                    error-code: attr-max-limit-reached
+                    message: "Maximum number of attributes reached"
+        '413':
+          description: Request entity too large. The request body can be large in terms of size(bytes) or length of items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MaxAttributes:
+                  value:
+                    error-code: "too-many-attributes"
+                    message: "Maximum allowed attributes is 50"
+                PayloadSize:
+                  value:
+                    error-code: "payload-size-too-large"
+                    message: "The payload size is too large. Maximum allowed size is 5MB."
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                InternalServerError:
+                  value:
+                    error-code: internal-server-error
+                    message: "Internal server error occurred, Please contact MoEngage team."
+  /catalog/{catalog_id}/attributes:
+    patch:
+      summary: Add new attributes
+      description: This method is used to add new attributes to the catalog. It will not accept request if the body contains already existing attributes.
+      tags:
+        - Catalog metadata
+      parameters:
+        - name: catalog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage secret API key
+      requestBody:
+        description: List of attribute objects
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Attribute'
+      responses:
+        '200':
+          description: Attribute successfully added
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attribute'
+        '400':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AttributeExists:
+                  value:
+                    error-code: attribute-exists
+                    message: "Attribute already exists in the catalog"
+  /catalog/{catalog_id}/items:
+    post:
+      summary: 'Ingest products into a catalog'
+      tags:
+        - Catalog products
+      parameters:
+        - in: path
+          name: catalog_id
+          schema:
+            type: string
+          required: true
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage secret API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  maxItems: 50
+                  items:
+                    type: object
+                    properties:
+                      item_id:
+                        type: string
+                      name:
+                        type: string
+                      in_stock:
+                        type: integer
+                      url:
+                        type: string
+                      category:
+                        type: string
+                      locale:
+                        type: string
+                      image_url:
+                        type: string
+                      price:
+                        type: number
+                      original_price:
+                        type: number
+                      brand_attribute:
+                        type: string
+                      shipping_attribute:
+                        type: string
+                      online_exclusive:
+                        type: string
+                      new_arrival_attribute:
+                        type: string
+                      id_product_attiribute:
+                        type: string
+                      stock_code:
+                        type: string
+                      item_code:
+                        type: string
+              required:
+                - items
+            example:
+              items:
+                - id: "1234567"
+                  category: "Electronics"
+                  locale: "en_US"
+                  image_link: "https://example.com/images/laptop.jpg"
+                  title: "Super Laptop"
+                  link: "https://example.com/super-laptop"
+                  in_stock: 10
+                  price: 899.99
+                  original_price: 999.99
+                  brand_attribute: "Super Tech"
+                  shipping_attribute: "2-day Shipping"
+                  online_exclusive: "True"
+                  new_arrival_attribute: "Just Arrived"
+                  id_product_attiribute: "1234567"
+                  stock_code: "SL123"
+                  item_code: "SL123"
+        required: true
+      responses:
+        '200':
+          description: 'Products ingestion successful'
+          content:
+            application/json:
+              example:
+                message:
+                  valid:
+                    count: 1
+                  invalid:
+                    count: 8
+                    details:
+                      - error-id: "ids-not-unique"
+                        message: "product id needs to be unique inside a catalog"
+                        count: 1
+                        document_ids:
+                          - "567890"
+                      - error-id: "missing-mandatory-attrs"
+                        message: "products does not have all mandatory attributes present. Mandatory attributes: id, link, image_link, title"
+                        count: 1
+                        document_ids:
+                          - "567890"
+                      - error-id: "invalid-keys-in-value-object"
+                        message: "Item object keys can't include . or $."
+                        count: 1
+                        document_ids:
+                          - "543431"
+                      - error-id: "items-missing-ids"
+                        message: "There are items that do not have item IDs. Check that each item has an item ID."
+                        count: 1
+                        document_ids:
+                          - ""
+                      - error-id: "attribute-casting-failure"
+                        message: "Item has attributes which can't be casted to set datatype"
+                        count: 1
+                        document_ids:
+                          - "7523675"
+                      - error-id: "invalid-attributes"
+                        message: "Product attribute (shipping_location) is not included in catalog's defined attributes"
+                        count: 2
+                        document_ids:
+                          - "312"
+                          - "8291379"
+                      - error-id: "invalid-attributes"
+                        message: "Product attribute (recommended_price) is not included in catalog's defined attributes"
+                        count: 1
+                        document_ids:
+                          - "78361487"
+        '404':
+          description: 'Catalog not found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                CatalogNotFound:
+                  value:
+                    error-code: "catalog-not-found"
+                    message: "Catalog not found for the given id"
+        '401':
+          description: 'Unauthorized request'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Unauthorized:
+                  value:
+                    error-code: "unauthorized"
+                    message: "Unauthorized request"
+        '422':
+          description: 'Payload size validation failed'
+          content:
+             application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                HighItemCount:
+                  value:
+                    error-code: "too-many-products"
+                    message: "items size should be less than or equal to 50"
+        '429':
+          description: 'FUP Limit has been reached'
+          content:
+             application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                FUPLimitReached:
+                  value:
+                    error-code: "fup-limit-reached"
+                    message: "FUP limit has been reached. Please contact MoEngage team."
+    patch:
+      summary: Update existing products in a given catalog
+      description: Update products with new attribute values. Attributes must adhere to the data type defined.
+      tags:
+        - Catalog products
+      parameters:
+        - name: catalog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage secret API key
+      requestBody:
+        description: List of product objects to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductUpdate'
+            examples:
+              example1:
+                value:
+                  products:
+                    - product_id: product1
+                      attributes:
+                        attribute1: new_value1
+                        attribute2: 123
+                    - product_id: product2
+                      attributes:
+                        attribute1: new_value2
+                        attribute2: 456
+      responses:
+        '200':
+          description: Products updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              example:
+                message:
+                  valid:
+                    count: 1
+                  invalid:
+                    count: 8
+                    details:
+                      - error-id: "ids-not-unique"
+                        message: "product id needs to be unique inside a catalog"
+                        count: 1
+                        document_ids:
+                          - "567890"
+                      - error-id: "missing-mandatory-attrs"
+                        message: "products does not have all mandatory attributes present. Mandatory attributes: id, link, image_link, title"
+                        count: 1
+                        document_ids:
+                          - "567890"
+                      - error-id: "items-missing-ids"
+                        message: "There are items that do not have item IDs. Check that each item has an item ID."
+                        count: 1
+                        document_ids:
+                          - ""
+        '400':
+          description: Bad request, update failed, won't occur generally, as the request is validated before processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example1:
+                  value:
+                    error-code: "invalid-request"
+                    message: "Bad request, update failed"
+        '404':
+          description: Catalog not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example1:
+                  value:
+                    error-code: "catalog-not-found"
+                    message: "Catalog not found for the given id"
+        '413':
+          description: Request entity too large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                PayloadSize:
+                  value:
+                    error-code: "payload-size-too-large"
+                    message: "The payload size is too large. Maximum allowed size is 5MB."
+                PayloadLength:
+                  value:
+                    error-code: "payload-length-too-large"
+                    message: "The payload length is too large. Maximum allowed length is 50"
+        '500':
+          description: Internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example1:
+                  value:
+                    error-code: "internal-server-error"
+                    message: "Internal server error occurred, Please contact MoEngage team."
+  /catalog/{catalog_id}/items/bulk-delete:
+    post:
+      summary: Delete existing products
+      description: Delete existing products in a given catalog. Only 50 products are allowed to be deleted in a single request.
+      tags:
+        - Catalog products
+      parameters:
+        - name: catalog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage secret API key
+      requestBody:
+        description: List of product ids to be deleted
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 50
+                  uniqueItems: true
+            examples:
+              example1:
+                value:
+                  items: ["product1", "product2", "product3", "product4", "product5", "product6", "product7", "product8", "product9", "product10"]
+      responses:
+        '200':
+          description: Products deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDeleteResult'
+              examples:
+                example1:
+                  value:
+                    success: true
+        '400':
+          description: Bad request, update failed, won't occur generally, as the request is validated before processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example1:
+                  value:
+                    error-code: "invalid-request"
+                    message: "Bad request, update failed"
+        '404':
+          description: Catalog not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example1:
+                  value:
+                    error-code: "catalog-not-found"
+                    message: "Catalog not found for the given id"
+        '413':
+          description: Request entity too large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                PayloadSize:
+                  value:
+                    error-code: "payload-size-too-large"
+                    message: "The payload size is too large. Maximum allowed size is 5MB."
+                PayloadLength:
+                  value:
+                    error-code: "payload-length-too-large"
+                    message: "The payload length is too large. Maximum allowed length is 50"
+        '500':
+          description: Internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example1:
+                  value:
+                    error-code: "internal-server-error"
+                    message: "Internal server error occurred, Please contact MoEngage team."
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error-code:
+          type: string
+        message:
+          type: string
+    AttributeSuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: object
+          properties:
+            invalidRatio:
+              type: integer
+            valid:
+              type: object
+              properties:
+                count:
+                  type: integer
+            invalid:
+              type: object
+              properties:
+                count:
+                  type: integer
+                details:
+                  type: array
+                  items:
+                    type: string
+            warnings:
+              type: object
+              properties:
+                count:
+                  type: integer
+                details:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      count:
+                        type: integer
+                      document_ids:
+                        type: array
+                        items:
+                          type: string
+    Attribute:
+      type: object
+      required:
+        - name
+        - data_type
+      properties:
+        name:
+          type: string
+          description: The attribute name
+        data_type:
+          type: string
+          enum: [boolean, date, string, float, geopoint]
+          description: The data type of the attribute
+    ProductUpdate:
+      type: object
+      required:
+        - product_id
+        - attributes
+      properties:
+        product_id:
+          type: string
+          description: The product id
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+    Product:
+      type: object
+      properties:
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+    ProductDeleteResult:
+      type: object
+      properties:
+        success:
+          type: boolean
