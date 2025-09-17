@@ -1,0 +1,335 @@
+openapi: 3.0.3
+info:
+  title: MoEngage Campaigns API
+  description: |
+    This API allows you to fetch a list of SMS campaigns with all their current fields and status. 
+    You can use various filters to search for specific campaigns.
+    If this API is not enabled for your account, please contact your CSM or raise a support ticket to request enablement.
+  version: '1.0'
+servers:
+  - url: 'https://api-0{dataCenter}.moengage.com/core-services/v1'
+    description: 'MoEngage API Server. The dataCenter value (X) depends on your account hosting.'
+    variables:
+      dataCenter:
+        default: '1'
+        description: 'The data center number for your MoEngage account.'
+        enum: ['1', '2', '3', '4', '5']
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Basic authentication using a Base64 encoded string of `APPKEY:APIKEY`.'
+    appKeyHeader:
+      type: apiKey
+      in: header
+      name: MOE-APPKEY
+      description: 'Your MoEngage Workspace ID (previously APP ID).'
+  schemas:
+    CampaignFields:
+      type: object
+      description: 'Object containing fields to filter campaigns.'
+      properties:
+        channels:
+          type: array
+          items:
+            type: string
+            example: 'SMS'
+          description: 'The type of channel to filter by.'
+        created_by:
+          type: array
+          items:
+            type: string
+            format: email
+          description: 'Array of email IDs of users who created the campaigns.'
+        created_date:
+          type: object
+          properties:
+            from_date:
+              type: string
+              format: date
+              description: 'Start date of the creation date range in ISO 8601 format.'
+              example: '2025-06-16'
+            to_date:
+              type: string
+              format: date
+              description: 'End date of the creation date range in ISO 8601 format.'
+              example: '2025-06-21'
+        delivery_type:
+          type: array
+          items:
+            type: string
+            enum: ['ONE_TIME', 'PERIODIC', 'EVENT_TRIGGERED', 'BUSINESS_EVENT_TRIGGERED']
+          description: 'The delivery type of the campaign.'
+        id:
+          type: string
+          description: 'The ID of the campaign.'
+        name:
+          type: string
+          description: 'The name of the campaign.'
+        status:
+          type: array
+          items:
+            type: string
+          description: 'The status of the campaign. For example, "Active".'
+        tags:
+          type: array
+          items:
+            type: string
+          description: 'Tags associated with the campaign.'
+
+    CampaignSearchRequest:
+      type: object
+      required:
+        - limit
+        - page
+        - request_id
+      properties:
+        campaign_fields:
+          $ref: '#/components/schemas/CampaignFields'
+        include_child_campaigns:
+          type: boolean
+          description: 'Set to true to include child campaigns (e.g., periodic child campaigns and flow campaign nodes).'
+          default: false
+        include_archive_campaigns:
+          type: boolean
+          description: 'Set to true to include archived campaigns in the results.'
+          default: false
+        limit:
+          type: integer
+          description: 'The number of campaigns to be displayed on a page.'
+          maximum: 15
+          example: 15
+        page:
+          type: integer
+          description: 'The page number to display campaigns based on the limit.'
+          example: 1
+        request_id:
+          type: string
+          description: 'A unique identifier for the request.'
+          example: 'a-unique-request-id-123'
+
+    BasicDetails:
+      type: object
+      properties:
+        business_event:
+          type: string
+          description: 'The business event mapped to the campaign.'
+        name:
+          type: string
+          description: 'The name of the campaign.'
+        tags:
+          type: array
+          items:
+            type: string
+          description: 'Tags providing context about the campaign.'
+        team:
+          type: string
+          description: 'Name of the team collaborating on the campaign.'
+        user_attribute_identifier:
+          type: string
+          description: 'The user attribute that stores the email address (e.g., MOE_EMAIL_ID).'
+
+    SmsContent:
+      type: object
+      properties:
+        template_id:
+          type: string
+        message:
+          type: string
+        shorten_and_track_url:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+              is_click_tracking_enabled:
+                type: boolean
+        opt_out_status:
+          type: boolean
+        custom_template_id:
+          type: string
+        custom_template_version:
+          type: integer
+    
+    VariationDetails:
+      type: object
+      properties:
+        no_of_variations:
+          type: integer
+        variation_distribution:
+          type: object
+          properties:
+            distribution_type:
+              type: string
+              enum: ['SHERPA', 'MANUAL']
+            manual_distribution_percentage:
+              type: object
+              additionalProperties:
+                type: string
+              example:
+                variation_1: "50"
+                variation_2: "50"
+
+    CampaignContent:
+      type: object
+      properties:
+        content:
+          type: object
+          description: "Contains locale-specific content variations."
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: object
+              properties:
+                sms:
+                  $ref: '#/components/schemas/SmsContent'
+        locales:
+          type: array
+          items:
+            type: string
+        variation_details:
+          $ref: '#/components/schemas/VariationDetails'
+
+    SchedulingDetails:
+      type: object
+      # Add properties for scheduling details here...
+      
+    Campaign:
+      type: object
+      properties:
+        campaign_id:
+          type: string
+        status:
+          type: string
+          example: 'Active'
+        basic_details:
+          $ref: '#/components/schemas/BasicDetails'
+        campaign_content:
+          $ref: '#/components/schemas/CampaignContent'
+        # Add other top-level response fields here...
+        sender_name:
+          type: string
+        utm_params:
+          type: object
+          properties:
+            utm_source:
+              type: string
+            utm_medium:
+              type: string
+        # ... and so on for all fields in the 200 response
+
+    ErrorDetail:
+      type: object
+      properties:
+        target:
+          type: string
+        message:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        target:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+        request_id:
+          type: string
+
+security:
+  - basicAuth: []
+    appKeyHeader: []
+
+tags:
+  - name: Campaigns
+    description: 'Operations related to managing and retrieving campaigns.'
+
+paths:
+  /campaigns/search:
+    post:
+      tags:
+        - Campaigns
+      summary: 'Search for SMS Campaigns'
+      description: 'Fetches a list of SMS campaigns based on specified filters.'
+      operationId: 'searchSmsCampaigns'
+      requestBody:
+        description: 'Request body to filter and paginate campaign search results.'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignSearchRequest'
+            examples:
+              getByChannel:
+                summary: Get by Channel
+                value:
+                  campaign_fields:
+                    channels:
+                    - SMS
+                  limit: 15
+                  page: 1
+                  request_id: "req-channel-123"
+              getByName:
+                summary: Get by Name
+                value:
+                  campaign_fields:
+                    name: "My Awesome Campaign"
+                  limit: 15
+                  page: 1
+                  request_id: "req-name-123"
+              getById:
+                summary: Get by ID
+                value:
+                  campaign_fields:
+                    id: "campaign_id_xyz"
+                  limit: 15
+                  page: 1
+                  request_id: "req-id-123"
+
+      responses:
+        '200':
+          description: 'OK - A successful response containing the campaign details.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Campaign'
+        '400':
+          description: 'Bad Request - The request contains missing or invalid parameters.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    $ref: '#/components/schemas/Error'
+        '401':
+          description: 'Authentication Failure - Authorization parameters are missing or invalid.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    $ref: '#/components/schemas/Error'
+        '500':
+          description: 'Internal Server Error - The system encountered an unexpected error.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    $ref: '#/components/schemas/Error'
+
+
