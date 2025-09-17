@@ -1,33 +1,27 @@
----
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
----
+title: "MoEngage API Reference" description: "Your complete guide to integrating with the MoEngage APIs. Automate workflows, manage catalogs, and retrieve campaign data."
+Welcome to the MoEngage API reference. This is your central hub for all the resources you need to interact with the MoEngage platform programmatically.
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+Available APIs
+Our REST APIs are designed to be predictable and intuitive. Get started by exploring our primary API collections below.
 
-## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
+<CardGroup cols={2}>
 <Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
+title="Catalog API"
+icon="book-open"
+href="/api-reference/introduction"
 >
-  View the OpenAPI specification file
+Manage your product catalogs, including creating catalogs, adding attributes, and ingesting or updating products.
 </Card>
+<Card
+title="Campaigns API"
+icon="chart-simple"
+href="/api-reference/introduction"
+>
+Programmatically search and retrieve details for your SMS campaigns, using filters for status, creation date, and more.
+</Card>
+</CardGroup>
 
-## Authentication
+Authentication
+All MoEngage APIs are authenticated using a combination of Basic Authentication and a custom MOE-APPKEY header.
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+You can find your credentials in the MoEngage Dashboard under Settings > Account > APIs. For detailed examples, please see the authentication section within each API endpoint.
