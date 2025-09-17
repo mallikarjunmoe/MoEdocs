@@ -151,18 +151,24 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "Catalog",
-            "openapi": {
-              "source": "/api-reference/openapi.yaml",
-              "directory": "api-reference"
-            }
-          },
-          {
-            "group": "Campaigns",
-            "openapi": {
-              "source": "/api-reference/campaigns.yaml",
-              "directory": "api-reference"
-            }
+            "group": "API Endpoints",
+            "pages": [
+              "api-reference/introduction",
+              {
+                "group": "Catalog",
+                "openapi": {
+                  "source": "/api-reference/openapi.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "Campaigns",
+                "openapi": {
+                  "source": "/api-reference/campaigns.yaml",
+                  "directory": "api-reference"
+                }
+              }
+            ]
           }
         ]
       }
