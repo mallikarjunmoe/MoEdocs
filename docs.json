@@ -146,6 +146,14 @@
           }
         ]
       }
+      ,
+      {
+        "tab": "API Reference",
+        "openapi": {
+          "source": "/api-reference/openapi.yaml",
+          "directory": "api-reference"
+        }
+      }
     ],
     "global": {
       "anchors": [
