@@ -128,7 +128,7 @@
               }
             ]
           },
-           {
+          {
             "group": "Settings",
             "pages": [
               {
@@ -147,15 +147,11 @@
           {
             "group": "In-App",
             "pages": [
-              {
-                "page": "hc/en-us/articles/in-app",
-                "label": "Create In-App Messaging Campaings"
-              }
+              "hc/en-us/articles/In-app"
             ]
           }
         ]
-      }
-      ,
+      },
       {
         "tab": "API Reference",
         "groups": [
