@@ -21,11 +21,11 @@ From the campaign types, under Inbound, select In-App.
 Create an In-App Message Campaign
 To create an In-App message campaign, follow these steps:
 
-Target users: Define the audience for your campaign.
+- Target users: Define the audience for your campaign.
 
-Content: Design the message content.
+- Content: Design the message content.
 
-Schedule and goals: Set the delivery schedule and track campaign performance.
+- Schedule and goals: Set the delivery schedule and track campaign performance.
 
 Step 1: Target Users
 Campaign Details
@@ -69,7 +69,7 @@ Select On screen load to display the In-App message on a specific screen or app 
 </Frame>
 Under Select screen/In app context, you have the following options:
 - Any screen (Earlier on app open): The message appears as soon as the app opens on any screen where showInApp() or showNudge() is explicitly called.
-- Specific screens: Configure the screens or app context based on the platforms you selected.
+- Specific screens: After selecting Specific screens, configure the screens or app context based on the platforms you selected.
 - Screen: Choose where the In-App campaign should display from the Screen is any of list.
 - App context: Add the context name in the App context is any of field.
 <Note>
@@ -84,23 +84,27 @@ Select On custom event to display In-App messages when a user performs a specifi
 </Frame>
 
 #### **IF user**
-Select the event condition for your campaign. You can add multiple events and attributes.
+In this section, select the event condition for your In-App campaign. You can add multiple events and attributes.
+1. From the **Select an event** list, select the event.
+2. Click **+ Trigger** to add multiple OR conditions within events.
 <Frame>
-<img src="/guide-media/01JNDVCMEMED4NDX5PTQQYN2XW" alt="Adding multiple triggers for a custom event" />
+  <img src="/guide-media/01JNDVCMEMED4NDX5PTQQYN2XW" alt="Adding multiple triggers for a custom event" />
 </Frame>
 
 #### **AND then**
 You can add more customization by stringing multiple events together using the **+ Filter** button.
 <Frame>
-<img src="/guide-media/01JNDVVYXQ5SZWEHWNZPHJ4ECF" alt="Using 'AND then' to chain events" />
+  <img src="/guide-media/01JNDVVYXQ5SZWEHWNZPHJ4ECF" alt="Using 'AND then' to chain events" />
 </Frame>
 
 #### **THEN**
-Under **Trigger the message**, select **Immediately** or **After Delay** to define when to display the message.
+Under **Trigger the message**, select an option to define when to display the message:
+- **Immediately**: The message displays immediately after the trigger criteria are met.
+- **After Delay**: The message displays after the defined delay.
 <Note>
-- Do not select the same event with the **Filter** and use the **Then** option.
-- The **AND then** option is available only for In-App Android SDK `8.1.0+` and iOS `5.01.1+`.
-- Events from Data API or other server-side sources are not supported as triggers.
+  - Do not select the same event with the **Filter** and use the **Then** option.
+  - The **AND then** option is available only for In-App Android SDK `8.1.0+` and iOS `5.01.1+`.
+  - Events from Data API or other server-side sources are not supported as triggers.
 </Note>
 
 </Tab>
@@ -236,11 +240,11 @@ Enable the Revenue performance toggle for a conversion goal to track the revenue
 Delivery Controls
 Fine-tune your campaign delivery:
 
-Frequency Capping: Limit the maximum number of times a user sees the message.
+- Frequency Capping: Limit the maximum number of times a user sees the message.
 
-Minimum Delay: Add a minimum delay between two messages of this campaign.
+- Minimum Delay: Add a minimum delay between two messages of this campaign.
 
-Auto Dismiss: Automatically dismiss the message after a set duration.
+- Auto Dismiss: Automatically dismiss the message after a set duration.
 
 Click Publish to create the campaign.
 
