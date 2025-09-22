@@ -174,13 +174,6 @@
               "source": "/api-reference/campaigns.yaml",
               "directory": "api-reference"
             }
-          },
-          {
-            "group": "Global Throttling API",
-            "openapi": {
-              "source": "/api-reference/throttle.yaml",
-              "directory": "api-reference"
-            }
           }
         ]
       }
