@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Global Throttling
+  title: Global Throttling API
   version: 1.0.7
   contact: {}
 servers:
