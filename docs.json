@@ -182,6 +182,14 @@
               "directory": "api-reference"
             }
           }
+          ,
+          {
+            "group": "Push Templates API",
+            "openapi": {
+              "source": "/api-reference/pushtemplates.yaml",
+              "directory": "api-reference"
+            }
+          }
         ]
       }
     ],
