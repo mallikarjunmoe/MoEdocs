@@ -1,703 +1,413 @@
-openapi: 3.0.3
+openapi: "3.0.0"
 info:
-  title: Global Throttling
-  version: 1.0.7
-  contact: {}
+  title: "Product Catalog API"
+  version: "1.0.0"
 servers:
-  - url: https://
+  - url: "https://api-01.moengage.com/v1"
+    description: "Data Center 1"
+  - url: "https://api-02.moengage.com/v1"
+    description: "Data Center 2"
+  - url: "https://api-03.moengage.com/v1"
+    description: "Data Center 3"
+security:
+  - basicAuth: []
+    apiKeyHeader: []
 paths:
-  /v1/campaigns/core/throttling/settings:
+  /catalog:
     post:
-      summary: Create throttling settings for service
-      description: Create throttling settings
-      operationId: createThrottlingSettingsApi
+      summary: Create Catalog
+      description: Create a new catalog with a unique name and specify attributes data type.
+      tags:
+        - Catalog Metadata
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage App ID (Workspace ID)
       requestBody:
+        required: true
         content:
           application/json:
             schema:
               type: object
               properties:
-                unique_identifier_key:
+                name:
                   type: string
-                  example: "DB_NAME"
-                  required: true
-                unique_identifier_value:
-                  type: string
-                  example: "DemoApp"
-                  required: true
-                throttling_limit:
-                  type: object
-                  properties:
-                    service_name:
-                      type: integer
-                      example: 1000
-                
-                
+                  pattern: '^[a-zA-Z0-9]+$'
+                  description: Unique name of the catalog. No special characters allowed.
+                attributes:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Attribute'
+              required:
+                - name
             examples:
-              Create throttling settings:
+              example1:
                 value:
-                  throttling_limit:
-                    PUSH: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    PUSH_ANDROID: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    PUSH_IOS: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    PUSH_WEB: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    SMS: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    EMAIL: {'is_enabled':true, 'limit': 10000, 'min_limit': 3, 'max_limit': 55000}
-                    WHATSAPP: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    CONNECTOR: {'is_enabled':true, 'limit': 10000, 'min_limit': 3, 'max_limit': 55000}
-                    PII: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    CONTENT_API: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                  unique_identifier_key: "DB_NAME"
+                  name: "exampleCatalog"
+                  attributes:
+                    - name: "title"
+                      data_type: "string"
+                    - name: "link"
+                      data_type: "string"
+                    - name: "id"
+                      data_type: "string"
+                    - name: "image_link"
+                      data_type: "string"
+                    - name: "price"
+                      data_type: "float"
       responses:
-        "201":
-          description: "Success Response"
-          
-          
-        "400":
-          description: "Bad Request Response"
+        '201':
+          description: Catalog created successfully.
           content:
-            text/plain:
+            application/json:
               schema:
-                $ref: "#/definitions/ErrorApiResponse"
-        "500":
-          description: "Internal Server Error Response"
+                type: object
+                properties:
+                  catalog_id:
+                    type: string
+                    description: ID of the created catalog.
+                required:
+                  - catalog_id
+        '400':
+          description: Bad request. Possible issues could be duplicate name, invalid characters or invalid data type for the attribute.
           content:
-            text/plain:
+            application/json:
               schema:
-                $ref: "#/definitions/ErrorApiResponse"
-      security:
-        - basicAuth: []
-    
-    put:
-      summary: Edit throttling settings for service
-      description: Edit throttling settings
-      operationId: editThrottlingSettingsApi
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                DuplicateName:
+                  value:
+                    error-code: name-not-unique
+                    message: "Catalog name already exists!"
+                InvalidName:
+                  value:
+                    error-code: name-invalid
+                    message: "Catalog name is invalid or has special characters"
+                InvalidAttributeDataType:
+                  value:
+                    error-code: invalid-attr-data-type
+                    message: "Data type provided is invalid"
+        '413':
+          description: Request entity too large.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MaxAttributes:
+                  value:
+                    error-code: "too-many-attributes"
+                    message: "Maximum allowed attributes is 50"
+                PayloadSize:
+                  value:
+                    error-code: "payload-size-too-large"
+                    message: "The payload size is too large. Maximum allowed size is 5MB."
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                InternalServerError:
+                  value:
+                    error-code: internal-server-error
+                    message: "Internal server error occurred, Please contact MoEngage team."
+
+  /catalog/{catalog_id}/attributes:
+    patch:
+      summary: Add New Attributes
+      description: This method is used to add new attributes to the catalog. It will not accept request if the body contains already existing attributes.
+      tags:
+        - Catalog Metadata
+      parameters:
+        - name: catalog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage App ID (Workspace ID)
       requestBody:
+        description: List of attribute objects
+        required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                unique_identifier_key:
-                  type: string
-                  example: "DB_NAME"
-                  required: true
-                unique_identifier_value:
-                  type: string
-                  example: "DemoApp"
-                  required: true
-                throttling_limit:
-                  type: object
-                  properties:
-                    service_name:
-                      type: integer
-                      example: 1000
-                
-                
-            examples:
-              Edit throttling settings:
-                value:
-                  throttling_limit:
-                    PUSH: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    PUSH_ANDROID: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    PUSH_IOS: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    PUSH_WEB: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    SMS: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    EMAIL: {'is_enabled':true, 'limit': 10000, 'min_limit': 3, 'max_limit': 55000}
-                    WHATSAPP: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    CONNECTOR: {'is_enabled':true, 'limit': 10000, 'min_limit': 3, 'max_limit': 55000}
-                    PII: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                    CONTENT_API: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
-                  unique_identifier_key: "DB_NAME"
+              type: array
+              items:
+                $ref: '#/components/schemas/Attribute'
       responses:
-        "204":
-          description: "Success Response"
-          
-          
-        "400":
-          description: "Bad Request Response"
+        '200':
+          description: Attribute successfully added
           content:
-            text/plain:
+            application/json:
               schema:
-                $ref: "#/definitions/ErrorApiResponse"
-        "500":
-          description: "Internal Server Error Response"
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attribute'
+        '400':
+          description: Bad request.
           content:
-            text/plain:
+            application/json:
               schema:
-                $ref: "#/definitions/ErrorApiResponse"
-      security:
-        - basicAuth: []
-    
-    get:
-      summary: "Get Throttling settings for service"
-      description: "Get Throttling settings"
-      responses:
-        "200":
-          description: "Success Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/CampaignThrottlingApiResponse"
-        "400":
-          description: "Bad Request Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/ErrorApiResponse"
-        "500":
-          description: "Internal Server Error Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/ErrorApiResponse"
-                
-  /v1/campaigns/core/throttling/meta:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                AttributeExists:
+                  value:
+                    error-code: attribute-exists
+                    message: "Attribute already exists in the catalog"
+
+  /catalog/{catalog_id}/products:
     post:
-      summary: Create throttling meta for service
-      description: Create throttling Meta
-      operationId: createThrottlingMetaApi
+      summary: Ingest Products
+      description: Ingest new products into a specified catalog.
+      tags:
+        - Catalog Products
+      parameters:
+        - in: path
+          name: catalog_id
+          schema:
+            type: string
+          required: true
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage App ID (Workspace ID)
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                tenant:
-                  type: string
-                  example: "Journey"
-                  required: true
-                service:
-                  type: string
-                  example: "PUSH"
-                  required: true
-                priority:
-                  type: integer
-                  example: 0
-                status:
-                  type: string
-                  example: "NOT_SENT/QUEUED/SENDING/SENT/PAUSED/STOPPED/ARCHIVE"
-                  required: true
-                entity_id:
-                  type: string
-                  example: 0
-                entity_created_time:
-                  type: date
-                  example: 0
-                entity_level_throttling:
-                  type: integer
-                  example: 1000
-                throttling_services_applicable:
+                products:
                   type: array
-                  example: 0
-                
-                
-            examples:
-              Create throttling Meta:
-                value:
-                  tenant: "Journey"
-                  service: "PUSH"
-                  priority: 0
-                  status: NOT_SENT
-                  entity_id: "cid"
-                  entity_created_time: ""
-                  entity_level_throttling: 100
-                  throttling_services_applicable: ['PUSH', 'SMS']
+                  maxItems: 50
+                  items:
+                    type: object
+              required:
+                - products
+            example:
+              products:
+                - id: "1234567"
+                  category: "Electronics"
+                  locale: "en_US"
+                  image_link: "https://example.com/images/laptop.jpg"
+                  title: "Super Laptop"
+                  link: "https://example.com/super-laptop"
+                  in_stock: 10
+                  price: 899.99
       responses:
-        "201":
-          description: "Success Response"
-          
-          
-        "400":
-          description: "Bad Request Response"
+        '200':
+          description: Products ingestion status. The response provides a summary of valid and invalid products.
           content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/ErrorApiResponse"
-        "500":
-          description: "Internal Server Error Response"
+            application/json:
+              example:
+                message:
+                  valid:
+                    count: 1
+                  invalid:
+                    count: 1
+                    details:
+                      - error-id: "invalid-attributes"
+                        message: "Product attribute (recommended_price) is not included in catalog's defined attributes"
+                        count: 1
+                        document_ids:
+                          - "78361487"
+        '404':
+          description: Catalog not found
           content:
-            text/plain:
+            application/json:
               schema:
-                $ref: "#/definitions/ErrorApiResponse"
-      security:
-        - basicAuth: []
-    
-    put:
-      summary: Edit throttling Meta for service
-      description: Edit throttling Meta
-      operationId: editThrottlingMetaApi
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                CatalogNotFound:
+                  value:
+                    error-code: "catalog-not-found"
+                    message: "Catalog not found for the given id"
+        '422':
+          description: Unprocessable entity. The request is well-formed but cannot be processed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                HighItemCount:
+                  value:
+                    error-code: "too-many-products"
+                    message: "products size should be less than or equal to 50"
+    patch:
+      summary: Update Existing Products
+      description: Update products with new attribute values. Attributes must adhere to the data type defined in the catalog.
+      tags:
+        - Catalog Products
+      parameters:
+        - name: catalog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage App ID (Workspace ID)
       requestBody:
+        description: List of product objects to be updated
+        required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                tenant:
-                  type: string
-                  example: DemoApp
-                priority:
-                  type: integer
-                  example: 0
-                entity_id:
-                  type: string
-                  example: 0
-                entity_level_throttling:
-                  type: string
-                  example: 0
-                status:
-                  type: string
-                  example: "QUEUED"
-                
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductUpdate'
             examples:
-              Edit throttling Meta:
+              example1:
                 value:
-                  tenant: DemoApp
-                  priority: 0
-                  entity_id: "cid"
-                  status: "QUEUED"
-                  entity_level_throttling: 100
+                  - product_id: "product1"
+                    attributes:
+                      price: 1299.99
+                      in_stock: 5
+                  - product_id: "product2"
+                    attributes:
+                      price: 49.99
+                      online_exclusive: "False"
       responses:
-        "204":
-          description: "Success Response"
-          
-          
-        "400":
-          description: "Bad Request Response"
+        '200':
+          description: Products updated successfully.
           content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/ErrorApiResponse"
-        "500":
-          description: "Internal Server Error Response"
+            application/json:
+              example:
+                message:
+                  valid:
+                    count: 2
+                  invalid:
+                    count: 0
+        '400':
+          description: Bad request, update failed.
           content:
-            text/plain:
+            application/json:
               schema:
-                $ref: "#/definitions/ErrorApiResponse"
-      security:
-        - basicAuth: []
-  
-  /v1/campaigns/core/throttling/meta/search:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Catalog not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /catalog/{catalog_id}/products/bulk-delete:
     post:
-      summary: Get throttling meta for service
-      description: Search throttling Meta
-      operationId: searchThrottlingMetaApi
+      summary: Delete Existing Products
+      description: Delete existing products in a given catalog. A maximum of 50 products can be deleted in a single request.
+      tags:
+        - Catalog Products
+      parameters:
+        - name: catalog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          schema:
+            type: string
+          description: MoEngage App ID (Workspace ID)
       requestBody:
+        description: List of product ids to be deleted
+        required: true
         content:
           application/json:
             schema:
               type: object
               properties:
-                tenant:
-                  type: string
-                  example: "Journey"
-                  required: true
-                service:
-                  type: string
-                  example: "PUSH"
-                  required: true
-                status:
-                  type: string
-                  example: "NOT_SENT/QUEUED/SENDING/SENT/PAUSED/STOPPED/ARCHIVE"
-                  required: true
-                entity_id:
-                  type: string
-                  example: 0
-                
-                
-            examples:
-              Search throttling Meta:
-                value:
-                  tenant: "Journey"
-                  service: "PUSH"
-                  status: NOT_SENT
-                  entity_id: "cid"
-      responses:
-        "201":
-          description: "Success Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/CampaignThrottlingMetaApiResponse"
-          
-          
-        "400":
-          description: "Bad Request Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/ErrorApiResponse"
-        "500":
-          description: "Internal Server Error Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/ErrorApiResponse"
-      security:
-        - basicAuth: []
-                
-  /v1/campaigns/core/throttling/batch:
-    post:
-      summary: Create throttling Batch for service
-      description: Create throttling Batch
-      operationId: createThrottlingBatchApi
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  example: "QUEUED"
-                  required: true
-                batch_status:
-                  type: integer
-                  example: 0
-                tenant:
-                  type: string
-                  example: "DemoApp"
-                  required: true
-                entity_id:
-                  type: string
-                  example: "cid"
-                  required: true
-                batch_entities:
+                products:
                   type: array
-                  example: []
-                  required: true
-                params:
-                  type: object
-                  properties:
-                    service_name:
-                      type: integer
-                      example: 1000
-                queue:
-                  type: string
-                  example: ""
-                  required: true
-                task_name:
-                  type: string
-                  example: ""
-                  required: true
-                task_args:
-                  type: array
-                  example: 
-                  required: true
-                
-                
+                  items:
+                    type: string
+                  maxLength: 50
+                  uniqueItems: true
             examples:
-              Create throttling Batch:
+              example1:
                 value:
-                  params:
-                    batch_no: 1
-                  status: "QUEUED"
-                  batch_status: 0
-                  tenant: "DemoApp"
-                  entity_id: "cid"
-                  batch_entities: []
-                  queue: "aa"
-                  task_name: "abc"
-                  task_args: ['ab']
+                  products: ["product1", "product2"]
       responses:
-        "201":
-          description: "Success Response"
-          
-          
-        "400":
-          description: "Bad Request Response"
+        '200':
+          description: Products deleted successfully
           content:
-            text/plain:
+            application/json:
               schema:
-                $ref: "#/definitions/ErrorApiResponse"
-        "500":
-          description: "Internal Server Error Response"
+                $ref: '#/components/schemas/ProductDeleteResult'
+        '400':
+          description: Bad request.
           content:
-            text/plain:
+            application/json:
               schema:
-                $ref: "#/definitions/ErrorApiResponse"
-      security:
-        - basicAuth: []
-    
-    put:
-      summary: Edit throttling Batch for service
-      description: Edit throttling Batch
-      operationId: editThrottlingBatchApi
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  example: "QUEUED"
-                  required: true
-                batch_status:
-                  type: integer
-                  example: 0
-                tenant:
-                  type: string
-                  example: "DemoApp"
-                  required: true
-                entity_id:
-                  type: string
-                  example: "cid"
-                  required: true
-                batch_entities:
-                  type: array
-                  example: []
-                  required: true
-                params:
-                  type: object
-                  properties:
-                    service_name:
-                      type: integer
-                      example: 1000
-                queue:
-                  type: string
-                  example: ""
-                  required: true
-                task_name:
-                  type: string
-                  example: ""
-                  required: true
-                task_args:
-                  type: array
-                  example: 
-                  required: true
-                retry_count:
-                  type: integer
-                  example: 0
-                
-                
-            examples:
-              Edit throttling Batch:
-                value:
-                  params:
-                    batch_no: 1
-                  status: "QUEUED"
-                  batch_status: 0
-                  tenant: "DemoApp"
-                  entity_id: "cid"
-                  batch_entities: []
-                  queue: "aa"
-                  task_name: "abc"
-                  task_args: ['ab']
-                  retry_count: 0
-      responses:
-        "204":
-          description: "Success Response"
-          
-          
-        "400":
-          description: "Bad Request Response"
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Catalog not found
           content:
-            text/plain:
+            application/json:
               schema:
-                $ref: "#/definitions/ErrorApiResponse"
-        "500":
-          description: "Internal Server Error Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/ErrorApiResponse"
-      security:
-        - basicAuth: []
-  
-  /v1/campaigns/core/throttling/batch/search:
-    post:
-      summary: Search throttling Batch for service
-      description: Search throttling Batch
-      operationId: searchThrottlingBatchApi
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  example: "QUEUED"
-                  required: true
-                tenant:
-                  type: string
-                  example: "DemoApp"
-                  required: true
-                entity_id:
-                  type: string
-                  example: "cid"
-                  required: true
-                
-                
-            examples:
-              Create throttling Batch:
-                value:
-                  status: "QUEUED"
-                  tenant: "DemoApp"
-                  entity_id: "cid"
-      responses:
-        "201":
-          description: "Success Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/CampaignThrottlingBatchApiResponse"
-          
-          
-        "400":
-          description: "Bad Request Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/ErrorApiResponse"
-        "500":
-          description: "Internal Server Error Response"
-          content:
-            text/plain:
-              schema:
-                $ref: "#/definitions/ErrorApiResponse"
-      security:
-        - basicAuth: []
-        
+                $ref: '#/components/schemas/ErrorResponse'
+
 components:
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
-      
-definitions:
-
-  ErrorApiResponse:
-    type: object
-    properties:
-      error:
-        type: object
-        properties:
-          code:
-            type: "string"
-          message:
-            type: "string"
-          target: 
-            type: "string"
-          details:
-            type: array
-            items:
-              type: object
-              properties:
-                message:
-                  type: "string"
-                target: 
-                  type: "string"
-  
-  CampaignThrottlingApiResponse:
-    type: object
-    properties:
-      throttling_limit:
-        type: object
-        properties:
-          PUSH:
-            type: object
-            properties:
-              is_enabled:
-                type: boolean
-              limit:
-                type: int
-              min_limit:
-                type: int
-              max_limit:
-                type: int
-          SMS:
-            type: object
-            properties:
-              is_enabled:
-                type: boolean
-              limit:
-                type: int
-              min_limit:
-                type: int
-              max_limit:
-                type: int
-          EMAIL:
-            type: object
-            properties:
-              is_enabled:
-                type: boolean
-              limit:
-                type: int
-              min_limit:
-                type: int
-              max_limit:
-                type: int
-      unique_identifier_key:
-        type: "string"
-      unique_identifier_value:
-        type: "string"
-  
-  
-  CampaignThrottlingMetaApiResponse:
-    type: object
-    properties:
-      tenant:
-        type: "string"
-      service:
-        type: "string"
-      priority:
-        type: "integer"
-      status:
-        type: "string"
-      entity_id:
-        type: "string"
-      entity_created_time:
-        type: "datetime"
-      entity_level_throttling:
-        type: "int"
-      throttling_services_applicable:
-        type: array
-        items:
-          type: "string"
-  
-  
-  CampaignThrottlingBatchApiResponse:
-    type: object
-    properties:
-                status:
-                  type: string
-                  example: "QUEUED"
-                  required: true
-                batch_status:
-                  type: integer
-                  example: 0
-                tenant:
-                  type: string
-                  example: "DemoApp"
-                  required: true
-                entity_id:
-                  type: string
-                  example: "cid"
-                  required: true
-                batch_entities:
-                  type: array
-                  example: []
-                  required: true
-                params:
-                  type: object
-                  properties:
-                    service_name:
-                      type: integer
-                      example: 1000
-                queue:
-                  type: string
-                  example: ""
-                  required: true
-                task_name:
-                  type: string
-                  example: ""
-                  required: true
-                task_args:
-                  type: array
-                  example: []
-                  required: true
-                retry_count:
-                  type: integer
-                  example: 0
+      description: "See [Authentication Guide](api-reference/catalog/create-catalog#authentication) for details on how to generate credentials."
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: MOE-APPKEY
+      description: "Your MoEngage Workspace ID. Found in **Settings > Account > APIs**."
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error-code:
+          type: string
+        message:
+          type: string
+    Attribute:
+      type: object
+      required:
+        - name
+        - data_type
+      properties:
+        name:
+          type: string
+          description: The attribute name
+        data_type:
+          type: string
+          enum: [boolean, date, string, float, integer, geopoint]
+          description: The data type of the attribute
+    ProductUpdate:
+      type: object
+      required:
+        - product_id
+        - attributes
+      properties:
+        product_id:
+          type: string
+          description: The product id
+        attributes:
+          type: object
+          description: A map of attribute names to their new values.
+    ProductDeleteResult:
+      type: object
+      properties:
+        success:
+          type: boolean

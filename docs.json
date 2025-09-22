@@ -183,6 +183,18 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Product Catalog API",
+            "openapi": {
+              "source": "/api-reference/throttle.yaml",
+              "directory": "api-reference"
+            }
+          }
+        ]
       }
     ],
     "global": {
