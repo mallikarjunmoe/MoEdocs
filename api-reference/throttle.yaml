@@ -1,0 +1,703 @@
+openapi: 3.0.3
+info:
+  title: Global Throttling
+  version: 1.0.7
+  contact: {}
+servers:
+  - url: https://
+paths:
+  /v1/campaigns/core/throttling/settings:
+    post:
+      summary: Create throttling settings for service
+      description: Create throttling settings
+      operationId: createThrottlingSettingsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unique_identifier_key:
+                  type: string
+                  example: "DB_NAME"
+                  required: true
+                unique_identifier_value:
+                  type: string
+                  example: "DemoApp"
+                  required: true
+                throttling_limit:
+                  type: object
+                  properties:
+                    service_name:
+                      type: integer
+                      example: 1000
+                
+                
+            examples:
+              Create throttling settings:
+                value:
+                  throttling_limit:
+                    PUSH: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    PUSH_ANDROID: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    PUSH_IOS: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    PUSH_WEB: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    SMS: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    EMAIL: {'is_enabled':true, 'limit': 10000, 'min_limit': 3, 'max_limit': 55000}
+                    WHATSAPP: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    CONNECTOR: {'is_enabled':true, 'limit': 10000, 'min_limit': 3, 'max_limit': 55000}
+                    PII: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    CONTENT_API: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                  unique_identifier_key: "DB_NAME"
+      responses:
+        "201":
+          description: "Success Response"
+          
+          
+        "400":
+          description: "Bad Request Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+        "500":
+          description: "Internal Server Error Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+      security:
+        - basicAuth: []
+    
+    put:
+      summary: Edit throttling settings for service
+      description: Edit throttling settings
+      operationId: editThrottlingSettingsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unique_identifier_key:
+                  type: string
+                  example: "DB_NAME"
+                  required: true
+                unique_identifier_value:
+                  type: string
+                  example: "DemoApp"
+                  required: true
+                throttling_limit:
+                  type: object
+                  properties:
+                    service_name:
+                      type: integer
+                      example: 1000
+                
+                
+            examples:
+              Edit throttling settings:
+                value:
+                  throttling_limit:
+                    PUSH: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    PUSH_ANDROID: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    PUSH_IOS: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    PUSH_WEB: {'is_enabled':false, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    SMS: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    EMAIL: {'is_enabled':true, 'limit': 10000, 'min_limit': 3, 'max_limit': 55000}
+                    WHATSAPP: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    CONNECTOR: {'is_enabled':true, 'limit': 10000, 'min_limit': 3, 'max_limit': 55000}
+                    PII: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                    CONTENT_API: {'is_enabled':true, 'limit': 1000, 'min_limit': 3, 'max_limit': 55000}
+                  unique_identifier_key: "DB_NAME"
+      responses:
+        "204":
+          description: "Success Response"
+          
+          
+        "400":
+          description: "Bad Request Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+        "500":
+          description: "Internal Server Error Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+      security:
+        - basicAuth: []
+    
+    get:
+      summary: "Get Throttling settings for service"
+      description: "Get Throttling settings"
+      responses:
+        "200":
+          description: "Success Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/CampaignThrottlingApiResponse"
+        "400":
+          description: "Bad Request Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+        "500":
+          description: "Internal Server Error Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+                
+  /v1/campaigns/core/throttling/meta:
+    post:
+      summary: Create throttling meta for service
+      description: Create throttling Meta
+      operationId: createThrottlingMetaApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tenant:
+                  type: string
+                  example: "Journey"
+                  required: true
+                service:
+                  type: string
+                  example: "PUSH"
+                  required: true
+                priority:
+                  type: integer
+                  example: 0
+                status:
+                  type: string
+                  example: "NOT_SENT/QUEUED/SENDING/SENT/PAUSED/STOPPED/ARCHIVE"
+                  required: true
+                entity_id:
+                  type: string
+                  example: 0
+                entity_created_time:
+                  type: date
+                  example: 0
+                entity_level_throttling:
+                  type: integer
+                  example: 1000
+                throttling_services_applicable:
+                  type: array
+                  example: 0
+                
+                
+            examples:
+              Create throttling Meta:
+                value:
+                  tenant: "Journey"
+                  service: "PUSH"
+                  priority: 0
+                  status: NOT_SENT
+                  entity_id: "cid"
+                  entity_created_time: ""
+                  entity_level_throttling: 100
+                  throttling_services_applicable: ['PUSH', 'SMS']
+      responses:
+        "201":
+          description: "Success Response"
+          
+          
+        "400":
+          description: "Bad Request Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+        "500":
+          description: "Internal Server Error Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+      security:
+        - basicAuth: []
+    
+    put:
+      summary: Edit throttling Meta for service
+      description: Edit throttling Meta
+      operationId: editThrottlingMetaApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tenant:
+                  type: string
+                  example: DemoApp
+                priority:
+                  type: integer
+                  example: 0
+                entity_id:
+                  type: string
+                  example: 0
+                entity_level_throttling:
+                  type: string
+                  example: 0
+                status:
+                  type: string
+                  example: "QUEUED"
+                
+            examples:
+              Edit throttling Meta:
+                value:
+                  tenant: DemoApp
+                  priority: 0
+                  entity_id: "cid"
+                  status: "QUEUED"
+                  entity_level_throttling: 100
+      responses:
+        "204":
+          description: "Success Response"
+          
+          
+        "400":
+          description: "Bad Request Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+        "500":
+          description: "Internal Server Error Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+      security:
+        - basicAuth: []
+  
+  /v1/campaigns/core/throttling/meta/search:
+    post:
+      summary: Get throttling meta for service
+      description: Search throttling Meta
+      operationId: searchThrottlingMetaApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tenant:
+                  type: string
+                  example: "Journey"
+                  required: true
+                service:
+                  type: string
+                  example: "PUSH"
+                  required: true
+                status:
+                  type: string
+                  example: "NOT_SENT/QUEUED/SENDING/SENT/PAUSED/STOPPED/ARCHIVE"
+                  required: true
+                entity_id:
+                  type: string
+                  example: 0
+                
+                
+            examples:
+              Search throttling Meta:
+                value:
+                  tenant: "Journey"
+                  service: "PUSH"
+                  status: NOT_SENT
+                  entity_id: "cid"
+      responses:
+        "201":
+          description: "Success Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/CampaignThrottlingMetaApiResponse"
+          
+          
+        "400":
+          description: "Bad Request Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+        "500":
+          description: "Internal Server Error Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+      security:
+        - basicAuth: []
+                
+  /v1/campaigns/core/throttling/batch:
+    post:
+      summary: Create throttling Batch for service
+      description: Create throttling Batch
+      operationId: createThrottlingBatchApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "QUEUED"
+                  required: true
+                batch_status:
+                  type: integer
+                  example: 0
+                tenant:
+                  type: string
+                  example: "DemoApp"
+                  required: true
+                entity_id:
+                  type: string
+                  example: "cid"
+                  required: true
+                batch_entities:
+                  type: array
+                  example: []
+                  required: true
+                params:
+                  type: object
+                  properties:
+                    service_name:
+                      type: integer
+                      example: 1000
+                queue:
+                  type: string
+                  example: ""
+                  required: true
+                task_name:
+                  type: string
+                  example: ""
+                  required: true
+                task_args:
+                  type: array
+                  example: 
+                  required: true
+                
+                
+            examples:
+              Create throttling Batch:
+                value:
+                  params:
+                    batch_no: 1
+                  status: "QUEUED"
+                  batch_status: 0
+                  tenant: "DemoApp"
+                  entity_id: "cid"
+                  batch_entities: []
+                  queue: "aa"
+                  task_name: "abc"
+                  task_args: ['ab']
+      responses:
+        "201":
+          description: "Success Response"
+          
+          
+        "400":
+          description: "Bad Request Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+        "500":
+          description: "Internal Server Error Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+      security:
+        - basicAuth: []
+    
+    put:
+      summary: Edit throttling Batch for service
+      description: Edit throttling Batch
+      operationId: editThrottlingBatchApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "QUEUED"
+                  required: true
+                batch_status:
+                  type: integer
+                  example: 0
+                tenant:
+                  type: string
+                  example: "DemoApp"
+                  required: true
+                entity_id:
+                  type: string
+                  example: "cid"
+                  required: true
+                batch_entities:
+                  type: array
+                  example: []
+                  required: true
+                params:
+                  type: object
+                  properties:
+                    service_name:
+                      type: integer
+                      example: 1000
+                queue:
+                  type: string
+                  example: ""
+                  required: true
+                task_name:
+                  type: string
+                  example: ""
+                  required: true
+                task_args:
+                  type: array
+                  example: 
+                  required: true
+                retry_count:
+                  type: integer
+                  example: 0
+                
+                
+            examples:
+              Edit throttling Batch:
+                value:
+                  params:
+                    batch_no: 1
+                  status: "QUEUED"
+                  batch_status: 0
+                  tenant: "DemoApp"
+                  entity_id: "cid"
+                  batch_entities: []
+                  queue: "aa"
+                  task_name: "abc"
+                  task_args: ['ab']
+                  retry_count: 0
+      responses:
+        "204":
+          description: "Success Response"
+          
+          
+        "400":
+          description: "Bad Request Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+        "500":
+          description: "Internal Server Error Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+      security:
+        - basicAuth: []
+  
+  /v1/campaigns/core/throttling/batch/search:
+    post:
+      summary: Search throttling Batch for service
+      description: Search throttling Batch
+      operationId: searchThrottlingBatchApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "QUEUED"
+                  required: true
+                tenant:
+                  type: string
+                  example: "DemoApp"
+                  required: true
+                entity_id:
+                  type: string
+                  example: "cid"
+                  required: true
+                
+                
+            examples:
+              Create throttling Batch:
+                value:
+                  status: "QUEUED"
+                  tenant: "DemoApp"
+                  entity_id: "cid"
+      responses:
+        "201":
+          description: "Success Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/CampaignThrottlingBatchApiResponse"
+          
+          
+        "400":
+          description: "Bad Request Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+        "500":
+          description: "Internal Server Error Response"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/definitions/ErrorApiResponse"
+      security:
+        - basicAuth: []
+        
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      
+definitions:
+
+  ErrorApiResponse:
+    type: object
+    properties:
+      error:
+        type: object
+        properties:
+          code:
+            type: "string"
+          message:
+            type: "string"
+          target: 
+            type: "string"
+          details:
+            type: array
+            items:
+              type: object
+              properties:
+                message:
+                  type: "string"
+                target: 
+                  type: "string"
+  
+  CampaignThrottlingApiResponse:
+    type: object
+    properties:
+      throttling_limit:
+        type: object
+        properties:
+          PUSH:
+            type: object
+            properties:
+              is_enabled:
+                type: boolean
+              limit:
+                type: int
+              min_limit:
+                type: int
+              max_limit:
+                type: int
+          SMS:
+            type: object
+            properties:
+              is_enabled:
+                type: boolean
+              limit:
+                type: int
+              min_limit:
+                type: int
+              max_limit:
+                type: int
+          EMAIL:
+            type: object
+            properties:
+              is_enabled:
+                type: boolean
+              limit:
+                type: int
+              min_limit:
+                type: int
+              max_limit:
+                type: int
+      unique_identifier_key:
+        type: "string"
+      unique_identifier_value:
+        type: "string"
+  
+  
+  CampaignThrottlingMetaApiResponse:
+    type: object
+    properties:
+      tenant:
+        type: "string"
+      service:
+        type: "string"
+      priority:
+        type: "integer"
+      status:
+        type: "string"
+      entity_id:
+        type: "string"
+      entity_created_time:
+        type: "datetime"
+      entity_level_throttling:
+        type: "int"
+      throttling_services_applicable:
+        type: array
+        items:
+          type: "string"
+  
+  
+  CampaignThrottlingBatchApiResponse:
+    type: object
+    properties:
+                status:
+                  type: string
+                  example: "QUEUED"
+                  required: true
+                batch_status:
+                  type: integer
+                  example: 0
+                tenant:
+                  type: string
+                  example: "DemoApp"
+                  required: true
+                entity_id:
+                  type: string
+                  example: "cid"
+                  required: true
+                batch_entities:
+                  type: array
+                  example: []
+                  required: true
+                params:
+                  type: object
+                  properties:
+                    service_name:
+                      type: integer
+                      example: 1000
+                queue:
+                  type: string
+                  example: ""
+                  required: true
+                task_name:
+                  type: string
+                  example: ""
+                  required: true
+                task_args:
+                  type: array
+                  example: []
+                  required: true
+                retry_count:
+                  type: integer
+                  example: 0

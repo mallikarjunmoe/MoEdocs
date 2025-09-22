@@ -172,6 +172,13 @@
                   "source": "/api-reference/campaigns.yaml",
                   "directory": "api-reference"
                 }
+              },
+              {
+                "group": "Throttling",
+                "openapi": {
+                  "source": "/api-reference/throttle.yaml",
+                  "directory": "api-reference"
+                }
               }
             ]
           }
