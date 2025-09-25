@@ -30,7 +30,10 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "tabs": [
+    "languages": [
+      {
+        "language": "en",
+        "tabs": [
       {
         "tab": "Developer Guide",
         "groups": [
@@ -189,6 +192,173 @@
               "source": "/api-reference/pushtemplates.yaml",
               "directory": "api-reference"
             }
+          }
+        ]
+      }
+    ]
+      },
+      {
+        "language": "jp",
+        "tabs": [
+          {
+            "tab": "開発者ガイド",
+            "groups": [
+              {
+                "group": " ",
+                "pages": [
+                  "hc/jp/sections/index"
+                ]
+              },
+              {
+                "group": "iOS SDK",
+                "pages": [
+                  {
+                    "group": "SDK統合",
+                    "pages": [
+                      {
+                        "group": "基本",
+                        "pages": [
+                          "hc/jp/articles/4403900743828-SDK-Integration",
+                          "hc/jp/articles/4403905438228-SDK-Initialization",
+                          "hc/jp/articles/4403910162452-Data-Center"
+                        ]
+                      },
+                      {
+                        "group": "高度",
+                        "pages": [
+                          "hc/jp/articles/15320224415764-Add-On-Security"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "データ追跡",
+                    "pages": [
+                      {
+                        "group": "基本",
+                        "pages": [
+                          "hc/jp/articles/4403910297620-Install-Update-differentiation",
+                          "hc/jp/articles/35580768711060-Setting-Unique-Id-for-SDK-versions-below-9-23-0"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Android SDK",
+                "pages": [
+                  {
+                    "group": "SDK統合",
+                    "pages": [
+                      {
+                        "group": "基本統合",
+                        "pages": [
+                          "hc/jp/articles/5339694836884-Configuring-Build-Settings"
+                        ]
+                      },
+                      {
+                        "group": "高度またはオプション",
+                        "pages": [
+                          "hc/jp/articles/4408876754068-Network-Security-Configuration"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "変更ログ",
+                "pages": [
+                  "hc/jp/articles/39753601645332-Changelog"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "ユーザーガイド",
+            "groups": [
+              {
+                "group": "はじめに",
+                "pages": [
+                  {
+                    "group": "概要",
+                    "pages": [
+                      "hc/jp/articles/360040071212-Terms-to-Know",
+                      "hc/jp/articles/115005943283-Feature-or-Product-in-Beta"
+                    ]
+                  },
+                  {
+                    "group": "初期設定",
+                    "pages": [
+                      "hc/jp/articles/210845683-Live-and-Test-environments",
+                      "hc/jp/articles/36774960874004-Navigate-to-Your-Account-s-Login-Page"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "設定",
+                "pages": [
+                  {
+                    "group": "アカウント",
+                    "pages": [
+                      {
+                        "group": "一般設定",
+                        "pages": [
+                          "hc/jp/articles/36472555136020-Workspace-Settings"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "インアプリ",
+                "pages": [
+                  "hc/jp/articles/in-app"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "APIリファレンス",
+            "groups": [
+              {
+                "group": "概要",
+                "pages": [
+                  "api-reference/jp/introduction"
+                ]
+              },
+              {
+                "group": "プロダクトカタログAPI",
+                "openapi": {
+                  "source": "/api-reference/openapi.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "キャンペーンAPI",
+                "openapi": {
+                  "source": "/api-reference/campaigns.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "グローバルスロットリングAPI",
+                "openapi": {
+                  "source": "/api-reference/globalthrottle.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "プッシュテンプレートAPI",
+                "openapi": {
+                  "source": "/api-reference/pushtemplates.yaml",
+                  "directory": "api-reference"
+                }
+              }
+            ]
           }
         ]
       }
