@@ -1,0 +1,30 @@
+---
+title: "SDKバージョン9.23.0未満でのユニークID設定"
+description: "古いSDKバージョンでのユニークID設定方法"
+---
+
+# SDKバージョン9.23.0未満でのユニークID設定
+
+SDKバージョン9.23.0未満でユニークIDを設定する方法について説明します。
+
+## ユニークIDとは
+
+ユニークIDは、ユーザーを一意に識別するためのIDです。
+
+## 設定方法
+
+### iOS
+```swift
+// ユニークIDの設定例
+MoEngage.sharedInstance.setUniqueId("user_unique_id")
+```
+
+### Android
+```java
+// ユニークIDの設定例
+MoEngage.getInstance().setUniqueId("user_unique_id");
+```
+
+---
+
+*このページは翻訳中です。英語版のドキュメントは [こちら](/hc/en-us/articles/35580768711060-Setting-Unique-Id-for-SDK-versions-below-9-23-0) をご覧ください。*
