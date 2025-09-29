@@ -7,125 +7,104 @@ To create an In-App campaign:
 
 <Steps>
   <Step title="Navigate to Campaigns">
-    In the MoEngage Dashboard, go to Engage \> Campaigns and click + Create Campaign, or use the main Create New \> Campaign button.
-
+    In the MoEngage Dashboard, go to **Engage** > **Campaigns** and click **+ Create Campaign**, or use the main **Create New** > **Campaign** button.
     <Frame>
-      ![Create campaign from campaigns page](/guide-media/01HVPRFWNJQQZG2SKA89N1WDMP)
+      <img src="/guide-media/01HVPRFWNJQQZG2SKA89N1WDMP" alt="Create campaign from campaigns page" />
     </Frame>
   </Step>
   <Step title="Select In-App Campaign">
-    From the campaign types, under Inbound, select In-App.
-
+    From the campaign types, under **Inbound**, select **In-App**.
     <Frame>
-      ![Select In-App campaign type](/guide-media/01JV4GP36F9645M4F1KH34J7N2)
+      <img src="/guide-media/01JV4GP36F9645M4F1KH34J7N2" alt="Select In-App campaign type" />
     </Frame>
   </Step>
 </Steps>
 
-## Create an In-App Message Campaign
+# Create an In-App Message Campaign
 
 To create an In-App message campaign, follow these steps:
 
-- Target users: Define the audience for your campaign.
-- Content: Design the message content.
-- Schedule and goals: Set the delivery schedule and track campaign performance.
+1. [Target users](#step-1-target-users): Define the audience for your campaign.
+2. [Content](#step-2-content): Design the message content.
+3. [Schedule and goals](#step-3-schedule-and-goals): Set the delivery schedule and track campaign performance.
 
-## Step 1: Target Users 
+## Step 1: Target Users
 
 ### Campaign Details
 
-The Campaign Details section includes:
+The **Campaign Details** section includes:
 
 - **Campaign name**: Enter a name to easily identify and manage your campaign. The campaign name must be between 5 and 256 characters.
-- **Campaign tags**: Select up to five tags from the drop-down list. Tags help you organize and filter campaigns. For more information, refer to Campaign Tags.
+- **Campaign tags**: Select up to five tags from the drop-down list. Tags help you organize and filter campaigns. For more information, refer to [Campaign Tags](https://help.moengage.com/hc/en-us/articles/360058057412).
 
 <Frame>
-  <img
-    src="/guide-media/01HTDXCETGSPVK2A1ATYZYPV4F"
-    alt="Campaign details section"
-    width="454"
-    height="202"
-  />
+  <img src="/guide-media/01HTDXCETGSPVK2A1ATYZYPV4F" alt="Campaign details section" width="454" height="202" />
 </Frame>
 
-Select Platform
-In the Target platforms section, select the required platforms where your In-App message should display.
+### Select Platform
+
+In the **Target platforms** section, select the required platforms where your In-App message should display.
 
 <Frame>
-  <img
-    src="/guide-media/01HTDXFNF84KY8R7FT8NZY6CN5"
-    alt="platforms.png"
-    width="417"
-    height="114"
-  />
+  <img src="/guide-media/01HTDXFNF84KY8R7FT8NZY6CN5" alt="platforms.png" width="417" height="114" />
 </Frame>
 
-Trigger Criteria
+## Trigger Criteria
+
 This section defines when the In-App message triggers for users.
 
 <Tabs>
   <Tab title="On session start">
-    Select On session start to display the In-App message as soon as a user's app session begins.
-
+    Select **On session start** to display the In-App message as soon as a user's app session begins.
     <Frame>
-      ![On session start trigger option](/guide-media/01JNDSB8RP6ZVAAMCPE8B18M9B)
+      <img src="/guide-media/01JNDSB8RP6ZVAAMCPE8B18M9B" alt="On session start trigger option" />
     </Frame>
-    Under Select trigger time, select Immediately to send the message as soon as the campaign is published, or select After Delay to send the message after a specified time.
-
+    Under **Select trigger time**, select **Immediately** to send the message as soon as the campaign is published, or select **After Delay** to send the message after a specified time.
     <Note>
       - Make sure to add a delay so the In-App message does not appear on the splash screen.
-      - With the After Delay option, you can set a maximum delay of one day (86400 seconds) and a minimum delay of one second.
-      - The After Delay option is available in SDKs: Android 6.9.0+, iOS 4.11.1+, React Native 8.6.0+, Cordova 8.4.0+, Capacitor 3.1.0+.
+      - With the **After Delay** option, you can set a maximum delay of one day (86400 seconds) and a minimum delay of one second.
+      - The **After Delay** option is available in SDKs: Android `6.9.0+`, iOS `4.11.1+`, React Native `8.6.0+`, Cordova `8.4.0+`, Capacitor `3.1.0+`.
     </Note>
   </Tab>
   <Tab title="On screen load">
-    Select On screen load to display the In-App message on a specific screen or app context.
-
+    Select **On screen load** to display the In-App message on a specific screen or app context.
     <Frame>
-      ![On screen load trigger option](/guide-media/01JNDSQNXH6MMJB7B7TBFB25YN)
+      <img src="/guide-media/01JNDSQNXH6MMJB7B7TBFB25YN" alt="On screen load trigger option" />
     </Frame>
-    Under Select screen/In app context, you have the following options:
-
-    - Any screen (Earlier on app open): The message appears as soon as the app opens on any screen where showInApp() or showNudge() is explicitly called.
-    - Specific screens: After selecting Specific screens, configure the screens or app context based on the platforms you selected.
-    - Screen: Choose where the In-App campaign should display from the Screen is any of list.
-    - App context: Add the context name in the App context is any of field.
-
+    Under **Select screen/In app context**, you have the following options:
+    - **Any screen (Earlier on app open)**: The message appears as soon as the app opens on any screen where `showInApp()` or `showNudge()` is explicitly called.
+    - **Specific screens**: After selecting **Specific screens**, configure the screens or app context based on the platforms you selected.
+    - **Screen**: Choose where the In-App campaign should display from the **Screen is any of** list.
+    - **App context**: Add the context name in the **App context is any of** field.
     <Note>
-      - You must add the showInApp() or showNudge() method to your screens for the In-App message to appear.
+      - You must add the `showInApp()` or `showNudge()` method to your screens for the In-App message to appear.
       - Screen fetch behavior: For Android, MoEngage automatically fetches the screen. For iOS, you must enter the screen name.
     </Note>
   </Tab>
   <Tab title="On custom event">
-    Select On custom event to display In-App messages when a user performs a specific custom event.
-
+    Select **On custom event** to display In-App messages when a user performs a specific custom event.
     <Frame>
-      ![On custom event trigger](/guide-media/01JNDTY4R0XSPKYYWHQ06D6SND)
+      <img src="/guide-media/01JNDTY4R0XSPKYYWHQ06D6SND" alt="On custom event trigger" />
     </Frame>
+
     #### **IF user**
-
     In this section, select the event condition for your In-App campaign. You can add multiple events and attributes.
-
     1. From the **Select an event** list, select the event.
-    2. Click **\+ Trigger** to add multiple OR conditions within events.
-
+    2. Click **+ Trigger** to add multiple OR conditions within events.
     <Frame>
-      ![Adding multiple triggers for a custom event](/guide-media/01JNDVCMEMED4NDX5PTQQYN2XW)
+      <img src="/guide-media/01JNDVCMEMED4NDX5PTQQYN2XW" alt="Adding multiple triggers for a custom event" />
     </Frame>
+
     #### **AND then**
-
-    You can add more customization by stringing multiple events together using the **\+ Filter** button.
-
+    You can add more customization by stringing multiple events together using the **+ Filter** button.
     <Frame>
-      ![Using 'AND then' to chain events](/guide-media/01JNDVVYXQ5SZWEHWNZPHJ4ECF)
+      <img src="/guide-media/01JNDVVYXQ5SZWEHWNZPHJ4ECF" alt="Using 'AND then' to chain events" />
     </Frame>
+
     #### **THEN**
-
     Under **Trigger the message**, select an option to define when to display the message:
-
     - **Immediately**: The message displays immediately after the trigger criteria are met.
     - **After Delay**: The message displays after the defined delay.
-
     <Note>
       - Do not select the same event with the **Filter** and use the **Then** option.
       - The **AND then** option is available only for In-App Android SDK `8.1.0+` and iOS `5.01.1+`.
@@ -134,66 +113,64 @@ This section defines when the In-App message triggers for users.
   </Tab>
 </Tabs>
 
-Select Target Audience
+## Select Target Audience
+
 This section includes segmentation filters to help you select the target audience for your campaign.
 
 <Tabs>
   <Tab title="All Users">
     Select this filter option to send the campaign to all app users.
-
     <Frame>
-      ![Targeting all users](/guide-media/01HVRC79X92THHDM1XYK665240)
+      <img src="/guide-media/01HVRC79X92THHDM1XYK665240" alt="Targeting all users" />
     </Frame>
   </Tab>
   <Tab title="Filter by User Property">
     Target users based on properties such as first seen, last seen, or city.
-    For more information, refer to Create Segments.
-
+    For more information, refer to [Create Segments](https://help.moengage.com/hc/en-us/articles/206169646-Create-Segments).
     <Frame>
-      ![Filtering by user property](/guide-media/01GTN2Z637R1G9H92351VENX9M)
+      <img src="/guide-media/01GTN2Z637R1G9H92351VENX9M" alt="Filtering by user property" />
     </Frame>
   </Tab>
   <Tab title="Filter by User Behavior">
     Target users based on their behavior or events, such as app/site opened or viewed product.
-    For more information, refer to Create Segments.
-
+    For more information, refer to [Create Segments](https://help.moengage.com/hc/en-us/articles/206169646-Create-Segments).
     <Frame>
-      ![Filtering by user behavior](/guide-media/01GTN3DPHDYDBMCK1N46XF2CFC)
+      <img src="/guide-media/01GTN3DPHDYDBMCK1N46XF2CFC" alt="Filtering by user behavior" />
     </Frame>
   </Tab>
   <Tab title="Filter by User Affinity">
     Target groups of users created based on their actions with a specific attribute value.
-    For more information, refer to Create Segments.
-
+    For more information, refer to [Create Segments](https://help.moengage.com/hc/en-us/articles/206169646-Create-Segments).
     <Frame>
-      ![Filtering by user affinity](/guide-media/01GTN3VCBNVMGM69K713BBBF4C)
+      <img src="/guide-media/01GTN3VCBNVMGM69K713BBBF4C" alt="Filtering by user affinity" />
     </Frame>
   </Tab>
   <Tab title="Filter by Custom Segment">
     Use a pre-saved custom segment as the target audience.
-    For more information, refer to Custom Segments.
-
+    For more information, refer to [Custom Segments](https://help.moengage.com/hc/en-us/articles/206528613-Custom-Segments).
     <Frame>
-      ![Filtering by custom segment](/guide-media/01GTN40RVG2W8SH1ZZXS77E8N8)
+      <img src="/guide-media/01GTN40RVG2W8SH1ZZXS77E8N8" alt="Filtering by custom segment" />
     </Frame>
   </Tab>
 </Tabs>
 
 <Info>
-  If you have the Portfolio feature enabled, you can create user segments by combining data from different apps and websites within your workspace.
+If you have the *Portfolio* feature enabled, you can create user segments by combining data from different apps and websites within your workspace.
 </Info>
 
-In-session Attributes
+## In-session Attributes
+
 Target users based on actions within the current app session (e.g., new vs. returning user, geolocation, time of day).
 
-Control Group
+### Control Group
+
 Exclude a portion of your audience from the campaign to measure its true impact. You can use a global control group or a campaign-specific one.
 
 <Frame>
-  ![Control group settings](/guide-media/01HTDY92QN451WG6XG0750SJYE)
+  <img src="/guide-media/01HTDY92QN451WG6XG0750SJYE" alt="Control group settings" />
 </Frame>
 
-Click Next to proceed to Step 2: Content.
+Click **Next** to proceed to Step 2: **Content**.
 
 ## Step 2: Content
 
@@ -201,87 +178,87 @@ Choose a template and customize your message.
 
 <Tabs>
   <Tab title="Pre-Built & Saved templates">
-    This option enables you to choose a template from Pre-built, Saved templates, and API templates. You can search and filter templates by type, use case, content, and editor.
-
+    This option enables you to choose a template from **Pre-built**, **Saved templates**, and **API templates**. You can search and filter templates by type, use case, content, and editor.
     <Frame>
-      ![FilterandSearchOptions.gif](/guide-media/01HCXWN134DJFKPA20K4N5FJ2F)
+      <img src="/guide-media/01HCXWN134DJFKPA20K4N5FJ2F" alt="FilterandSearchOptions.gif" />
     </Frame>
   </Tab>
   <Tab title="Start from Scratch">
     This option enables you to choose from:
-
-    - Self Handled
-    - Zip upload
-    - Custom HTML upload
+    - **Self Handled**
+    - **Zip upload**
+    - **Custom HTML upload**
   </Tab>
 </Tabs>
 
-Add Content to the Template
+### Add Content to the Template
+
 Perform the following steps to add content to the selected template.
 
-Common Actions
-Mirror platforms: Use the same template and configuration for all selected platforms.
+#### Common Actions
 
-- A/B test: Create up to five variations of your content to test performance.
-- Locales: Add up to 10 languages for a single campaign.
+- **Mirror platforms**: Use the same template and configuration for all selected platforms.
+- **+ A/B test**: Create up to five variations of your content to test performance.
+- **+ Locales**: Add up to 10 languages for a single campaign.
 
-Personalize Content
+### Personalize Content
+
 Use the '@' symbol to insert dynamic user attributes, event data, product sets, and more.
-For more information, refer to MoEngage Templating Language (JINJA).
+For more information, refer to [MoEngage Templating Language (JINJA)](https://help.moengage.com/hc/en-us/articles/115002757783).
 
 <AccordionGroup>
   <Accordion title="Test Campaign (optional)">
-    Test campaigns enable you to preview the campaign on a test device. You can test by User ID, Email, Device ID, and more. For details, see Testing In-App Campaign.
-
+    Test campaigns enable you to preview the campaign on a test device. You can test by User ID, Email, Device ID, and more. For details, see [Testing In-App Campaign](https://help.moengage.com/hc/en-us/articles/360047789092).
     <Frame>
-      ![Testing the campaign with a test user](/guide-media/01HVRD82BVE5RT2GZ8HD1ZQ2AA)
+      <img src="/guide-media/01HVRD82BVE5RT2GZ8HD1ZQ2AA" alt="Testing the campaign with a test user" />
     </Frame>
   </Accordion>
 </AccordionGroup>
 
 ## Step 3: Schedule and Goals
 
-Delivery Scheduling
+### Delivery Scheduling
 
 <Tabs>
   <Tab title="One Time">
     Send the campaign immediately or at a specified date and time.
-
     <Frame>
-      ![In-App-DeliverySchedule_oneTime.gif](/guide-media/01HGAYYEMT4M29S5FKFH481EMJ)
+      <img src="/guide-media/01HGAYYEMT4M29S5FKFH481EMJ" alt="In-App-DeliverySchedule_oneTime.gif" />
     </Frame>
   </Tab>
   <Tab title="Periodic">
     Send the campaign periodically on a specified date and time (daily, weekly, or monthly).
-
     <Frame>
-      ![In-App_DeliverySchedule_Periodic.gif](/guide-media/01HGAYHS07H1PCAY298BVAY07S)
+      <img src="/guide-media/01HGAYHS07H1PCAY298BVAY07S" alt="In-App_DeliverySchedule_Periodic.gif" />
     </Frame>
   </Tab>
 </Tabs>
 
-Conversion Goals
+### Conversion Goals
+
 Add up to five conversion goals to track business metrics. Choose any app event as a conversion goal activity.
 
 <Frame>
-  ![ConVErsionGoals.png](/guide-media/01GTXASRNT9SC05KKY43SY9WXA)
+  <img src="/guide-media/01GTXASRNT9SC05KKY43SY9WXA" alt="ConVErsionGoals.png" />
 </Frame>
 
 <AccordionGroup>
   <Accordion title="Tracking Revenue Performance (Optional)">
-    Enable the Revenue performance toggle for a conversion goal to track the revenue generated by your campaign. Select the attribute that captures the order's total monetary value (e.g., cartValue).
+    Enable the **Revenue performance** toggle for a conversion goal to track the revenue generated by your campaign. Select the attribute that captures the order's total monetary value (e.g., `cartValue`).
   </Accordion>
 </AccordionGroup>
 
-Delivery Controls
+### Delivery Controls
+
 Fine-tune your campaign delivery:
 
-- Frequency Capping: Limit the maximum number of times a user sees the message.
-- Minimum Delay: Add a minimum delay between two messages of this campaign.
-- Auto Dismiss: Automatically dismiss the message after a set duration.
+- **Frequency Capping**: Limit the maximum number of times a user sees the message.
+- **Minimum Delay**: Add a minimum delay between two messages of this campaign.
+- **Auto Dismiss**: Automatically dismiss the message after a set duration.
 
-Click Publish to create the campaign.
+Click **Publish** to create the campaign.
 
 <Info>
-  In-App campaigns support the Campaign Approval Workflow (CAF). If enabled, the campaign must be reviewed and approved for publishing.
+In-App campaigns support the Campaign Approval Workflow (CAF). If enabled, the campaign must be reviewed and approved for publishing.
 </Info>
+```
