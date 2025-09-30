@@ -152,6 +152,12 @@
             "pages": [
               "hc/en-us/articles/in-app"
             ]
+          },
+          {
+            "group": "On-site Messaging",
+            "pages": [
+              "hc/en-us/articles/osm"
+            ]
           }
         ]
       },
