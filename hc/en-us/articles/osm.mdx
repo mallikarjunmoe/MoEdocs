@@ -1,414 +1,2146 @@
----
-title: "Create an On-Site Messaging (OSM) Campaign"
-description: "A comprehensive guide to setting up and launching personalized On-Site Messaging (OSM) campaigns using MoEngage."
----
-
-# Overview
-
-On-Site Messaging (OSM) campaigns allow you to deliver personalized, in-the-moment messages directly on your website. Use OSM to engage users based on their behavior, page visits, or other in-session attributes. This guide walks you through setting up an OSM campaign in MoEngage.
-
-<iframe style={{ position:"relative",width:"100%",aspectRatio:"16/9",borderRadius:"0.5rem" }} src="[https://app.supademo.com/embed/Ayc4Cw9S5Qoc5IwcP_6ht](https://app.supademo.com/embed/Ayc4Cw9S5Qoc5IwcP_6ht)" frameBorder="0" allowFullScreen />
-
-# Navigation
-
-To create an OSM campaign, follow these steps:
-
-1. On the left navigation menu in the MoEngage UI, click **Engage**, and then click **Campaigns**.
-
-   <Frame>
-     <img
-       src="/guide-media/01K5RK9C82TZ4BS3CKGJ24E7AD"
-       alt="Navigate to Campaigns in MoEngage menu."
-       width="168"
-       height="583"
-     />
-   </Frame>
-2. On the All Campaigns page, in the upper-right corner, click **\+ Create campaign**.
-
-   <Frame>
-     <img
-       src="/guide-media/01K5RNWT1TR89334NVYS0DE4Z6"
-       alt="Click Create Campaign button."
-       width="501"
-       height="628"
-     />
-   </Frame>
-   Alternatively, you can click **\+ Create new** from the left navigation menu.
-
-   <Frame>
-     ![Alternative Create New button in navigation.](/guide-media/01K5RP03FFFBBZY728JZW6MWDQ)
-   </Frame>
-3. Under **Inbound**, select **On-Site**. The On-site messaging campaign creation page appears.
-
-   <Frame>
-     ![Select On-Site campaign type.](/guide-media/01K5RNFDKE6FC3553MEA1NGVF4)
-   </Frame>
-
-# Steps to Create an OSM Campaign
-
-Creating an OSM campaign involves three main steps:
-
-1. [Target users](#step-1-target-users): Select the audience for your campaign.
-2. [Define content](#step-2-define-content): Create the message for your campaign.
-3. [Schedule and goals](#step-3-scheduling-and-goals): Configure when the campaign delivers and what actions to track.
-
-## Step 1: Target Users
-
-This section allows you to define who sees your On-Site message and when they see it.
-
-### Campaign details
-
-Use these fields to manage and identify your campaign:
-
-- **Campaign name**: Enter a name for the campaign. The name must have at least five characters and a maximum of 256.
-- **Campaign tags**: Select up to five tags from the list to categorize your campaign. For more information, refer to [Campaign Tags](https://help.moengage.com/hc/en-us/articles/360058057412).
-
-<Frame>
-  <img
-    src="/guide-media/01GY7A73CJ10HJGTEKD0PPW22X"
-    alt="Campaign Details for On-Site Messaging"
-    width="234"
-    height="137"
-  />
-</Frame>
-
-### Target platforms
-
-Select the platforms where your campaign will appear:
-
-- **Web**: Select this option to target your website.
-- **Mobile Web**: Select this option to target your mobile website.
-
-<Frame>
-  <img
-    src="/guide-media/01GW1KFA3987BMV7FAM31F9JKQ"
-    alt="Target platforms for OSM campaign"
-    width="194"
-    height="60"
-  />
-</Frame>
-
-### Trigger criteria
-
-Define when your On-Site message will display to users:
-
-#### On page load
-
-Select this option to show the message as soon as a page loads on your website.
-
-- **Immediately**: Displays the OSM as soon as the page loads.
-- **After Delay**: Displays the OSM after a specified delay (for example, 2 seconds after page load).
-- **After Scroll**: Displays the OSM after the user scrolls a specified percentage of the website (for example, after scrolling 30% of the page).
-
-<Frame>
-  <img
-    src="/guide-media/01GXZRCS8V8APSBHSREAWXD6CK"
-    alt="On Page Load trigger options"
-    width="512"
-    height="226"
-  />
-</Frame>
-
-#### On custom event
-
-You can display On-Site messages when a user performs a specific custom event. Choose to send the message immediately or after a delay.
-
-<Frame>
-  <img
-    src="/guide-media/01J7XC1GHBTG3R5TBKWDG44FZR"
-    alt="On Custom Event trigger options for On-Site Messaging"
-    width="571"
-    height="445"
-  />
-</Frame>
-
-#### If user
-
-The **If user** section allows you to select an event that triggers the message. You can add multiple events and attributes to refine the conditions. To define events:
-
-1. From the **Select an Event** list, select the event.
-2. To refine the event:
-   - Click **\+ Attributes** to add attributes to the filter.
-   - Select the logical drop-downs for the attribute (for example, "is equal to," "is not equal to").
-   - To add more attributes, click **\+ Attributes** button.
-   - Select **AND** or **OR** to combine conditions.
-   - From the attributes list, select the attributes and their logical drop-downs.
-
-<Frame>
-  ![Filtering a custom event with attributes.](/guide-media/01HSJX285CDVQ86MWC6TSGEWVE)
-</Frame>
-
-#### AND then
-
-Use the **AND then** feature to combine multiple events for more precise targeting. For instance, trigger a message only for users who have clicked an On-Site message AND then added an item to their cart.
-
-<Frame>
-  ![Combining multiple trigger events with AND then condition.](/guide-media/01J7XCCT1F8EEZNVY9885JHKA3)
-</Frame>
-
-You can also define a time limit for the subsequent event.
-
-#### THEN
-
-In the **THEN** section, define when to show the message:
-
-- **Immediately**: The message displays as soon as the trigger criteria are met.
-- **After Delay**: The message displays after a specified delay.
-
-<Info>
-  When you select **After Delay**, you can set a maximum delay of 1 day (86,400 seconds) and a minimum delay of 1 second.
-</Info>
-
-#### On exit intent
-
-Select this option to trigger a message when a user attempts to leave your website. For more information, refer to [Exit Intent Technology](https://help.moengage.com/hc/en-us/articles/360043881431).
-
-<Frame>
-  <img
-    src="/guide-media/01GXZRCQPX8GBABWAH5NWFW4TS"
-    alt="On Exit Intent trigger option"
-    width="525"
-    height="200"
-  />
-</Frame>
-
-### Select pages
-
-Choose which web pages display the campaign.
-
-- **All pages**: The campaign displays on all website pages.
-- **Specific pages**: The campaign displays on specific website pages. You define which pages to show or hide the campaign on by setting URL rules.
-
-| Condition                 | Explanation                                                        |
-| ------------------------- | ------------------------------------------------------------------ |
-| is                        | Displays on URLs that match exactly.                               |
-| is not                    | Displays on all URLs except those that match exactly.              |
-| contains                  | Displays on any URL that includes at least one specified string.   |
-| contains (all of)         | Displays on any URL that includes all specified strings.           |
-| does not contain          | Displays on any URL that does not include any specified string.    |
-| does not contain (all of) | Displays on any URL that does not include all specified strings.   |
-| starts with               | Displays on any URL that begins with the specified string.         |
-| ends with                 | Displays on any URL that ends with the specified string.           |
-| does not start with       | Displays on any URL that does not begin with the specified string. |
-| does not end with         | Displays on any URL that does not end with the specified string.   |
-
-### Target audience
-
-<Tabs>
-  <Tab title="All Users">
-    This option sends the campaign to all app users.
-
-    <Frame>
-      ![Targeting all users for the campaign.](/guide-media/01GYAAG1D7RWR12EPN7RD29AJD)
-    </Frame>
-  </Tab>
-  <Tab title="Filter by User Property">
-    This option targets users based on properties such as first seen, last seen, or city. For more information, refer to [Create Segments](https://help.moengage.com/hc/en-us/articles/206169646-Create-Segments).
-
-    <Frame>
-      ![Filtering audience by user properties.](/guide-media/01GTN2Z637R1G9H92351VENX9M)
-    </Frame>
-  </Tab>
-  <Tab title="Filter by User Behavior">
-    This option targets users based on their behavior or events, such as "app/site opened" or "viewed product." For more information, refer to [Create Segments](https://help.moengage.com/hc/en-us/articles/206169646-Create-Segments).
-
-    <Frame>
-      ![Filtering audience by user behavior and events.](/guide-media/01GTN3DPHDYDBMCK1N46XF2CFC)
-    </Frame>
-  </Tab>
-  <Tab title="Filter by User Affinity">
-    This option targets user groups based on an action they performed with a specific attribute value.
-
-    <Frame>
-      ![Filtering audience by user affinity.](/guide-media/01GTN3VCBNVMGM69K713BBBF4C)
-    </Frame>
-  </Tab>
-  <Tab title="Filter by Custom Segment">
-    This option allows you to select a **Custom Segment** as your target audience. For more information, refer to [Custom Segments](https://help.moengage.com/hc/en-us/articles/206528613-Custom-Segments).
-
-    <Frame>
-      ![Using a custom segment for targeting.](/guide-media/01GTN40RVG2W8SH1ZZXS77E8N8)
-    </Frame>
-  </Tab>
-</Tabs>
-
-### In-session attributes
-
-Target users based on actions within their current website session. You can use attributes like:
-
-- **Query Parameter**: Segment based on URL UTM parameters.
-- **User Type**: New vs. returning users.
-- **Day of the Week** / **Time of the Day**: Segment by when they visit.
-- **Geolocation**: Country, state, or city.
-- **Device Type**: Mobile, Desktop, or Tablet.
-- **Operating System**: Android, iOS, Windows, etc.
-- **Browser Type**: Chrome, Safari, Firefox, etc.
-
-### Campaign audience limit
-
-Control campaign reach by capping the number of users who receive it based on sends, impressions, or conversions. For more information, refer to [Campaign Audience Limit](https://help.moengage.com/hc/en-us/articles/35579781173012-Campaign-Audience-Limit).
-
-<Frame>
-  ![Setting audience limits for the campaign.](/guide-media/01JWATVFGSAR9NH8CYBRB2V1FK)
-</Frame>
-
-### Control groups
-
-Exclude users from your campaign to measure impact.
-
-- **Global control group**: Exclude users from the global control group.
-- **Campaign control group**: Exclude a fixed percentage of users from this specific campaign. For more information, refer to [Control Groups](https://help.moengage.com/hc/en-us/articles/360052829132-Control-Groups-).
-
-<Frame>
-  ![Control Group settings for the campaign.](/guide-media/01GTJRFSWYKYJVFSA10KSHZ360)
-</Frame>
-
-Click **Next** to proceed to Step 2.
-
-## Step 2: Define Content
-
-You can create content for your OSM campaigns using the new editor or the old editor.
-
-<Tabs>
-  <Tab title="Create with the new editor">
-    The new editor offers **Banner**, **Nudge**, and **Popup** templates for various use cases like countdowns, cookie consent, lead generation, and feedback.
-
-    - **Popups**: Use for intrusive communication.
-    - **Nudges**: Use for non-intrusive communication.
-    - **Banners**: Use to show offers or policy information at the top or bottom of the page. For a detailed guide on the editor, refer to [OSM Editor](https://help.moengage.com/hc/en-us/articles/14861847480852-OSM-Pro-Editor).
-  </Tab>
-  <Tab title="Create with the old editor">
-    You can create your On-Site message from previously available templates. For more information, refer to [On-Site Messaging Templates (Old Editor)](https://help.moengage.com/hc/en-us/articles/360056534732).
-
-    <Frame>
-      ![OSM Templates in the old editor.](/guide-media/01GY7EPYTKSX51SJ9853MN67WV)
-    </Frame>
-  </Tab>
-</Tabs>
-
-### Display settings
-
-| Display Setting                                 | Template Type           | Description                                                                                                                          |
-| ----------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| _Show if another campaign is already displayed_ | Popups, Nudges, Banners | If selected, this OSM displays even if another is on the page, provided the trigger events are different.                            |
-| _Push the contents of the page down_            | Banner                  | If selected, the banner occupies space at the top without overlapping content. Requires top position and non-sticky website headers. |
-
-<AccordionGroup>
-  <Accordion title="Test Campaign (Optional)">
-    Test campaigns allow you to preview your campaign on a test URL. Enter a test URL and click **Test** to preview the message. For more information, refer to [Testing your OSM Campaign](https://help.moengage.com/hc/en-us/articles/360047789112).
-
-    <Frame>
-      ![Testing an OSM campaign on a specific URL.](/guide-media/01GX8GGXNRDCJATF09PQ5PE1RV)
-    </Frame>
-  </Accordion>
-</AccordionGroup>
-
-## Step 3: Scheduling and Goals
-
-Configure when your campaign will deliver and what actions you want to track.
-
-### Delivery schedule
-
-<Tabs>
-  <Tab title="One Time">
-    Choose this option to send the campaign immediately or at a specific date and time.
-
-    <Frame>
-      ![One-time delivery schedule options for OSM campaign.](/guide-media/01HGZEJ4RXPJ32JX3V8F5PN575)
-    </Frame>
-  </Tab>
-  <Tab title="Periodic">
-    Choose this option to send the campaign periodically on specified dates and times.
-
-    <Frame>
-      ![Periodic delivery schedule options for OSM campaign.](/guide-media/01HGZEJ4Q5E0J2C8FAS8JMSSKA)
-    </Frame>
-  </Tab>
-</Tabs>
-
-### Conversion goals
-
-Add up to five conversion goals to track business metrics. You can choose any app event as a conversion goal activity.
-
-<Frame>
-  ![Setting up conversion goals for the campaign.](/guide-media/01GTXASRNT9SC05KKY43SY9WXA)
-</Frame>
-
-<AccordionGroup>
-  <Accordion title="Tracking Revenue Performance (Optional)">
-    MoEngage allows you to track revenue generated by your campaigns. To do so, enable the **Revenue Performance** toggle for the desired conversion goal and select the attribute that captures the order's total monetary value.
-  </Accordion>
-</AccordionGroup>
-
-### Campaign priority and delivery controls
-
-- **Campaign Priority**: Set priority from **Critical** to **Low**. If a user is eligible for multiple campaigns, the one with higher priority displays.
-- **Global Delivery Control**: Ignore global minimum delay settings for the channel.
-- **Local Delivery Controls**:
-  - **Maximum times to show a message**: Limit how many times a user sees the message.
-  - **Minimum delay between 2 messages**: Set a time gap between messages from the same campaign.
-  - **Auto dismiss message after 'x' seconds**: Make the message disappear after a set time.
-
-<Frame>
-  <img
-    src="/guide-media/01GY7BZ4E4FV6BNQA2ETYBMRQ5"
-    alt="Priority and Delivery Controls settings."
-    width="533"
-    height="381"
-  />
-</Frame>
-
-Your campaign is now ready. Click **Publish** and confirm to create it.
-
-# FAQs
-
-<AccordionGroup>
-  <Accordion title="How to use a custom font in the OSM editor?">
-    Integrating custom fonts enhances visual appeal and maintains brand consistency.
-
-    #### 1. Host your font file
-
-    Ensure your font file is on a publicly accessible URL, e.g., `https://yourdomain.com/fonts/yourfont.ttf`.
-
-    #### 2. Prepare your template
-
-    Select the template you want to customize within the OSM Editor.
-
-    #### 3. Modify text settings
-
-    1. Click the text element you want to change.
-    2. Open its settings, go to the **Advanced** tab, and enter a unique **CSS Id**, like `text_id1`.
-
-    #### 4. Add an embed element
-
-    Insert an embed element into your template. This element will be invisible and is used only to add custom CSS.
-
-    #### 5. Insert custom font code
-
-    In the embed element, input the following CSS, replacing the URL and font family name:
-
-    ```html
-    <style type="text/css">
-      @font-face {
-        font-family: 'YourCustomFontName';
-        src: url('https://yourdomain.com/fonts/yourfont.ttf'); /* Your font URL */
-      }
-      #text_id1 p {
-        font-family: 'YourCustomFontName' !important;
-      }
-    </style>
-    ```
-
-    #### 6. Customize additional elements
-
-    To apply the font to other elements (like buttons), assign them a unique CSS ID (e.g., `button_id1`) and add it to the CSS selector: `#text_id1 p, #button_id1 span { ... }`
-
-    #### 7. Preview and publish
-
-    Preview your template to confirm the font displays correctly, then publish your campaign.
-  </Accordion>
-</AccordionGroup>
-
-# Next Steps
-
-- [View OSM Campaign Analytics](https://help.moengage.com/hc/en-us/articles/360054475351)
+<p>
+  MoEngage Flows is a series of Cross-channel (across the channels such as Email,
+  Push, SMS, and so on) Lifecycle campaigns that will be sent to your customers
+  based on their actions or inaction on your app or website.
+</p>
+<div class="callout callout--pre">
+  <table>
+    <tbody>
+      <tr>
+        <td class="callout-image">
+          <span class="material-symbols-outlined">library_add_check</span>
+        </td>
+        <td class="callout-content">
+          <p class="callout__title">
+            <strong>Prerequisites</strong>
+          </p>
+          <p>Ensure that the channel settings are configured.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p id="h_01HWK0XWBAXEFC5T7DR5HYSBHM">To create a flow:</p>
+<ol>
+  <li>Navigate to the MoEngage Dashboard.</li>
+  <li>
+    From the left navigation, use one of the following options.
+    <div class="guide-markup" style="box-sizing: inherit; font-weight: inherit;">
+      <div class="tabs tabs--colored-1">
+        <div class="tabs-menu">
+          <span class="tabs-link is-active">Create flow</span>
+          <span class="tabs-link">Create new</span>
+        </div>
+        <div class="tab">
+          <ol>
+            <li>
+              Click <strong>Flows</strong>. The Flows page is displayed.<br>
+              <img class="guide-markup" style="box-sizing: inherit; font-weight: inherit; max-width: 100%; height: auto;" src="https://moengage.zendesk.com/guide-media/01J1QTJ8EYXHV64AJNMEX8A44S" alt="7.png" width="2860" height="1392">
+            </li>
+            <li>
+              At the top right corner, click
+              <strong class="guide-markup" style="box-sizing: inherit; font-weight: bolder;">+ Create flow</strong>.<br>
+              <img class="guide-markup" style="box-sizing: inherit; font-weight: inherit; max-width: 100%; height: auto;" src="https://moengage.zendesk.com/guide-media/01J1QTJR338D5V0XWTG0TFT60S" alt="8.png" width="2868" height="1398">
+            </li>
+          </ol>
+        </div>
+        <div class="tab is-hidden">
+          <ol>
+            <li>
+              Click<strong>Create new</strong>. The following page
+              is displayed.<br>
+              <img class="guide-markup" style="box-sizing: inherit; font-weight: inherit; max-width: 100%; height: auto;" src="https://moengage.zendesk.com/guide-media/01J1QTQ81SKASXR69QF5WDR06P" alt="9.png" width="2864" height="1394">
+            </li>
+            <li>
+              <strong> <img class="guide-markup" style="box-sizing: inherit; font-weight: inherit; max-width: 100%; height: auto;" src="https://moengage.zendesk.com/guide-media/01J1QTQTZ6Q6GSBK29TEEKBPJ6" alt="10.png" width="467" height="508"> </strong>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    From the resulting pop up, use one of the following options to create a flow:
+    <ul>
+      <li>
+        <a class="guide-markup" style="box-sizing: inherit; font-weight: inherit; border-radius: 4px; color: #1771b9; outline: transparent solid 2px; outline-offset: 1px; transition: outline-color 0.1s ease-in-out, color 0.25s ease-in-out; text-decoration: none;" href="/hc/en-us/articles/26100424636436#h_01HZRZ46M06N20P0TVS7CPN6QF" target="_blank" rel="noopener">Using a flow template</a>&nbsp;or
+      </li>
+      <li>
+        <a class="guide-markup" style="box-sizing: inherit; font-weight: inherit; border-radius: 4px; color: #1771b9; outline: transparent solid 2px; outline-offset: 1px; transition: outline-color 0.1s ease-in-out, color 0.25s ease-in-out; text-decoration: none;" href="/hc/en-us/articles/26100424636436#01H812S21FJ8B8BGWW6P2DG9BE" target="_blank" rel="noopener">Start from scratch</a>
+      </li>
+    </ul>
+  </li>
+</ol>
+<h1 id="01K1AZH4YVQYB23QQB7SKH6AAW">Option 1: Create a Flow Using a Flow Template</h1>
+<p>
+  Flow templates provide you with inspiration for crafting your flows based on
+  your goals - onboarding, incentivization, and engagement.You can create single-channel
+  or multiple-channel flows for sending reminders for abandoned carts, reach out
+  to customers who are a churn risk, and improve app/website engagement. The various
+  Flow templates are discussed below :
+</p>
+<h2 id="h_01HYA1V2K3CNAPTPWTZPYDCB1W">Template Types</h2>
+<p>There are two basic template types</p>
+<ul>
+  <li>
+    <strong> Adoption</strong>: Adoption templates can be used for onboarding
+    new customers and are available for a single channel and multiple channels.
+  </li>
+  <li>
+    <strong>Engagement</strong>: Engagement templates are available for single,
+    multiple, or specific channels such as the web and app. They can be used
+    for improving app or website engagement, engaging with customers who have
+    looked up certain offerings or added certain products to their carts and
+    abandoned them, and reaching out to customers who are a churn risk.
+  </li>
+</ul>
+<p>
+  You can choose one of the following templates when creating a flow:
+</p>
+<table class="table table--color-header" style="height: 44px; width: 667px;">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="text-align: center; vertical-align: top; height: 22px; width: 154.039px;">Template Type</th>
+      <th style="text-align: center; vertical-align: top; height: 22px; width: 145.867px;">Template Name</th>
+      <th style="text-align: center; vertical-align: top; height: 22px; width: 357.094px;">Description</th>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="height: 22px; width: 146.039px;">Adoption</td>
+      <td style="height: 22px; width: 137.867px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Onboard Customers - Single Channel</span>
+        </font>
+      </td>
+      <td style="height: 22px; width: 349.094px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Use this template to welcome new customers and guide them in their journey with your product or service. This template makes use of a single channel for communicating with customers during their onboarding phase and nudging customers towards their first purchase once they've onboarded.</span>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 146.039px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Adoption</span>
+        </font>
+      </td>
+      <td style="width: 137.867px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Onboard Customers - Multi-Channel</span>
+        </font>
+      </td>
+      <td style="width: 349.094px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Use this template to welcome new customers and use multiple channels to communicate with customers. You can leverage the power of A/B testing to identify the best channel to communicate with new users (and use this information for other onboarding Flows). This template also employs locales and conditional splits to identify the local language of the users and communicate with them in the same language.</span>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 146.039px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Engagement</span>
+        </font>
+
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;"><br></span>
+        </font>
+      </td>
+      <td style="width: 137.867px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Abandoned Cart Reminder - Single Channel</span>
+        </font>
+      </td>
+      <td style="width: 349.094px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Use this template to send a reminder to users who have added items to their cart but have yet to make a purchase. The template uses the Wait For/Till Node element to send the nudge after a time delay (the user is sent the nudge only post a fixed time interval after they add the items to the cart) and checks if the user has abandoned the cart or made a purchase post the set interval before sending the communication. This template employs a single channel for communication.</span>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 146.039px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Engagement</span>
+        </font>
+
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;"><br></span>
+        </font>
+      </td>
+      <td style="width: 137.867px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Abandoned Cart Reminder - Multi Channel</span>
+        </font>
+      </td>
+      <td style="width: 349.094px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Use this template to nudge users who've abandoned their carts towards making a purchase by employing multiple channels.</span>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 146.039px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Engagement</span>
+        </font>
+
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;"><br></span>
+        </font>
+      </td>
+      <td style="width: 137.867px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Browse Abandonment - Multi-Channel</span>
+        </font>
+      </td>
+      <td style="width: 349.094px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Use this template to engage with customers who've viewed products or looked up specific categories of products but haven't made a purchase yet. This template will help you send contextual communication and you get to leverage the power of Intelligent Path Optimization (IPO) to distribute users automatically to the best performing path intelligently using Sherpa.</span>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 146.039px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Engagement</span>
+        </font>
+
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;"><br></span>
+        </font>
+      </td>
+      <td style="width: 137.867px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Customer Reactivation - Multi-channel</span>
+        </font>
+      </td>
+      <td style="width: 349.094px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Use this template to engage with customers who haven't been active on your platform for quite some time. This template helps you send curated offers and communicate with dormant customers. Since the Next Best Action (NBA) is employed in this template, communication is sent to each customer in the channel that they are most likely to engage with and at the time that they are most likely to do so.</span>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 146.039px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Engagement</span>
+        </font>
+
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;"><br></span>
+        </font>
+      </td>
+      <td style="width: 137.867px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Periodic Customer Reactivation - Multi-channel</span>
+        </font>
+      </td>
+      <td style="width: 349.094px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Use this template to engage with dormant customers in a periodic manner (every ten days). This template leverages the power of NBA to communicate with each customer in their preferred channel at the time that they are most likely to engage in that channel.</span>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 146.039px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Engagement</span>
+        </font>
+
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;"><br></span>
+        </font>
+      </td>
+      <td style="width: 137.867px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Engage customers on App</span>
+        </font>
+      </td>
+      <td style="width: 349.094px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Use this template to engage with customers who haven't been on their app for a few days using NBA. The template uses in-app and card campaigns to nudge customers towards a purchase once they are on the app.</span>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 146.039px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Engagement</span>
+        </font>
+
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;"><br></span>
+        </font>
+      </td>
+      <td style="width: 137.867px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Engage customers on Web</span>
+        </font>
+      </td>
+      <td style="width: 349.094px;">
+        <font face="-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif">
+          <span style="font-size: 15px;">Use this template to engage with customers who haven't been on their app for a few days using NBA. The template uses a combination of Web Push, On-site messaging, Cards and Google Ads to nudge customers towards a purchase once they are on the app.</span>
+        </font>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Now that you know the types of templates, you can use them to create flows.
+</p>
+<div class="callout callout--info">
+  <table>
+    <tbody>
+      <tr>
+        <td class="callout-image">
+          <span class="material-symbols-outlined">info</span>
+        </td>
+        <td class="callout-content">
+          <p class="callout__title">
+            <strong>Information</strong>
+          </p>
+          <ul>
+            <li>
+              You can edit the Flow template to add event checks wherever
+              necessary and edit the campaign content.
+            </li>
+            <li>You can add or delete stages to the template as required.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h2 id="h_01HZRZFMZQRFK781WJKZY2W7QG">Use a Template</h2>
+<ol>
+  <li>
+    Select the flow template and click <strong>Use template</strong>.
+  </li>
+  <li>
+    Add entry conditions, define the target audience, and conversion goal (if
+    any) for the flows.
+  </li>
+  <li>
+    Review the campaigns in the template and modify them as required.
+  </li>
+  <li>
+    Add new stages or paths if necessary, as per the business use case.
+  </li>
+  <li>
+    After the structure of your flow is ready, you can click
+    <strong>Save</strong> to save it as a draft. To publish the flow, your next
+    action depends on your account's settings:
+    <ul>
+      <li style="list-style-type: none;">
+        <ul>
+          <li>
+            If the Campaign Approval workflow is disabled, you can publish
+            the flow directly.
+          </li>
+          <li>
+            If the Campaign Approval workflow is enabled, you have the
+            permission to create, manage, and publish campaigns, you
+            can publish the flow directly .
+          </li>
+          <li>
+            If the Campaign Approval workflow is enabled and you only
+            have the <strong>Create &amp; Manage</strong> permission,
+            you must submit the flow for approval. For more information,
+            refer
+            <a href="/hc/en-us/articles/26100424636436#h_01K0E4E6XW2QY4X7HVPQMGJA1W">here</a>.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+<p>
+  <img src="/guide-media/01H9FXWAMRS5SW88VZXE5V4W0J" alt="Flow templates.gif">
+</p>
+<h1 id="01H812S21FJ8B8BGWW6P2DG9BE">Option 2: Create a Flow from Scratch</h1>
+<p>
+  You can start with a blank canvas and build a flow of your choice. The following
+  are the steps to create a flow from scratch:
+</p>
+<ol>
+  <li>
+    <a href="/hc/en-us/articles/26100424636436#h_01HWK15KM97Q81E3AGRN9E1XB6">Details and goals</a>:
+    Define the goal of the flow and add the required details.
+  </li>
+  <li>
+    <a href="/hc/en-us/articles/26100424636436#h_01HY96AJ7AZ39EWA7E6C6PD3B1">When will users enter the flow</a>:
+    Define when the users will enter the flow.
+  </li>
+  <li>
+    <a href="/hc/en-us/articles/26100424636436#h_01HWK1D8AFVM5D2B8363KM786T">Who will enter the flow</a>:
+    Define the audience of the flow.
+  </li>
+</ol>
+<div class="callout callout--info">
+  <table>
+    <tbody>
+      <tr>
+        <td class="callout-image">
+          <span class="material-symbols-outlined">info</span>
+        </td>
+        <td class="callout-content">
+          <p class="callout__title">
+            <strong>Information</strong>
+          </p>
+          <p>
+            You can directly enter the canvas from any step during flow
+            creation. Click <strong>Skip to Canvas</strong> to open the
+            MoEngage canvas.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h2 id="h_01HWK15KM97Q81E3AGRN9E1XB6">Details and Goals</h2>
+<p>
+  <span>After you click <strong>+ Start with a blank canvas</strong>, the Create flow page is displayed. This section contains the following:</span>
+</p>
+<h3 id="h_01HAVSD6678S4V5QYMA2JMV0PG">
+  <span>Flow Details</span>
+</h3>
+<div>
+  <p>The flow details section contains the following fields:</p>
+  <table class="table-with-image" border="0">
+    <tbody>
+      <tr>
+        <td style="width: 366.996px;">
+          <ul>
+            <li style="list-style-type: none;">
+              <ul>
+                <li>
+                  <strong>Team: </strong>If your organization has
+                  <strong>Team</strong> enabled, in the <strong>Team</strong>
+                  list, select your team to associate with the
+                  flow. For more information, refer to
+                  <a href="https://help.moengage.com/hc/en-us/articles/360028586211-Teams-in-MoEngage" target="_blank" rel="noopener noreferrer">Teams in MoEngage</a>.
+                </li>
+                <li>
+                  <strong>Flow name</strong>: Enter the name of
+                  the flow to manage and identify the flow. The
+                  flow name must have at least five characters,
+                  and the limit is 256. The flow name can contain
+                  special characters.
+                </li>
+                <li>
+                  <strong>Flow tags</strong>: Select flow tags
+                  from the drop-down list to provide clarity to
+                  tags. You can select a maximum of five tags.
+                  For more information, refer to
+                  <a href="https://help.moengage.com/hc/en-us/articles/360058057412-Campaign-Tags-" target="_blank" rel="noopener noreferrer">Tags in MoEngage</a>.
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </td>
+        <td class="wysiwyg-text-align-right wysiwyg-indent2" style="width: 293.999px;">
+          <br>
+          <img src="/guide-media/01JZR73CSVYYZ7NKZE8NF6G1HB" width="226" height="103">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h3 id="01H812S21FJ7Z90WAJ17766ZHP">Conversion Goals</h3>
+<p>
+  <span style="font-weight: 400;">Define the conversion to track conversion for the flow. The conversion goal configured for the flow is treated as the conversion goal of all the campaigns part of the flow.</span>
+</p>
+<div class="callout callout--info">
+  <table>
+    <tbody>
+      <tr>
+        <td class="callout-image">
+          <span class="material-symbols-outlined">info</span>
+        </td>
+        <td class="callout-content">
+          <p class="callout__title">
+            <strong>Information</strong>
+          </p>
+          <ul>
+            <li>
+              <span style="font-weight: 400;">You can add five conversion goals for a single flow. For more information, refer to <a href="https://help.moengage.com/hc/en-us/articles/7175072831636" target="_blank" rel="noopener">Add multiple goals to flows</a>.</span>
+            </li>
+            <li>You can publish the flow without any goals.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <span style="font-weight: 400;">Define the goals by selecting the following:</span>
+</p>
+<table class="table table--color-header">
+  <tbody>
+    <tr>
+      <th style="text-align: center; vertical-align: top; width: 136.453px;">Field</th>
+      <th style="text-align: center; vertical-align: top; width: 556.547px;">Description</th>
+    </tr>
+    <tr>
+      <td style="width: 128.453px;">Goal name</td>
+      <td style="width: 548.547px;">Type the name of the goal to manage and identify the goal.</td>
+    </tr>
+    <tr>
+      <td style="width: 128.453px;">Event name</td>
+      <td style="width: 548.547px;">
+        <p>
+          Select from the drop-down the defined events based on which the
+          goal is tracked.
+        </p>
+        <p>
+          For more information, refer to
+          <a href="https://help.moengage.com/hc/en-us/articles/207836953-Derived-Events-Attributes" target="_blank" rel="noopener noreferrer">Events and Attributes</a>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 128.453px;">Attribute</td>
+      <td style="width: 548.547px;">
+        <p>
+          Select from the drop-down the defined attributes, conditions,
+          and values to filter or drill down the goal being tracked.
+        </p>
+        <p>
+          For more information, refer to
+          <a href="https://help.moengage.com/hc/en-us/articles/207836953-Derived-Events-Attributes" target="_blank" rel="noopener noreferrer">Events and Attributes</a>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 128.453px;">
+        <span style="font-weight: 400;">Track above goal for</span>
+      </td>
+      <td style="width: 548.547px;">
+        <p>
+          Set an attribution window that is the
+          <span>Time period for which conversion goals are tracked after an impression or clicks based on the attribution type.</span>
+        </p>
+        <p>
+          <span><img src="/guide-media/01H2W8EZY18ZREHXFD5V16YDN2" alt="Attribution"></span>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 128.453px;">
+        <span style="font-weight: 400;">Exit on conversion</span>
+      </td>
+      <td style="width: 548.547px;">
+        <p>
+          Turn on this toggle to forcefully exit users from the flow as
+          soon as they convert with the primary conversion goal.
+        </p>
+        <p>
+          <img src="/guide-media/01GW7CX0AKWKFG3TV0Q6BKTZ1X" alt="ExitOnConversion.png">
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Click <strong>+ New goal</strong>to add more goals.
+</p>
+<div class="callout callout--info">
+  <table>
+    <tbody>
+      <tr>
+        <td class="callout-image">
+          <span class="material-symbols-outlined">info</span>
+        </td>
+        <td class="callout-content">
+          <p class="callout__title">
+            <strong>Information</strong>
+          </p>
+          <p>
+            <span style="font-weight: 400;">You can change the goal, tags, and exiting users on conversion setting at any point in time before publishing the Flow by clicking </span><span style="font-weight: 400;"> <strong>Settings</strong>. For more information, refer to <a href="https://help.moengage.com/hc/en-us/articles/5851377586196-Flow-Settings" target="_blank" rel="noopener">Flow Settings</a>.</span><span style="font-weight: 400;"></span><span style="font-weight: 400;"></span>
+          </p>
+          <p>
+            <img src="/guide-media/01GW7TG87TYET3B8GCBA9BB43P" alt="Screenshot_2022-07-31_at_1.40.29_AM.png">
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  Click <strong>Next</strong> to navigate to the
+  <a href="#h_01FG1GMKWRB1K0147HNB689YES" target="_self">When will users enter the flow</a>
+  step.
+</p>
+<h2 id="h_01HY96AJ7AZ39EWA7E6C6PD3B1">When Will Users Enter the Flow</h2>
+<p>
+  Select one of the following to define when the will user enter the flow.
+</p>
+<div class="tabs tabs--colored-1">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">On Event Trigger</span><span class="tabs-link">At fixed time</span>
+    <span class="tabs-link">On flow exit </span><span class="tabs-link">On business event trigger</span>
+  </div>
+  <div class="tab">
+    <p>To define the trigger condition, do the following:</p>
+    <ul>
+      <li>
+        In the <strong>If user</strong> section,<br>
+        <ol>
+          <li>
+            Under <strong>Primary trigger event (s)</strong>, i<span style="color: #2f3941; font-family: -apple-system, ' system-ui' , ' Segoe UI' , Helvetica, Arial, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">n the<span>&nbsp;</span></span><strong class="guide-markup" style="box-sizing: inherit; font-weight: bolder; color: #2f3941; font-family: -apple-system, ' system-ui' , ' Segoe UI' , Helvetica, Arial, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Has Executed </strong>field,
+            <strong>Select an event </strong>from the list to define
+            the primary trigger event for the user to enter the flow.
+          </li>
+          <li>
+            Click <strong>+ Add alternate trigger event</strong> to add
+            multiple events under
+            <strong style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Primary trigger event(s)</strong>.
+            This will allow users to enter the flow if they perform any
+            of the events defined in the Primary trigger event. (This
+            is optional)
+          </li>
+          <li>
+            Click <strong>+ Attributes</strong> to add attributes to
+            any of the added primary triggers. (This is optional)<img src="/guide-media/01JJRANHFY2AX52PPW0D4C4KKR" alt="bau 1.png">
+          </li>
+        </ol>
+      </li>
+    </ul>
+    <p>To define a secondary trigger condition, do the following:</p>
+    <ul>
+      <li>
+        In the <strong>AND</strong> section,
+        <ol>
+          <li>
+            Click <strong>+ Add secondary trigger event</strong>.
+          </li>
+          <li>
+            Under <strong>Secondary trigger event(s)</strong>, select
+            <strong>Has Executed</strong> or <strong>Has Not Executed </strong>based
+            on your requirements select the event from
+            <strong>Select an event </strong>list to define these secondary
+            trigger events along with the primary trigger event for the
+            user to enter the flow.
+          </li>
+          <li>
+            Click <strong>+ Add more trigger event</strong> to add multiple
+            events under <strong>Secondary</strong>
+            <strong>trigger event(s)</strong>. <span>(This is optional)</span>
+          </li>
+          <li>
+            Click <strong>+ Attributes</strong> to add attributes to
+            any of the added secondary triggers. (This is optional).<br>
+            You can add personalized dynamic checks for users based on
+            their previous actions. For more information, refer to
+            <a href="https://help.moengage.com/hc/en-us/articles/21099281569300#h_01HFNNDX37GWYQE8AK96QNDXVE" target="_blank" rel="noopener noreferrer">Linked Conditions</a>.<br>
+            <img src="/guide-media/01JJRT7B0CE3RW35K64X0JF18H" alt="bau123.png">
+          </li>
+        </ol>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        In <strong>THEN enter the user</strong> section,
+      </li>
+    </ul>
+    <ol>
+      <li style="list-style-type: none;">
+        <ol>
+          <li style="list-style-type: none;">
+            <ol>
+              <li>
+                Select <strong>Immediately</strong> to allow users
+                to enter the user immediately.<br>
+                This is applicable only when Primary triggers are
+                defined for the flow.
+              </li>
+              <li>
+                Select <strong>With Delay</strong> to allow the user
+                to enter the flow at a delayed time interval by providing
+                the following details:
+                <ol>
+                  <li>
+                    Type the time value and select minutes, hours,
+                    or days. The entered value can range between
+                    2 minutes and 30 days (both inclusive).
+                  </li>
+                  <li>
+                    Select <strong>Before</strong> or <strong>After</strong>to
+                    specify whether the user should enter the
+                    Flow before or after the specified time interval.<br>
+                    <div class="callout callout--info">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td class="callout-image">
+                              <span class="material-symbols-outlined">info</span>
+                            </td>
+                            <td class="callout-content">
+                              <p class="callout__title">
+                                <strong>Information</strong>
+                              </p>
+                              <p>
+                                When you add multiple
+                                primary trigger events,
+                                only the <strong>After</strong>
+                                option is allowed
+                                to specify the time
+                                interval. However,
+                                when only one primary
+                                trigger event is
+                                added, both the <strong>Before</strong>
+                                and <strong>After</strong>
+                                options are allowed
+                                to personalize your
+                                delay.
+                              </p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                  <li>
+                    Select the attribute relative to which this
+                    time calculation has to be done. To learn
+                    more about this, click
+                    <a href="/hc/en-us/articles/360058752652" target="_blank" rel="noopener noreferrer">here</a>.<br>
+                    <img src="/guide-media/01JJRTCAKD04AWK5DJAZPT2Y5J" alt="bau1234.png">
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <p id="h_01HP17J0F3B1QF7AXR7PNG3D2S">
+      <strong>Flow Schedule Settings</strong>
+    </p>
+    <p>
+      Under <strong>Start</strong>, select one of the following options to
+      trigger the flow:
+    </p>
+    <table class="table table--color-header">
+      <thead>
+        <tr>
+          <th style="width: 224.703px;">Field</th>
+          <th style="width: 468.297px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 216.703px;">
+            <p>
+              <strong>As soon as possible</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px;">
+            <p>Triggers the flow immediately. You can select:</p>
+            <ul>
+              <li>
+                <strong>Campaign time zone</strong> - the timezone
+                in which the campaign should be sent.
+              </li>
+              <li>
+                <strong>Ends</strong>: You can choose the end time
+                for the flow by selecting the End option to control
+                when to stop new entries to the Flow. The following
+                options are available:
+                <ul>
+                  <li>
+                    <strong>Never</strong>: the flow never ends.
+                  </li>
+                  <li>
+                    <strong>On</strong>: the Flow ends on the
+                    end date specified in the <strong>End date</strong>
+                    and <strong>End time</strong> fields.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 216.703px;">
+            <p>
+              <strong>At specific date and time</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px;">
+            <p>
+              Triggers the flow at the specified time, time zone, or
+              predicted time.
+            </p>
+            <p>
+              This section helps you send the campaign on a specific
+              date and time and contains the following fields:
+            </p>
+            <ul>
+              <li>
+                <strong>Campaign time zone</strong> - the timezone
+                in which the campaign should be sent.
+              </li>
+              <li>
+                <strong>Start date</strong> - the date on which the
+                campaign should be sent.
+              </li>
+              <li>
+                <strong>Send time</strong> - the time at which the
+                campaign should be sent. Select am or pm depending
+                on when the time of day at which the campaign should
+                be sent.
+              </li>
+              <li>
+                <strong>Ends</strong>: You can choose the end time
+                for the flow by selecting the End option to control
+                when to stop new entries to the Flow. The following
+                options are available:
+                <ul>
+                  <li>
+                    <strong>Never</strong>: the flow never ends.
+                  </li>
+                  <li>
+                    <strong>On</strong>: the Flow ends on the
+                    end date specified in the <strong>End date</strong>
+                    and <strong>End time</strong> fields.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab is-hidden">
+    <p>To schedule the flow at a fixed time, do the following:</p>
+    <p>
+      Under <strong>User entry</strong>, select one of the following options
+      to trigger the flow:
+    </p>
+    <table class="table table--color-header">
+      <thead>
+        <tr>
+          <th style="width: 224.703px;">Field</th>
+          <th style="width: 468.297px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 216.703px;">
+            <p>
+              <strong>As soon as possible</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px;">
+            <p>
+              Select the option to ensure the user enters the flow
+              one-time as soon as possible.
+            </p>
+            <p>
+              <img src="/guide-media/01GW7SC1H2QP9R756D7P4W1J95" alt="CreateFlows_OneTime_ASAP.png" width="538" height="259">
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 216.703px;">
+            <p>
+              <strong>At specific date and time</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px;">
+            <p>
+              Follow these steps to allow the user to enter the flow
+              one-time at the specified time and date:
+            </p>
+            <ol>
+              <li>Select the time zone.</li>
+              <li>
+                Select the date from the calendar.<img src="/guide-media/01GW7CQZYSCPGA67PVV3QRYNBW" alt="CreateFlows_At_Specified_Date_and_Time.png">
+              </li>
+              <li>Type or use the up and down arrows to set the time.</li>
+              <li>Click am or pm.</li>
+            </ol>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 216.703px;">
+            <p>
+              <strong>Daily</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px;">
+            <p>
+              Follow these steps to allow the user to enter the flow
+              at a Daily frequency starting from a specified time and
+              date:
+            </p>
+            <p>
+              <img src="/guide-media/01HR62VPM86K2HQ5NYM40SG113" alt="Flow Daily.png">
+            </p>
+            <ol>
+              <li>Select the time zone.</li>
+              <li>Select the start date from the calendar.</li>
+              <li>
+                Type or use the up and down arrows to set the start
+                time in hours and minutes.
+              </li>
+              <li>Click am or pm.</li>
+              <li>
+                Use <strong>Repeat Every</strong> to select the frequency
+                of days on which the user is allowed to enter the
+                flow.
+              </li>
+              <li>
+                Do one of the following to define the End time and
+                date at which the system will stop new entries to
+                the flow:
+                <ol>
+                  <li>
+                    Click <strong>Never</strong> to ensure the
+                    user can always enter the flow.
+                  </li>
+                  <li>
+                    Click <strong>On</strong> and select the
+                    end date from the calendar.<br>
+                    <div class="callout callout--info">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td class="callout-image">
+                              <span class="material-symbols-outlined">info</span>
+                            </td>
+                            <td class="callout-content">
+                              <p class="callout__title">
+                                <strong>Information</strong>
+                              </p>
+                              <p>Ensure that the end date is greater than the start date.</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                  <li>
+                    Click <strong>After</strong> and select the
+                    number of occurrences after which the campaign
+                    ends.
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 216.703px;">
+            <p>
+              <strong>Weekly</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px;">
+            <p>
+              Follow these steps to allow the user to enter the flow
+              at a Weekly frequency starting from a specified time
+              and date:
+            </p>
+            <p>
+              <img src="/guide-media/01HR62Z0ZQRXD4ABDG6PFMRG1K" alt="Flow Weekly.png">
+            </p>
+            <ol>
+              <li>Select the time zone.</li>
+              <li>Select the start date from the calendar.</li>
+              <li>
+                Type or use the up and down arrows to set the start
+                time in hours and minutes.
+              </li>
+              <li>Click am or pm.</li>
+              <li>
+                Select the frequency at which the user is allowed
+                to enter the flow using <strong>Repeat every </strong>and<strong> Repeat on </strong>option.
+                <ol>
+                  <li>
+                    Select the days of the week on which the
+                    user is allowed to enter the flow every week
+                    in <strong>Repeat</strong> <strong>on</strong>;and
+                  </li>
+                  <li>
+                    the frequency in weeks for which the flow
+                    should allow users to enter from
+                    <strong>Repeat every</strong>.<br>
+                    For example, choosing Monday and Friday in
+                    the 'Repeat on' section, and 3 in the 'Repeat
+                    every' section means that the campaigns will
+                    be sent 3 weeks once on Monday and Friday
+                    of the week.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                Do one of the following to define the End time and
+                date at which the system will stop new entries to
+                the flow:
+                <ol>
+                  <li>
+                    Click <strong>Never</strong> to ensure the
+                    user can always enter the flow.
+                  </li>
+                  <li>
+                    Click <strong>On</strong> and select the
+                    end date from the calendar.<br>
+                    <div class="callout callout--info">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td class="callout-image">
+                              <span class="material-symbols-outlined">info</span>
+                            </td>
+                            <td class="callout-content">
+                              <p class="callout__title">
+                                <strong>Information</strong>
+                              </p>
+                              <p>Ensure that the end date is greater than the start date.</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                  <li>
+                    Click <strong>After</strong> and select the
+                    number of occurrences after which the campaign
+                    ends.
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 216.703px;">
+            <p>
+              <strong>Monthly</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px;">
+            <p>
+              Follow these steps to allow the user to enter the flow
+              at a Monthly frequency starting from a specified time
+              and date:
+            </p>
+            <p>
+              <img src="/guide-media/01HR635SCQDY4AQN67DXJA4Y58" alt="Flows Monthly Days.png">
+            </p>
+            <p>
+              <img src="/guide-media/01HR63CZ2SKTCTNPZV1YPDKRBQ" alt="Flows Monthly Weeks.png">
+            </p>
+            <ol>
+              <li>Select the time zone.</li>
+              <li>Select the start date from the calendar.</li>
+              <li>
+                Type or use the up and down arrows to set the start
+                time in hours and minutes.
+              </li>
+              <li>Click am or pm.</li>
+              <li>
+                Select the frequency at which the user is allowed
+                to enter the flow using '<strong>Repeat on</strong>'
+                and '<strong>Repeat every</strong>'.
+                <ul>
+                  <li>
+                    <strong>Days of month</strong>: Select the
+                    days of the month on which the user is allowed
+                    to enter the flow and the frequency in months
+                    from <strong>Repeat every </strong>option.
+                    <ul>
+                      <li>
+                        For example, choosing '7' in the
+                        calendar in the 'Repeat on' section
+                        and '3' months in 'Repeat every'
+                        means that the user will be allowed
+                        to enter the flow on the seventh
+                        of a month once every three months.
+                        Note: Multiple days can be selected
+                        in a month.
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <strong>Days of week</strong>: Select the
+                    days of the week on which the user is allowed
+                    to enter the flow and the frequency in months
+                    from <strong>Repeat every</strong> option.
+                    <ul>
+                      <li>
+                        With this feature, users can be allowed
+                        to enter the flow on the first Mondays
+                        of every month or second Tuesdays
+                        and Wednesdays of every month and
+                        so on.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Do one of the following to define the End time and
+                date at which the system will stop new entries to
+                the flow:
+                <ol>
+                  <li>
+                    Click <strong>Never</strong> to ensure the
+                    user can always enter the flow.
+                  </li>
+                  <li>
+                    Click <strong>On</strong> and select the
+                    end date from the calendar.<br>
+                    <strong>Note</strong>: Ensure that the end
+                    date is greater than the start date.
+                  </li>
+                  <li>
+                    Click <strong>After</strong> and select the
+                    number of occurrences after which the campaign
+                    ends.
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab is-hidden">
+    <p>
+      Select the following details to allow the user to enter the current flow
+      on exiting an existing flow:
+    </p>
+    <p>To define a primary trigger condition, do the following:</p>
+    <ul>
+      <li>
+        In the <strong>If user performs</strong> section,
+        <ol>
+          <li>
+            Under <strong>Primary trigger(s)</strong>, i<span style="color: #2f3941; font-family: -apple-system, ' system-ui' , ' Segoe UI' , Helvetica, Arial, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">n the<span>&nbsp;</span></span><strong class="guide-markup" style="box-sizing: inherit; font-weight: bolder; color: #2f3941; font-family: -apple-system, ' system-ui' , ' Segoe UI' , Helvetica, Arial, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Has Exited</strong><span style="color: #2f3941; font-family: -apple-system, ' system-ui' , ' Segoe UI' , Helvetica, Arial, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;"> list, </span>select
+            a flow in the <strong>Select by name </strong>list from which
+            the user exits the flow.
+          </li>
+          <li>
+            Click the <strong>+ Add alternate flow exit</strong> to add
+            multiple flow exits under <strong>Primary trigger (s)</strong>.
+            (This is optional)
+          </li>
+          <li>
+            Click the <strong>+ Add exit stage filter </strong>to add
+            attributes to any of the added primary trigger events. (This
+            is optional)<br>
+            <img src="/guide-media/01JJRTMWCFATJFFGZZRPCE6PGB" alt="11234.png">
+          </li>
+        </ol>
+      </li>
+    </ul>
+    <p>To define a secondary trigger condition, do the following:</p>
+    <ul>
+      <li>
+        In the <strong>AND</strong> section,
+        <ol>
+          <li>
+            Click <strong>+ Add secondary trigger event</strong>.
+          </li>
+          <li>
+            Under <strong>Secondary trigger event(s)</strong>, select
+            <strong>Has Executed</strong> or <strong>Has Not Executed </strong>based
+            on your requirements and select the flow in the
+            <strong>Select an event </strong>list to define the secondary
+            trigger events along with the primary trigger event for the
+            user to enter the flow.
+          </li>
+          <li>
+            Click the <strong>+ Add more trigger event</strong> to add
+            multiple flow exits under <strong>Secondary</strong>
+            <strong>trigger event(s)</strong>. (This is optional)
+          </li>
+          <li>
+            Click the <strong>+ Attributes</strong> to add attributes
+            to any of the added secondary trigger events. (This is optional)<img src="/guide-media/01JJRTRWD0TQD3WKPN2ZCKDR64" alt="22.png">
+          </li>
+        </ol>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        In the <strong>THEN user enter the flow</strong> section,
+      </li>
+    </ul>
+    <ol>
+      <li>
+        Select <strong>Immediately </strong>to allow the user to enter the
+        flow within the next 30 to 60 seconds.<br>
+        You can allow the user to enter the flow only if the condition is'
+        If'.
+      </li>
+      <li>
+        Select <strong>With Delay</strong> and provide the following details
+        to define the delay after flow exit:
+        <ol>
+          <li>Type the value of the time.</li>
+          <li>Select minutes, hours, or days.</li>
+        </ol>
+      </li>
+    </ol>
+    <p id="h_01HP17J0F3B1QF7AXR7PNG3D2S">
+      <strong>Flow Schedule Settings</strong>
+    </p>
+    <p>
+      Under <strong>Start</strong>, select one of the following options to
+      trigger the flow:
+    </p>
+    <table class="table table--color-header">
+      <thead>
+        <tr>
+          <th style="width: 224.703px;">Field</th>
+          <th style="width: 468.297px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 216.703px;">
+            <p>
+              <strong>As soon as possible</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px;">
+            <p>Triggers the flow immediately. You can select:</p>
+            <ul>
+              <li>
+                <strong>Campaign time zone</strong> - the timezone
+                in which the campaign should be sent.
+              </li>
+              <li>
+                <strong>Ends</strong>: You can choose the end time
+                for the flow by selecting the End option to control
+                when to stop new entries to the Flow. The following
+                options are available:
+                <ul>
+                  <li>
+                    <strong>Never</strong>: the flow never ends.
+                  </li>
+                  <li>
+                    <strong>On</strong>: the Flow ends on the
+                    end date specified in the <strong>End date</strong>
+                    and <strong>End time</strong> fields.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 216.703px;">
+            <p>
+              <strong>At specific date and time</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px;">
+            <p>
+              Triggers the flow at the specified time, time zone, or
+              predicted time.
+            </p>
+            <p>
+              This section helps you send the campaign on a specific
+              date and time and contains the following fields:
+            </p>
+            <ul>
+              <li>
+                <strong>Campaign time zone</strong> - the timezone
+                in which the campaign should be sent.
+              </li>
+              <li>
+                <strong>Start date</strong> - the date on which the
+                campaign should be sent.
+              </li>
+              <li>
+                <strong>Send time</strong> - the time at which the
+                campaign should be sent. Select am or pm depending
+                on when the time of day at which the campaign should
+                be sent.
+              </li>
+              <li>
+                <strong>Ends</strong>: You can choose the end time
+                for the flow by selecting the End option to control
+                when to stop new entries to the Flow. The following
+                options are available:
+                <ul>
+                  <li>
+                    <strong>Never</strong>: the flow never ends.
+                  </li>
+                  <li>
+                    <strong>On</strong>: the Flow ends on the
+                    end date specified in the <strong>End date</strong>
+                    and <strong>End time</strong> fields.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab is-hidden">
+    <p>
+      To make users enter the flow on a business event trigger, perform the
+      following steps:
+    </p>
+    <ol>
+      <li>
+        In the <strong>Select Business Event</strong> list, click a business
+        event (for example, <em>Series Launched</em>).
+      </li>
+      <li>
+        Select one of the following options to define the Flow schedule:
+      </li>
+    </ol>
+    <table class="table table--color-header" style="height: 984px;">
+      <thead>
+        <tr style="height: 22px;">
+          <th style="width: 224.695px; height: 22px;">Field</th>
+          <th style="width: 468.297px; height: 22px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="height: 411px;">
+          <td style="width: 216.695px; height: 411px;">
+            <p>
+              <strong>As soon as possible</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px; height: 411px;">
+            <p>Triggers the flow immediately. You can select:</p>
+            <ul>
+              <li>
+                <strong>Campaign time zone</strong> - the timezone
+                in which the flow should start/ end.
+              </li>
+              <li>
+                <strong>Ends</strong>: You can choose the end time
+                for the flow by selecting the <strong>End</strong>
+                option to control when to stop new entries to the
+                Flow. The following options are available:
+                <ul>
+                  <li>
+                    <strong>Never</strong>: the flow never ends.
+                  </li>
+                  <li>
+                    <strong>On</strong>: the Flow ends on the
+                    end date specified in the <strong>End date</strong>
+                    and <strong>End time</strong> fields.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <p>
+              <img src="/guide-media/01JFEYB2YT9JXK7ZWZV13JEWT2">
+            </p>
+          </td>
+        </tr>
+        <tr style="height: 551px;">
+          <td style="width: 216.695px; height: 551px;">
+            <p>
+              <strong>At specific date and time</strong>
+            </p>
+          </td>
+          <td style="width: 460.297px; height: 551px;">
+            <p>Triggers the flow at the specified time and time zone.</p>
+            <p>
+              This section helps you send the campaign on a specific
+              date and time and contains the following fields:
+            </p>
+            <ul>
+              <li>
+                <strong>Campaign time zone</strong> - the timezone
+                in which the flow should start/end.
+              </li>
+              <li>
+                <strong>Start date</strong> - the date on which the
+                campaign should be sent.
+              </li>
+              <li>
+                <strong>Send time</strong> - the time at which the
+                campaign should be sent. Select <strong>am</strong>
+                or <strong>pm</strong> depending on when the time
+                of day at which the campaign should be sent.
+              </li>
+              <li>
+                <strong>Ends</strong>: You can choose the end time
+                for the flow by selecting the <strong>End</strong>
+                option to control when to stop new entries to the
+                Flow. The following options are available:
+                <ul>
+                  <li>
+                    <strong>Never</strong>: the flow never ends.
+                  </li>
+                  <li>
+                    <strong>On</strong>: the Flow ends on the
+                    end date specified in the <strong>End date</strong>
+                    and <strong>End time</strong> fields.<img src="/guide-media/01JFEYCAW4WNPSQJJ32S2KYK2C">
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<h3 id="h_01J4HNG3DG6WJWTXBJCMQ3QGZZ">Limit User Entry Settings</h3>
+<div class="callout callout--info">
+  <table>
+    <tbody>
+      <tr>
+        <td class="callout-image">
+          <span class="material-symbols-outlined">info</span>
+        </td>
+        <td class="callout-content">
+          <p>
+            When you select <strong>At fixed time</strong> under the
+            <strong>Users enter the flow</strong> section, the
+            <strong>Limit user entry into this flow</strong>toggle is
+            visible only when you select a <strong>Periodic</strong>
+            option.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  To limit the number of times a user enters the flow, turn the
+  <strong>Limit user entry into this flow </strong>toggle on and enter a value
+  in the following fields:
+</p>
+<ol>
+  <li>Define the maximum entry limit. For example, 2 times.</li>
+  <li>
+    Configure the frequency. For example, 1 month. The range can be from a minimum
+    of 1 day to a maximum of 1 year (both inclusive).
+  </li>
+</ol>
+<p>
+  <img src="/guide-media/01HR612RA47GJP5HDRF5VCRWKS" alt="Flow user entry 1.png">
+</p>
+<table class="table table--color-header" style="width: 687px;">
+  <tbody>
+    <tr>
+      <th style="text-align: center; vertical-align: top; width: 128.406px;">Frequency</th>
+      <th style="text-align: center; vertical-align: top; width: 261.453px;">Example</th>
+      <th style="text-align: center; vertical-align: top; width: 287.141px;">How It Works</th>
+    </tr>
+    <tr>
+      <td style="width: 120.406px;">Day(s)</td>
+      <td style="width: 253.453px;">Maximum number of entries per user: 2 time(s) in 5 Day(s)</td>
+      <td style="width: 279.141px;">
+        <p class="p1">
+          A user who enters a flow at 08:35AM on January 1, 2024 can enter
+          the flow for a maximum of one more time before 08:35AM on January
+          6, 2024.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 120.406px;">Week(s)</td>
+      <td style="width: 253.453px;">Maximum number of entries per user: 2 time(s) in 1 Week(s)</td>
+      <td style="width: 279.141px;">
+        <p class="undefined">
+          A user who enters a flow at 08:35AM on January 1, 2024 can enter
+          the flow for a maximum of one more time until 7 days are passed
+          from 08:35AM January 1, that is, 08:35AM on January 8, 2024.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 120.406px;">Month(s)</td>
+      <td style="width: 253.453px;">Maximum number of entries per user: 2 time(s) in 1 Month(s)</td>
+      <td style="width: 279.141px;">
+        <p class="undefined">
+          A user who enters a flow at 08:35AM on January 1, 2024 can enter
+          the flow for a maximum of one more time until 30 days are passed
+          from 08:35AM January 1, that is, 08:35AM on January 31, 2024.
+        </p>
+        <p class="undefined">
+          <strong>Note:</strong> If you select the <strong>Month(s)</strong>
+          option, MoEngage considers 30 days regardless of the number of
+          days in that month.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 120.406px;">Year(s)</td>
+      <td style="width: 253.453px;">Maximum number of entries per user: 2 time(s) in 1 Year</td>
+      <td style="width: 279.141px;">
+        <p class="undefined">
+          A user who enters a flow at 08:35AM on January 1, 2024 can enter
+          the flow for a maximum of one more time until 365 days are passed
+          from 08:35AM January 1, that is, 08:35AM on December 31, 2024.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="h_01J3QDC93ZXZ20YBCYW8WXDSCE">Global Exit Criteria</h3>
+<p>
+  Under <strong>Flow Exit</strong>, turn the
+  <strong>Exit based on conditions</strong> toggle on to define flow exit conditions.
+  When the users fulfill the conditions defined, MoEngage removes them from their
+  last known position in the flow regardless of where they are. The exit criteria
+  are applicable for all flow types (for example,
+  <strong>On event trigger</strong>, <strong>At fixed time</strong>,
+  <strong>On flow exit</strong>, and <strong>On business event trigger</strong>).
+</p>
+<p>
+  <img src="/guide-media/01J3YZ8TG5KFJGBNT394PA1CSM" alt="Screenshot 2024-07-29 at 3.35.49 PM.png">
+</p>
+<p>
+  MoEngage evaluates users on these conditions right from the time they enter the
+  flow to the time they exit the flow due to reasons such as:
+</p>
+<ul>
+  <li>Passing through an exit stage in the flow path</li>
+  <li>Fulfilling the conditions in the exit criteria</li>
+  <li>Achieving the conversion goal defined in the flow</li>
+</ul>
+<p>
+  You can define the exit criteria using events triggered by users or user properties
+  that you track for them:
+</p>
+<p>
+  <img src="/guide-media/01J3YZAXCQPEHTWDKK892K9496" alt="Screenshot 2024-07-29 at 3.35.49 PM.png">
+</p>
+<ul>
+  <li>
+    <strong>User property</strong>: On the <strong>User property</strong> tab,
+    you can define the exit criteria using user properties by specifying a value
+    for a specific attribute. For example:
+    <ul>
+      <li>
+        Remove users when their membership is Gold (this can be used when
+        the flow has a fixed agenda to convert users to Gold Membership).
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>User behavior</strong>: On the <strong>User behavior</strong> tab,
+    you can define the exit criteria using the list of events tracked in MoEngage.For
+    example:
+    <ul>
+      <li>
+        Remove users when they have purchased any product after entering
+        the flow
+      </li>
+      <li>
+        Remove users when they have purchased the same product that they
+        added to their cart after entering the flow
+        <ul>
+          <li>
+            You can achieve this and similar use cases by linking the
+            primary trigger event and the Exit Condition. For more information,
+            see
+            <a style="background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;" href="/hc/en-us/articles/21099281569300">Linked Conditions</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Remove users when they have purchased the same product that is now
+        back in stock.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h4 id="h_01J3QE9060K2E0E7891S2DNE5H" class="callout__title">Supported Filters</h4>
+<p>
+  You can define exit criteria only using conditions that are of string, integer,
+  and Boolean data types.
+</p>
+<div class="callout callout--warning">
+  <table>
+    <tbody>
+      <tr>
+        <td class="callout-image">
+          <span class="material-symbols-outlined">warning</span>
+        </td>
+        <td class="callout-content">
+          <p class="callout__title">
+            <strong>Warning</strong>
+          </p>
+          <p>
+            MoEngage does not support the conditions defined with following
+            filters:
+          </p>
+          <ul>
+            <li>Custom segments</li>
+            <li>Affinity segments</li>
+            <li>Array type and GeoPoint</li>
+            <li>
+              Special Date Filters (Daily where the hour, Weekly where
+              the day, Monthly where the day, Yearly where the month,
+              Yearly where the date)
+            </li>
+            <li>last n weeks, hours, months</li>
+            <li>last n days where n&gt; or equal to 30 days</li>
+            <li>Sherpa-based attributes</li>
+          </ul>
+          <p>
+            If you use a filter that is not supported, an error message
+            will be displayed. You will have to select a filter that
+            is supported to fix the issue.
+          </p>
+          <p>
+            <img src="/guide-media/01J3Z02E3MTD36SCRXRD9QB0F9" alt="Screenshot 2024-07-29 at 3.43.22 PM.png">
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  Click <strong>+ Add exit condition</strong> to include additional conditions,
+  with a limit of five conditions. Each condition will be evaluated using OR logic
+  with the others. If the users fulfills any of these conditions (in any order),
+  they will exit the flow. For example, if the users fulfill the Condition 3 first,
+  they will exit the flow even though they have not fulfilled the Condition 1.
+</p>
+<p>
+  <img src="/guide-media/01J3YZM47BYD5M8PEFZ0NWHGHY" alt="Screenshot 2024-07-29 at 3.41.39 PM.png">
+</p>
+<p>
+  Within each condition, you can add sub-conditions. Click
+  <strong>+ Filter</strong> to add more conditions. You can add a maximum of five
+  sub-conditions. Each sub-condition will be evaluated using AND logic with the
+  others. Only If the users fulfills all conditions, they will exit the flow.
+</p>
+<p>
+  <img src="/guide-media/01J3YZQ5K078BBN7W9C3VAFSZ6" alt="Screenshot 2024-07-29 at 3.43.16 PM.png">
+</p>
+<div class="callout callout--info">
+  <table>
+    <tbody>
+      <tr>
+        <td class="callout-image">
+          <span class="material-symbols-outlined">info</span>
+        </td>
+        <td class="callout-content">
+          <p class="callout__title">
+            <strong>Information</strong>
+          </p>
+          <p>
+            If there are multiple sub-conditions used in a condition,
+            users must fulfill all sub-conditions within a 30-day period
+            in any order to satisfy the exit condition. For example,
+            in Condition 1, you have defined the following sub-conditions.
+          </p>
+          <ul>
+            <li>Has Executed App/Site Opened at least 1 time</li>
+            <li>Last Seen Date is on July 25, 2024</li>
+            <li>Last Known City is New York</li>
+          </ul>
+          <p>
+            <img src="/guide-media/01J3KXJ48H5C64D4JBV72Y9BJC" alt="7.png">
+          </p>
+          <p>
+            If the users fulfill the fist two conditions on August 1,
+            2024, they do not exit flow immediately. MoEngage waits for
+            30 days from August 1 for the last condition to be fulfilled.
+            If it happens before August 31, the users will exit the flow.
+            If it happens on September 2, the users will not exit the
+            flow because the first two conditions are outside the 30-day
+            window.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  You can edit an exit criteria even after you publish the flow. However, MoEngage
+  creates a new version of the flow in this case. This is not applicable for one-time
+  flows.
+</p>
+<p>
+  Click <strong>Next</strong> to navigate to
+  <a href="#h_01FG1GN5VZ3ZMMWSG1BGN6QRJA" target="_self">Who will enter the flow</a>
+  step.<br>
+  OR<br>
+  Click <strong>Previous</strong> to navigate to the
+  <a href="/hc/en-us/articles/26100424636436#h_01HWK15KM97Q81E3AGRN9E1XB6">Details and Goals</a>step.
+</p>
+<h2 id="h_01HWK1D8AFVM5D2B8363KM786T">Who Will Enter the Flow</h2>
+<p>
+  Select the Target Audience or the target segment for the flow. You can use multiple
+  filters to create the target audience.<br>
+  If your organization uses Teams 2.0, it automatically adds the team's original
+  targeting criteria to any new rules you create. For more information, refer
+  <a href="https://help.moengage.com/hc/en-us/articles/30310276466964-Teams-2-0-in-MoEngage" target="_blank" rel="noopener noreferrer">here</a>.<span class="wysiwyg-color-red"><br></span><img src="/guide-media/01K0E2SWNGJ0J3CBC75JQBNWF8">
+</p>
+<p>The following options are available:</p>
+<div class="tabs tabs--colored-1">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">All Users</span>
+    <span class="tabs-link">Filter by User Property</span>
+    <span class="tabs-link">Filter by User Behavior</span>
+    <span class="tabs-link">Filter by User Affinity</span>
+    <span class="tabs-link">Filter by Custom Segment</span>
+  </div>
+  <div class="tab">
+    <p>
+      This filter option allows you to select all the app users. When you use
+      this option, you cannot add multiple filters.
+    </p>
+    <p>
+      <img src="/guide-media/01HZS42X4GSMCRSFMJFWY758Z2" alt="1.png" width="496" height="180">
+    </p>
+  </div>
+  <div class="tab is-hidden">
+    <p>
+      This filter option allows you to select the users based on user properties
+      such as first seen, last seen, city, etc. Click the
+      <strong>User property</strong> tab and do the following:
+    </p>
+    <ol>
+      <li>
+        Select the desired attribute in the <strong>Select attribute</strong>
+        list. This enables filters based on the attributes selected.
+      </li>
+      <li>
+        Select any filters with the conditions in the dropdown list. For
+        example, string attributes can have filter conditions such as 'is'
+        and 'is not,' while integer attributes can have different filters.
+      </li>
+      <li>
+        The default <strong>Constant value</strong> helps you complete the
+        filter with specific static values. The <strong>User attribute </strong>(applicable
+        for all types of flows) or <strong>Business event attribute </strong>(only
+        for Business Event Triggered flows) option, as shown below, allows
+        you to define the conditions using a different user attribute or
+        business event attribute.<br>
+        For example, refer to the following screenshot to create a flow that
+        announces the launch of a new <em>Thriller</em> series and targets
+        users who have preferred the <em>Thriller</em> as the <em>Genre</em>.<br>
+        <img src="/guide-media/01JFRZKXM8RZ1ED9KXTBHHC8XT" alt="Screenshot 2024-12-19 at 3.53.15 PM.png">
+      </li>
+    </ol>
+    <p>
+      For more information, refer to
+      <a href="https://help.moengage.com/hc/en-us/articles/206169646-Create-Segments" target="_blank" rel="noopener noreferrer">Create Segments</a>.
+    </p>
+  </div>
+  <div class="tab is-hidden">
+    <p>
+      This filter option allows you to select the users based on the behavior
+      of the users or events, such as 'App/Site Opened,' 'Viewed Product,'
+      and so on. Click the <strong>User Behavior</strong> tab and do the following:
+    </p>
+    <ol>
+      <li>
+        Select the <strong>User Behaviour</strong> from the dropdown list.
+      </li>
+      <li>
+        Select an event in the <strong>Select an event</strong> list.
+      </li>
+      <li>
+        Enter the event frequency and time duration for the event execution.
+      </li>
+      <li>
+        Click <strong>+ Attributes and </strong>select the desired attribute
+        in the <strong>Select attribute</strong> list. This enables filters
+        based on the attributes selected. For example, string attributes
+        can have filter conditions such as 'is' and 'is not,' while integer
+        attributes can have different filters.
+      </li>
+      <li>
+        The default <strong>Constant value</strong> helps you complete the
+        filter with specific static values. The <strong>User attribute </strong>(applicable
+        for all types of flows) or <strong>Business event attribute </strong>(only
+        for Business Event Triggered flows) option, as shown below, allows
+        you to define the conditions using a different user attribute or
+        business event attribute.<strong><br></strong>For example, refer
+        to the following screenshot to create a flow that announces the launch
+        of a new <em>Thriller</em> series and targets users who have watched
+        <em>Thriller</em> in the <em>Genre</em> at least once in the past
+        3 days:<br>
+        <img src="/guide-media/01JFRZPJREGBT9YDXCGB3ATG5B" alt="Screenshot 2024-12-19 at 5.09.21 PM (1).png"><br>
+        For more information, refer to
+        <a style="background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;" href="https://help.moengage.com/hc/en-us/articles/206169646-Create-Segments" target="_blank" rel="noopener noreferrer">Create Segments</a>
+      </li>
+    </ol>
+  </div>
+  <div class="tab is-hidden">
+    <ol>
+      <li>Select the desired user event or attribute.</li>
+      <li>
+        Select the user affinity parameter from the following:
+        <ul>
+          <li>
+            <strong>Predominantly</strong>: Select affinity attribute
+            with a filter condition and provide the affinity values.
+          </li>
+          <li>
+            <strong>For a minimum of</strong>: Select affinity attribute
+            with a filter condition and provide the affinity values.
+          </li>
+          <li>
+            <strong>Most no. of times</strong>: Enter a value or use
+            the arrows to provide the top percentage of users.
+          </li>
+          <li>
+            <strong>Least no. of times</strong>: Enter a value or use
+            the arrows to provide the bottom percentage of users.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Enter or use the arrows to provide the time duration for the event
+        execution.
+      </li>
+      <li>
+        Click <strong>+ Attributes</strong> to add more attributes to the
+        filter.
+      </li>
+    </ol>
+    <p>
+      For more information, refer to
+      <a style="background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;" href="https://help.moengage.com/hc/en-us/articles/206169646-Create-Segments" target="_blank" rel="noopener noreferrer">Create Segments</a>
+    </p>
+    <p>
+      <img src="/guide-media/01HZS492K30VNNJHTVTNPY0YY1" alt="4.png">
+    </p>
+  </div>
+  <div class="tab is-hidden">
+    <p>
+      This filter option allows you to select a custom segment as the target
+      audience.
+      <span>Select a custom segment as the target audience from the list of custom segments available.</span>
+    </p>
+    <p>
+      For more information, refer to
+      <a href="https://help.moengage.com/hc/en-us/articles/206528613-Custom-Segments" target="_blank" rel="noopener noreferrer">Custom Segments</a>.
+    </p>
+    <p>
+      <img src="/guide-media/01HZS4B52JEY3N5EZ3MN5EWZA8" alt="5.png">
+    </p>
+  </div>
+</div>
+<p>
+  After selecting the filter criteria, you can do the following as well:
+</p>
+<p>
+  <img src="/guide-media/01HWHCRTDQY3BPDZ0ET3EMXPZA" alt="5.png">
+</p>
+<ul>
+  <li>
+    <strong>Create Multiple Filters</strong> You can create and combine multiple
+    user property rules, user activity rules, and custom segment rules to create
+    a complex user segment using this option.
+    <ol>
+      <li>
+        Click <strong>+ Filter</strong>.
+      </li>
+      <li>
+        Click <strong>AND</strong> or <strong>OR</strong>.
+      </li>
+      <li>
+        Select the attribute or event and define the filter conditions.
+      </li>
+    </ol>
+  </li>
+  <li>
+    <strong>Exclude Users</strong>: Select this checkbox to define the filter
+    criteria for users to be excluded from the flow. For more information on
+    excluding users, refer to
+    <a href="https://help.moengage.com/hc/en-us/articles/360037357812-Preference-Management" target="_blank" rel="noopener noreferrer">Preference Management</a>.
+  </li>
+  <li>
+    <strong>Reset filters</strong>: Click this option to reset the segmentation
+    filters.
+  </li>
+  <li>
+    <strong>Show count</strong>: Click this button to display the total number
+    of users who are currently in the configured segment.<br>
+    <img src="/hc/en-us/article_attachments/203813086/Screen_Shot_2016-05-16_at_8.04.51_PM.png">
+  </li>
+</ul>
+<h3 id="01H812S21GVGNX6YHRP9H052H9">Control Group</h3>
+<p>
+  You can enable the control groups to which you want to send the campaign. For
+  more information about control groups, refer to
+  <a href="https://help.moengage.com/hc/en-us/articles/360052829132-Control-Groups-" target="_blank" rel="noopener noreferrer">Control Group</a>.
+</p>
+<table class="table-with-image" style="width: 656px;" border="0">
+  <tbody>
+    <tr>
+      <td style="width: 377.256px;">
+        <p>
+          In the <strong>Control groups</strong> section:
+        </p>
+        <ul>
+          <li>
+            Turn the <strong>Global control group</strong> toggle on
+            to not send the campaign to the list of users in the Global
+            control group. Refer to
+            <a href="/hc/en-us/articles/360052305312">here</a> to know
+            more.
+          </li>
+          <li>
+            Turn the <strong>Flow control group</strong> toggle on to
+            not send the campaigns in this particular flow to a random
+            subset of users. Refer
+            <a href="/hc/en-us/articles/360052829132">here</a> to know
+            more.
+          </li>
+          <li>
+            Define the percentage of users to be marked as the Control
+            group when they enter the flow.
+          </li>
+          <li>
+            <span class="wysiwyg-color-black">Keep the selection of the "<strong>Users part of control group should continue to be part of it for their subsequent entries"</strong> checkbox to continue users who are part of the control group in their subsequent entries.</span>
+          </li>
+        </ul>
+        <p>
+          For more information, refer to <span></span><a href="https://help.moengage.com/hc/en-us/articles/360052829132-Control-Groups-" target="_blank" rel="noopener">Control Group</a>.
+        </p>
+      </td>
+      <td class="wysiwyg-text-align-right wysiwyg-indent2" style="width: 241.865px;">
+        <img src="/guide-media/01HZS4KTYF5CQCV5ZGAF0410TG" alt="6.png">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <span>Click <strong>Next</strong> </span>to open the flow in the Canvas.<br>
+  OR<br>
+  Click <strong>Previous</strong> to go to the
+  <a href="#h_01FG1GN5VZ3ZMMWSG1BGN6QRJA" target="_self">When will users enter the flow</a>
+  step.
+</p>
+<h1 id="h_01K06JEDBNAHP731PKGWGHRR3J">Design and Publish Your Flow</h1>
+<ol>
+  <li>
+    To design the structure of your flow, click <strong>+</strong> to add the
+    following to the flows:<br>
+    <ul>
+      <li>
+        <a href="https://help.moengage.com/hc/en-us/articles/5663599009300" target="_blank" rel="noopener">Actions</a>
+      </li>
+      <li>
+        <a href="https://help.moengage.com/hc/en-us/articles/5663601636628" target="_blank" rel="noopener">Conditions</a>
+      </li>
+      <li>
+        <a href="https://help.moengage.com/hc/en-us/articles/5663624694420" target="_blank" rel="noopener">Controls</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    After the structure of your flow is ready, click <strong>Save</strong> to
+    save it as a draft. To publish the flow your next action depends on your
+    account's settings:<br>
+    <ul>
+      <li style="list-style-type: none;">
+        <ul>
+          <li>
+            If the Campaign Approval workflow is disabled, you can publish
+            the flow directly.
+          </li>
+          <li>
+            If the Campaign Approval workflow is enabled and you have
+            the permission to create, manage, and publish campaigns,
+            you can publish the flow directly.
+          </li>
+          <li>
+            If the Campaign Approval workflow is enabled and you only
+            have the <strong>Create &amp; Manage</strong> permission,
+            you must submit the flow for approval. For more information,
+            refer
+            <a href="/hc/en-us/articles/26100424636436#h_01K0E4E6XW2QY4X7HVPQMGJA1W">here</a>.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+<h2 id="h_01K0E4E6XW2QY4X7HVPQMGJA1W">The Approval Flow</h2>
+<div class="tabs tabs--colored-1">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Creator</span>
+    <span class="tabs-link">Reviewer</span>
+  </div>
+  <div class="tab">
+    <p>
+      As a creator, to send the flow for approval, perform the following steps:
+    </p>
+    <ol>
+      <li>
+        On the flow canvas page, select the <strong>Actions</strong> button
+        on the right side.
+      </li>
+      <li>
+        In the <strong>Actions</strong> list, select
+        <strong>Send for Approval</strong>.&nbsp;The
+        <strong>Send for approval</strong> pop-up window appears.<br>
+        The MoEngage identifies any configuration errors in your flow which
+        are displayed in the <strong>Error</strong> panel on the right side
+        of the canvas.You must resolve all listed errors before you can send
+        the flow for approval.<br>
+        <img src="/guide-media/01K099HNMN3JQ0XVDZNYSBNPK9" width="634" height="379">
+      </li>
+      <li>
+        You must select the users who would review and approve your flow.
+        <ol>
+          <li>
+            In the <strong>Start typing to filter approvers</strong>
+            box, search for the users (Admins or Managers) from the team
+            you selected in the
+            <a href="/hc/en-us/articles/26100424636436#h_01HWK15KM97Q81E3AGRN9E1XB6">Details and Goals</a>
+            step.
+          </li>
+          <li>
+            <span class="selected">Click <strong>+ Add next</strong> to the name of each user you want to review the flow. The selected users appear in the <strong>Selected Approvers</strong> section on the right.</span>
+          </li>
+        </ol>
+      </li>
+      <li>
+        In the <strong>Add yours comment here (optional)</strong> box, you
+        can add comments to provide context, instructions, or notes for your
+        approvers.
+      </li>
+      <li>
+        Click <strong>Send for approval</strong>.<br>
+        <img src="/guide-media/01K0905DGV1XBAA4WBQRJ7R3C7" width="637" height="346">
+      </li>
+      <li>
+        The selected approvers receive an email notification informing them
+        that the flow is awaiting their review. While the flow is in the
+        <strong>Under Review</strong> state, you have the following options.<br>
+        <ol>
+          <li>
+            <strong>Edit the flow</strong>: You can edit a flow that
+            is <strong>Under Review</strong>. After making the edits,
+            you must resend the flow for another review by clicking
+            <strong>Update and send for approval</strong>. Then, repeat
+            steps 3 through 5.<br>
+            <img src="/guide-media/01K0998E0EBRSRNGG2RQ0J46XQ" width="602" height="368">
+          </li>
+          <li>
+            <strong>Follow up with approvers</strong>: To follow-up,
+            click <strong>Remind Reviewers</strong>.The approvers receive
+            a reminder notification.<br>
+            <br>
+            <img src="/guide-media/01K099DME3MM1J1NE54GJ4Q2HE" width="595" height="354">
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+  <div class="tab is-hidden">
+    <p>To review the flow, perform the following steps:</p>
+    <ol>
+      <li>
+        Open the email you received from MoEngage and click
+        <strong>Click to</strong> <strong>Review Flow</strong>.<br>
+        <img src="/guide-media/01K09FZYZHK5B2SD64HMV6PYVD" width="610" height="251"><br>
+        OR.<br>
+        Navigate to the <strong>All Flows</strong> page. In the
+        <strong>Select status</strong> filter select the
+        <strong>Under Review </strong>checkbox.This provides the list of
+        flows awaiting your approval.
+      </li>
+      <li>
+        Click the flow you want to open.<br>
+        <img src="/guide-media/01K09DNRPAFSKRW8VA4W4DHRK6" width="612" height="293">
+      </li>
+    </ol>
+    <p>
+      You must review the flow by verifying the configurations of every stage.
+      After the review is complete, and if there are no corrections required
+      for the flow, perform the following steps:
+    </p>
+    <ol>
+      <li style="list-style-type: none;">
+        <ol>
+          <li>
+            On the flow canvas page, click <strong>Approve and Publish</strong>
+            on the right side.<br>
+            <img src="/guide-media/01K09DBZZDH1BJN5HP73VGE3QB" width="587" height="281"><br>
+            The <strong>Approve &amp; publish</strong> flow pop-up window
+            appears.
+          </li>
+          <li>
+            In the <strong>Add yours comment here</strong>
+            <strong>(optional)</strong> box, add the comments for the
+            creator.
+          </li>
+          <li>
+            Click <strong>Approve &amp; publish</strong>.<br>
+            <img src="/guide-media/01K09DFMJ9T97XDYBX7V4364QF" width="592" height="251"><br>
+            After you publish, the flow becomes <strong>Active</strong>
+            or <strong>Scheduled </strong>based on the flow (for example,
+            <strong>On event trigger</strong> or <strong>At fixed time</strong>).
+            The creator and the other approvers receive an email notification
+            informing them that the flow is published.
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <p>
+      If the flow requires corrections, you must perform the following steps:
+    </p>
+    <ol>
+      <li>
+        On the flow canvas page,select the <strong>Actions</strong> button
+        on the right side.
+      </li>
+      <li>
+        In the <strong>Actions</strong> list, select <strong>Reject</strong>.<br>
+        <img src="/guide-media/01K0EYCVFZ8PA525ZMM4KHDGR5" width="623" height="298"><br>
+        The <strong>Reject the flow </strong>pop-up window appears.
+      </li>
+      <li>
+        In the <strong>Add your comments here</strong> box, you must add
+        comments that explain why the creator needs to make edits.
+      </li>
+      <li>
+        Click <strong>Reject flow</strong>.<br>
+        <img src="/guide-media/01K0EYM3KC7BFY446B05Y14KES" width="626" height="265"><br>
+        After you reject the flow, the creator and other approvers receive
+        an email notification with your comments.
+      </li>
+    </ol>
+    <div class="callout callout--info">
+      <table>
+        <tbody>
+          <tr>
+            <td class="callout-image">
+              <span class="material-symbols-outlined">info</span>
+            </td>
+            <td class="callout-content">
+              <p class="callout__title">
+                <strong>Information</strong>
+              </p>
+              <ul>
+                <li>
+                  When a flow is rejected, creators can find the
+                  approver's comments in their email notification
+                  and the
+                  <a href="https://help.moengage.com/hc/en-us/articles/13504504954900-Editing-a-Flow#01H82YF18RVYEDT568W819TM4Q" target="_blank" rel="noopener noreferrer">Flow Audit logs</a>.
+                </li>
+                <li>
+                  After making the requested changes, MoEngage
+                  can resubmit the flow by following the approval
+                  process. For more information, refer
+                  <a href="/hc/en-us/articles/26100424636436#h_01K0E4E6XW2QY4X7HVPQMGJA1W">here</a>.
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
