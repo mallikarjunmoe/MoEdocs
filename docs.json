@@ -79,28 +79,39 @@
               }
             ]
           },
-          {
-            "group": "Android SDK",
-            "pages": [
               {
-                "group": "SDK Integration",
+                "group": "Android SDK",
                 "pages": [
                   {
-                    "group": "Basic Integration",
+                    "group": "SDK Integration",
                     "pages": [
-                      "hc/en-us/articles/5339694836884-Configuring-Build-Settings"
+                      {
+                        "group": "Basic Integration",
+                        "pages": [
+                          "hc/en-us/articles/5339694836884-Configuring-Build-Settings"
+                        ]
+                      },
+                      {
+                        "group": "Advanced or Optional",
+                        "pages": [
+                          "hc/en-us/articles/4408876754068-Network-Security-Configuration"
+                        ]
+                      }
                     ]
                   },
                   {
-                    "group": "Advanced or Optional",
+                    "group": "Data Tracking",
                     "pages": [
-                      "hc/en-us/articles/4408876754068-Network-Security-Configuration"
+                      {
+                        "group": "Basic",
+                        "pages": [
+                          "hc/en-us/articles/idtracking"
+                        ]
+                      }
                     ]
                   }
                 ]
-              }
-            ]
-          },
+              },
           {
             "group": "Changelog",
             "pages": [
@@ -259,6 +270,17 @@
                         "group": "高度またはオプション",
                         "pages": [
                           "hc/jp/articles/4408876754068-Network-Security-Configuration"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "データ追跡",
+                    "pages": [
+                      {
+                        "group": "基本",
+                        "pages": [
+                          "hc/jp/articles/idtracking"
                         ]
                       }
                     ]

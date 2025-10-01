@@ -1,0 +1,20 @@
+implementation("com.google.android.gms:play-services-ads-identifier:18.0.1")
+```
+
+To enable Advertising Identifier tracking use the [`enableAdIdTracking()`]([https://moengage.github.io/android-api-reference/core/com.moengage.core/](https://moengage.github.io/android-api-reference/core/com.moengage.core/)[android-jvm]enable-ad-id-tracking.html) method as shown below.
+
+<CodeGroup>
+```kotlin
+import com.moengage.core.enableAdIdTracking
+
+enableAdIdTracking(context)
+```
+```java
+MoESdkStateHelper.enableAdIdTracking(context);
+```
+</CodeGroup>
+
+<Info>
+Please ensure the application is complying with the [Google Play Policy](https://support.google.com/googleplay/android-developer/answer/10144311) regarding Advertising Id tracking.
+</Info>
+`
