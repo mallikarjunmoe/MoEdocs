@@ -172,6 +172,12 @@
           }
         ]
       },
+          {
+            "group": "Flows",
+            "pages": [
+              "hc/en-us/articles/createflow"
+            ]
+          },          
       {
         "tab": "API Reference",
         "groups": [
