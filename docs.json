@@ -34,51 +34,51 @@
       {
         "language": "en",
         "tabs": [
-      {
-        "tab": "Developer Guide",
-        "groups": [
           {
-            "group": " ",
-            "pages": [
-              "hc/en-us/sections/index"
-            ]
-          },
-          {
-            "group": "iOS SDK",
-            "pages": [
+            "tab": "Developer Guide",
+            "groups": [
               {
-                "group": "SDK Integration",
+                "group": " ",
+                "pages": [
+                  "hc/en-us/sections/index"
+                ]
+              },
+              {
+                "group": "iOS SDK",
                 "pages": [
                   {
-                    "group": "Basic",
+                    "group": "SDK Integration",
                     "pages": [
-                      "hc/en-us/articles/4403900743828-SDK-Integration",
-                      "hc/en-us/articles/4403905438228-SDK-Initialization",
-                      "hc/en-us/articles/4403910162452-Data-Center"
+                      {
+                        "group": "Basic",
+                        "pages": [
+                          "hc/en-us/articles/4403900743828-SDK-Integration",
+                          "hc/en-us/articles/4403905438228-SDK-Initialization",
+                          "hc/en-us/articles/4403910162452-Data-Center"
+                        ]
+                      },
+                      {
+                        "group": "Advanced",
+                        "pages": [
+                          "hc/en-us/articles/15320224415764-Add-On-Security"
+                        ]
+                      }
                     ]
                   },
                   {
-                    "group": "Advanced",
+                    "group": "Data Tracking",
                     "pages": [
-                      "hc/en-us/articles/15320224415764-Add-On-Security"
+                      {
+                        "group": "Basic",
+                        "pages": [
+                          "hc/en-us/articles/4403910297620-Install-Update-differentiation",
+                          "hc/en-us/articles/35580768711060-Setting-Unique-Id-for-SDK-versions-below-9-23-0"
+                        ]
+                      }
                     ]
                   }
                 ]
               },
-              {
-                "group": "Data Tracking",
-                "pages": [
-                  {
-                    "group": "Basic",
-                    "pages": [
-                      "hc/en-us/articles/4403910297620-Install-Update-differentiation",
-                      "hc/en-us/articles/35580768711060-Setting-Unique-Id-for-SDK-versions-below-9-23-0"
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
               {
                 "group": "Android SDK",
                 "pages": [
@@ -112,105 +112,110 @@
                   }
                 ]
               },
-          {
-            "group": "Changelog",
-            "pages": [
-              "hc/en-us/articles/39753601645332-Changelog"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "User Guide",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
               {
-                "group": "Overview",
+                "group": "Changelog",
                 "pages": [
-                  "hc/en-us/articles/360040071212-Terms-to-Know",
-                  "hc/en-us/articles/115005943283-Feature-or-Product-in-Beta"
-                ]
-              },
-              {
-                "group": "Initial Setup",
-                "pages": [
-                  "hc/en-us/articles/210845683-Live-and-Test-environments",
-                  "hc/en-us/articles/36774960874004-Navigate-to-Your-Account-s-Login-Page"
+                  "hc/en-us/articles/39753601645332-Changelog"
                 ]
               }
             ]
           },
           {
-            "group": "Settings",
-            "pages": [
+            "tab": "User Guide",
+            "groups": [
               {
-                "group": "Account",
+                "group": "Getting Started",
                 "pages": [
                   {
-                    "group": "General Settings",
+                    "group": "Overview",
                     "pages": [
-                      "hc/en-us/articles/36472555136020-Workspace-Settings"
+                      "hc/en-us/articles/360040071212-Terms-to-Know",
+                      "hc/en-us/articles/115005943283-Feature-or-Product-in-Beta"
+                    ]
+                  },
+                  {
+                    "group": "Initial Setup",
+                    "pages": [
+                      "hc/en-us/articles/210845683-Live-and-Test-environments",
+                      "hc/en-us/articles/36774960874004-Navigate-to-Your-Account-s-Login-Page"
                     ]
                   }
                 ]
+              },
+              {
+                "group": "Settings",
+                "pages": [
+                  {
+                    "group": "Account",
+                    "pages": [
+                      {
+                        "group": "General Settings",
+                        "pages": [
+                          "hc/en-us/articles/36472555136020-Workspace-Settings"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "In-App",
+                "pages": [
+                  "hc/en-us/articles/in-app"
+                ]
+              },
+              {
+                "group": "On-site Messaging",
+                "pages": [
+                  "hc/en-us/articles/osm"
+                ]
               }
             ]
           },
           {
-            "group": "In-App",
-            "pages": [
-              "hc/en-us/articles/in-app"
+            "tab": "Flows",
+            "groups": [
+              {
+                "group": "Flows",
+                "pages": [
+                  "hc/en-us/articles/createflow"
+                ]
+              }
             ]
           },
           {
-            "group": "On-site Messaging",
-            "pages": [
-              "hc/en-us/articles/osm"
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "api-reference/introduction"
+                ]
+              },
+              {
+                "group": "Product Catalog API",
+                "openapi": {
+                  "source": "/api-reference/openapi.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "Campaigns API",
+                "openapi": {
+                  "source": "/api-reference/campaigns.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "Push Templates API",
+                "openapi": {
+                  "source": "/api-reference/pushtemplates.yaml",
+                  "directory": "api-reference"
+                }
+              }
             ]
           }
         ]
-      },
-        {
-          "group": "Flows",
-          "pages": [
-            "hc/en-us/articles/createflow"
-            ]
-    },          
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Product Catalog API",
-            "openapi": {
-              "source": "/api-reference/openapi.yaml",
-              "directory": "api-reference"
-            }
-          },
-          {
-            "group": "Campaigns API",
-            "openapi": {
-              "source": "/api-reference/campaigns.yaml",
-              "directory": "api-reference"
-            }
-          },
-          {
-            "group": "Push Templates API",
-            "openapi": {
-              "source": "/api-reference/pushtemplates.yaml",
-              "directory": "api-reference"
-            }
-          }
-        ]
-      }
-    ]
       },
       {
         "language": "jp",
