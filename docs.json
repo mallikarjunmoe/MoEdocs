@@ -165,12 +165,6 @@
                 ]
               },
               {
-                "group": "On-site Messaging",
-                "pages": [
-                  "hc/en-us/articles/osm"
-                ]
-              },
-              {
                 "group": "Flows",
                 "pages": [
                   "hc/en-us/articles/createflow"
