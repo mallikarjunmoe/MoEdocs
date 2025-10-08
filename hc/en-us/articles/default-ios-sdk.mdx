@@ -1,0 +1,268 @@
+---
+title: "Default iOS SDK"
+description: "Learn how to integrate the default iOS SDK for MoEngage"
+---
+
+# Default iOS SDK
+
+The MoEngage iOS SDK provides comprehensive customer engagement features for iOS applications, enabling push notifications, in-app messaging, and user tracking.
+
+## Overview
+
+### What is the iOS SDK?
+The MoEngage iOS SDK is a library that enables:
+- **Push Notifications**: Send and receive push notifications
+- **In-App Messaging**: Display in-app messages and campaigns
+- **User Tracking**: Track user behavior and events
+- **Analytics**: Collect and analyze user data
+- **Personalization**: Deliver personalized experiences
+
+### Key Features
+- **Easy Integration**: Simple setup and configuration
+- **Rich Notifications**: Support for rich media notifications
+- **Deep Linking**: Handle deep links and navigation
+- **Offline Support**: Works offline with data synchronization
+- **Privacy Compliant**: GDPR and privacy compliant
+
+## Installation
+
+### CocoaPods Integration
+Add the MoEngage SDK to your `Podfile`:
+
+```ruby
+pod 'MoEngage-iOS-SDK'
+```
+
+Then run:
+
+```bash
+pod install
+```
+
+### Swift Package Manager
+Add the SDK via Swift Package Manager:
+
+1. In Xcode, go to File > Add Package Dependencies
+2. Enter the repository URL: `https://github.com/moengage/MoEngage-iOS-SDK`
+3. Select the version and add to your project
+
+### Manual Installation
+Download the SDK and add it to your project:
+
+1. Download the MoEngage iOS SDK
+2. Add the framework to your Xcode project
+3. Link the framework in your project settings
+
+## Configuration
+
+### Step 1: Add App ID
+Add your MoEngage App ID to your `Info.plist`:
+
+```xml
+<key>MoEngage_AppId</key>
+<string>YOUR_APP_ID</string>
+```
+
+### Step 2: Initialize SDK
+Initialize the SDK in your `AppDelegate`:
+
+```swift
+import MoEngage
+
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let moEngage = MoEngage.sharedInstance()
+        moEngage.initializeDefaultLiveInstance()
+        return true
+    }
+}
+```
+
+### Step 3: Configure Push Notifications
+Set up push notifications:
+
+```swift
+import UserNotifications
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    UNUserNotificationCenter.current().delegate = self
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+        if granted {
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
+        }
+    }
+    return true
+}
+```
+
+## Basic Usage
+
+### User Identification
+Identify users with unique IDs:
+
+```swift
+MoEngage.sharedInstance().setUserId("user123")
+MoEngage.sharedInstance().setUserAttribute("email", value: "user@example.com")
+MoEngage.sharedInstance().setUserAttribute("name", value: "John Doe")
+```
+
+### Event Tracking
+Track user events:
+
+```swift
+let eventProperties = [
+    "amount": 99.99,
+    "currency": "USD",
+    "product_id": "product123"
+]
+MoEngage.sharedInstance().trackEvent("Purchase", properties: eventProperties)
+```
+
+### Push Notifications
+Handle push notification registration:
+
+```swift
+func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    MoEngage.sharedInstance().setAPNSToken(deviceToken)
+}
+```
+
+## Advanced Features
+
+### In-App Messaging
+Display in-app messages:
+
+```swift
+MoEngage.sharedInstance().showInApp()
+```
+
+### Deep Linking
+Handle deep links:
+
+```swift
+func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    MoEngage.sharedInstance().handleDeepLink(url)
+    return true
+}
+```
+
+### User Attributes
+Set user attributes:
+
+```swift
+MoEngage.sharedInstance().setUserAttribute("age", value: 25)
+MoEngage.sharedInstance().setUserAttribute("location", value: "New York")
+MoEngage.sharedInstance().setUserAttribute("subscription", value: "premium")
+```
+
+## Customization
+
+### Notification Styling
+Customize notification appearance:
+
+```swift
+MoEngage.sharedInstance().setNotificationSmallIcon("notification_icon")
+MoEngage.sharedInstance().setNotificationLargeIcon("large_icon")
+```
+
+### Event Properties
+Add custom properties to events:
+
+```swift
+let eventProperties = [
+    "category": "electronics",
+    "brand": "Samsung",
+    "price": 299.99
+]
+MoEngage.sharedInstance().trackEvent("Product View", properties: eventProperties)
+```
+
+## Testing
+
+### Test Mode
+Enable test mode for development:
+
+```swift
+let moEngage = MoEngage.sharedInstance()
+moEngage.enableLogs()
+moEngage.initializeDefaultLiveInstance()
+```
+
+### Debug Logs
+Enable debug logging:
+
+```swift
+MoEngage.sharedInstance().enableLogs()
+```
+
+## Best Practices
+
+### Performance
+- **Lazy Initialization**: Initialize SDK only when needed
+- **Background Processing**: Use background threads for heavy operations
+- **Memory Management**: Properly manage memory and resources
+- **Battery Optimization**: Optimize for battery life
+
+### Privacy
+- **User Consent**: Obtain user consent before tracking
+- **Data Minimization**: Collect only necessary data
+- **Secure Storage**: Store sensitive data securely
+- **GDPR Compliance**: Ensure GDPR compliance
+
+### Error Handling
+- **Try-Catch Blocks**: Use proper error handling
+- **Logging**: Log errors for debugging
+- **Fallback Mechanisms**: Implement fallback mechanisms
+- **User Feedback**: Provide user feedback for errors
+
+## Troubleshooting
+
+### Common Issues
+- **SDK Not Initialized**: Ensure SDK is properly initialized
+- **Push Notifications Not Working**: Check APNs configuration
+- **Events Not Tracking**: Verify event tracking implementation
+- **In-App Messages Not Showing**: Check in-app message configuration
+
+### Debug Steps
+1. **Check Logs**: Review debug logs for errors
+2. **Verify Configuration**: Ensure all configurations are correct
+3. **Test on Device**: Test on actual devices, not just simulators
+4. **Check Network**: Verify network connectivity
+
+## Migration
+
+### From Other Platforms
+If migrating from other platforms:
+1. **Export Data**: Export existing user data
+2. **Map Events**: Map existing events to MoEngage events
+3. **Test Integration**: Test the integration thoroughly
+4. **Gradual Rollout**: Roll out gradually to users
+
+### Version Updates
+When updating SDK versions:
+1. **Review Changelog**: Check what's new in the version
+2. **Test Thoroughly**: Test all functionality
+3. **Update Dependencies**: Update related dependencies
+4. **Monitor Performance**: Monitor app performance
+
+## Getting Help
+
+### Support Resources
+- **Documentation**: Comprehensive SDK documentation
+- **Sample Apps**: Example implementations
+- **Support Team**: Contact support for assistance
+- **Community**: Join the developer community
+
+### When to Contact Support
+- **Integration Issues**: Problems with SDK integration
+- **Performance Problems**: App performance issues
+- **Feature Requests**: Request new features
+- **Bug Reports**: Report bugs or issues
+
+## Next Steps
+
+- [Shopify](/shopify)
+- [Magento](/magento)
+- [WooCommerce](/woocommerce)

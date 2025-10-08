@@ -1,0 +1,160 @@
+---
+title: "Migrate or Transfer Push Tokens"
+description: "Learn how to migrate push tokens when switching to MoEngage"
+---
+
+# Migrate or Transfer Push Tokens
+
+When migrating to MoEngage from another platform, you may need to transfer your existing push tokens to maintain user engagement without interruption.
+
+## Understanding Push Tokens
+
+### What are Push Tokens?
+Push tokens are unique identifiers that allow platforms to send push notifications to specific devices. They are:
+- **Device-Specific**: Each device has a unique token
+- **Platform-Specific**: Different for iOS and Android
+- **App-Specific**: Tied to your specific app
+- **Essential for Notifications**: Required for sending push notifications
+
+### Why Transfer Tokens?
+- **Maintain Engagement**: Keep users engaged during migration
+- **Avoid Re-opt-in**: Users don't need to re-opt-in for notifications
+- **Seamless Transition**: Smooth migration experience
+- **Preserve User Base**: Maintain your existing user base
+
+## Migration Process
+
+### Step 1: Export Tokens from Current Platform
+1. **Access Current Platform**: Log into your current push notification platform
+2. **Export Tokens**: Export all push tokens and associated user data
+3. **Format Data**: Ensure data is in the correct format for MoEngage
+4. **Verify Data**: Check that all tokens are properly exported
+
+### Step 2: Prepare Data for MoEngage
+1. **Data Format**: Ensure data matches MoEngage requirements
+2. **User Mapping**: Map users to their push tokens
+3. **Data Validation**: Validate token format and user data
+4. **Backup Data**: Keep a backup of the original data
+
+### Step 3: Import to MoEngage
+1. **Access MoEngage**: Log into your MoEngage dashboard
+2. **Go to Imports**: Navigate to the data import section
+3. **Upload Data**: Upload your push token data
+4. **Verify Import**: Check that tokens were imported correctly
+
+## Data Format Requirements
+
+### Required Fields
+- **User ID**: Unique identifier for each user
+- **Push Token**: The actual push token
+- **Platform**: iOS or Android
+- **App Version**: Version of the app
+- **Last Updated**: When the token was last updated
+
+### Optional Fields
+- **User Attributes**: Additional user information
+- **Subscription Status**: Whether user is subscribed
+- **Opt-in Date**: When user opted in for notifications
+- **Device Information**: Device type and model
+
+### File Formats
+- **CSV**: Comma-separated values file
+- **JSON**: JavaScript Object Notation
+- **Excel**: Microsoft Excel file
+- **API**: Direct API integration
+
+## Platform-Specific Considerations
+
+### iOS Push Tokens
+- **APNs Tokens**: Apple Push Notification service tokens
+- **Token Format**: 64-character hexadecimal string
+- **Environment**: Development or production environment
+- **Certificate**: Ensure proper certificate configuration
+
+### Android Push Tokens
+- **FCM Tokens**: Firebase Cloud Messaging tokens
+- **Token Format**: Variable length string
+- **Project ID**: Firebase project identifier
+- **Server Key**: Firebase server key configuration
+
+## Migration Best Practices
+
+### Before Migration
+- **Plan Timeline**: Set a clear migration timeline
+- **Test Process**: Test the migration process with a small subset
+- **Backup Data**: Keep backups of all data
+- **Communicate**: Inform users about the migration
+
+### During Migration
+- **Monitor Process**: Monitor the migration process closely
+- **Validate Data**: Validate imported data
+- **Test Notifications**: Test push notifications after migration
+- **Handle Errors**: Address any errors or issues
+
+### After Migration
+- **Verify Functionality**: Ensure all notifications work
+- **Monitor Performance**: Monitor notification delivery rates
+- **User Feedback**: Collect user feedback on notifications
+- **Optimize**: Optimize based on performance data
+
+## Troubleshooting
+
+### Common Issues
+- **Invalid Tokens**: Some tokens may be invalid or expired
+- **Format Errors**: Data format may not match requirements
+- **User Mapping**: Users may not be properly mapped
+- **Platform Mismatch**: Tokens may be for wrong platform
+
+### Solutions
+- **Data Validation**: Validate data before import
+- **Error Handling**: Handle errors gracefully
+- **Retry Logic**: Implement retry logic for failed imports
+- **Support**: Contact support for complex issues
+
+## Testing the Migration
+
+### Test Process
+1. **Small Batch**: Test with a small batch of tokens first
+2. **Send Test Notifications**: Send test notifications to verify
+3. **Check Delivery**: Verify notifications are delivered
+4. **Monitor Metrics**: Monitor delivery and engagement metrics
+
+### Validation Steps
+- **Token Count**: Verify correct number of tokens imported
+- **User Mapping**: Check that users are properly mapped
+- **Notification Delivery**: Test notification delivery
+- **Engagement**: Monitor user engagement after migration
+
+## Post-Migration
+
+### Monitoring
+- **Delivery Rates**: Monitor notification delivery rates
+- **Engagement**: Track user engagement metrics
+- **Error Rates**: Monitor error rates and issues
+- **User Feedback**: Collect and analyze user feedback
+
+### Optimization
+- **Segment Users**: Segment users based on engagement
+- **A/B Testing**: Test different notification strategies
+- **Timing**: Optimize notification timing
+- **Content**: Optimize notification content
+
+## Getting Help
+
+### Support Resources
+- **Help Center**: Access comprehensive documentation
+- **Contact Support**: Get help from the support team
+- **Migration Guide**: Follow the detailed migration guide
+- **API Documentation**: Review API documentation
+
+### When to Contact Support
+- **Complex Migration**: For complex migration scenarios
+- **Technical Issues**: If you encounter technical problems
+- **Data Issues**: If you have data format issues
+- **Performance Problems**: If migration performance is poor
+
+## Next Steps
+
+- [Default Android SDK](/default-android-sdk)
+- [Default Web SDK](/default-web-sdk)
+- [Default iOS SDK](/default-ios-sdk)
