@@ -129,15 +129,71 @@
                   {
                     "group": "Overview",
                     "pages": [
-                      "hc/en-us/articles/360040071212-Terms-to-Know",
-                      "hc/en-us/articles/115005943283-Feature-or-Product-in-Beta"
+                      "moengage-overview",
+                      "terms-to-know",
+                      "feature-or-product-in-beta"
                     ]
                   },
                   {
                     "group": "Initial Setup",
                     "pages": [
-                      "hc/en-us/articles/210845683-Live-and-Test-environments",
-                      "hc/en-us/articles/36774960874004-Navigate-to-Your-Account-s-Login-Page"
+                      "sign-up-with-moengage-or-create-a-new-account-in-moengage",
+                      "set-up-2-step-verification-on-your-device",
+                      "finish-your-account-setup-as-an-invited-user",
+                      "log-in-to-moengage",
+                      "dashboard-overview",
+                      "live-and-test-environments",
+                      "manage-your-profile",
+                      "manage-your-workspaces",
+                      "navigate-to-your-account-s-login-page",
+                      "forgot-password",
+                      "reset-2-step-verification-on-your-device",
+                      "recovery-codes",
+                      "suggest-a-feature"
+                    ]
+                  },
+                  {
+                    "group": "Migrate to MoEngage",
+                    "pages": [
+                      "migrate-or-transfer-push-tokens"
+                    ]
+                  },
+                  {
+                    "group": "Integration",
+                    "pages": [
+                      "default-android-sdk",
+                      "default-web-sdk",
+                      "default-ios-sdk",
+                      "shopify",
+                      "magento",
+                      "woocommerce",
+                      "integration-setup",
+                      "test-users",
+                      "events-import-automation",
+                      "limits-on-data-tracking-wip",
+                      "validating-android-integration",
+                      "integration-checklist",
+                      "reinstall-tracking"
+                    ]
+                  },
+                  {
+                    "group": "Integration Validation",
+                    "pages": [
+                      "android-native-integration-validation",
+                      "moengage-integration-validation-and-tracker",
+                      "install-uninstall-reinstall-integration-validation",
+                      "user-attribute-profile-integration-validation",
+                      "user-events-integration-validation",
+                      "android-push-notifications-integration-validation",
+                      "ios-push-notifications-integration-validation",
+                      "push-templates-integration-validation",
+                      "in-app-notifications-integration-validation"
+                    ]
+                  },
+                  {
+                    "group": "FAQs",
+                    "pages": [
+                      "faqs"
                     ]
                   }
                 ]
@@ -151,23 +207,336 @@
                       {
                         "group": "General Settings",
                         "pages": [
-                          "hc/en-us/articles/36472555136020-Workspace-Settings"
+                          "workspace-settings"
+                        ]
+                      },
+                      {
+                        "group": "API Keys",
+                        "pages": [
+                          "api-keys",
+                          "api-key-dashboard"
+                        ]
+                      },
+                      {
+                        "group": "Portfolio",
+                        "pages": [
+                          "portfolio"
+                        ]
+                      },
+                      {
+                        "group": "Team Management",
+                        "pages": [
+                          "manage-members",
+                          "access-role",
+                          "teams-in-moengage",
+                          "teams-2-0-in-moengage",
+                          "campaign-approval-workflow"
+                        ]
+                      },
+                      {
+                        "group": "Audit Logs",
+                        "pages": [
+                          "audit-logs"
+                        ]
+                      },
+                      {
+                        "group": "Security",
+                        "pages": [
+                          "overview",
+                          "set-up-the-login-method",
+                          "2-step-verification-or-two-factor-authentication-2fa",
+                          "firewall",
+                          "moengage-access",
+                          "single-sign-on-sso",
+                          "account-lockout",
+                          "automatic-logout",
+                          "system-for-cross-domain-identity-management-scim",
+                          "ip-whitelisting-in-moengage",
+                          "security-best-practices"
+                        ]
+                      },
+                      {
+                        "group": "Billing",
+                        "pages": [
+                          "usage-details",
+                          "organization-details",
+                          "manage-subscription"
+                        ]
+                      },
+                      {
+                        "group": "Account Management FAQs",
+                        "pages": [
+                          "how-to-resolve-recaptcha-issues-in-the-browser-when-logging-in-to-the-dashboard",
+                          "why-does-switching-between-live-and-test-environments-fail",
+                          "why-is-the-user-unable-to-log-in-to-the-dashboard",
+                          "why-is-the-otp-not-received-on-email-for-2fa",
+                          "suspicious-login-verification",
+                          "user-unable-to-log-in"
                         ]
                       }
+                    ]
+                  },
+                  {
+                    "group": "Analytics",
+                    "pages": [
+                      "enable-user-merging",
+                      "acquisition-tracking",
+                      "uninstall-tracking"
+                    ]
+                  },
+                  {
+                    "group": "Data Management",
+                    "pages": [
+                      "overview-data-management",
+                      "data-management-alerts"
+                    ]
+                  },
+                  {
+                    "group": "Channels",
+                    "pages": [
+                      {
+                        "group": "Push",
+                        "pages": []
+                      },
+                      {
+                        "group": "Email",
+                        "pages": []
+                      },
+                      {
+                        "group": "SMS",
+                        "pages": []
+                      },
+                      {
+                        "group": "WhatsApp",
+                        "pages": []
+                      },
+                      {
+                        "group": "Delivery",
+                        "pages": [
+                          "campaign-audience-limit",
+                          "frequency-capping",
+                          "do-not-disturb",
+                          "minimum-delay-between-campaigns",
+                          "throttling",
+                          "send-campaign-in-recipient-s-time-zone"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Advanced Settings",
+                    "pages": [
+                      "global-control-group",
+                      "manage-tags",
+                      "locales",
+                      "add-a-content-api",
+                      "configure-custom-domain-link-branding",
+                      "e-164-phone-number-format",
+                      "mobile-number-standardization",
+                      "authorization-configuration-with-oauth-2-0",
+                      "configure-general-utm-parameters-at-account-level",
+                      "add-utm-parameters-to-campaigns",
+                      "campaign-attribution-settings"
+                    ]
+                  },
+                  {
+                    "group": "Reports",
+                    "pages": [
+                      {
+                        "group": "Alert Management",
+                        "pages": [
+                          {
+                            "group": "Getting Started",
+                            "pages": [
+                              "overview-alert-management",
+                              "create-an-alert"
+                            ]
+                          },
+                          {
+                            "group": "Managing Alerts",
+                            "pages": [
+                              "managing-alerts"
+                            ]
+                          },
+                          {
+                            "group": "Alert Destinations",
+                            "pages": [
+                              "webhooks",
+                              "ms-teams",
+                              "slack"
+                            ]
+                          }
+                        ]
+                      },
+                      "dashboard-subscriptions",
+                      "proactive-assistant-settings"
+                    ]
+                  },
+                  {
+                    "group": "Miscellaneous",
+                    "pages": [
+                      "settings-inform"
                     ]
                   }
                 ]
               },
               {
-                "group": "In-App",
+                "group": "Data",
                 "pages": [
-                  "hc/en-us/articles/in-app"
-                ]
-              },
-              {
-                "group": "Flows",
-                "pages": [
-                  "hc/en-us/articles/createflow"
+                  {
+                    "group": "Key Concepts",
+                    "pages": [
+                      "overview-data",
+                      "data-centers-in-moengage",
+                      "event-naming-conventions",
+                      "fair-usage-policy-fup",
+                      "data-archival-policies",
+                      "data-tracking-policies",
+                      "support-for-object-data-type",
+                      "portfolio-data-ingestion-and-management"
+                    ]
+                  },
+                  {
+                    "group": "User Data",
+                    "pages": [
+                      "user-profile",
+                      "anonymous-to-registered-user-merge",
+                      "unified-identity-identity-resolution",
+                      "derived-user-attributes",
+                      "user-install-status"
+                    ]
+                  },
+                  {
+                    "group": "Event Data",
+                    "pages": [
+                      "a-complete-guide-to-event-tracking",
+                      "derived-events-attributes",
+                      "event-time-and-received-time"
+                    ]
+                  },
+                  {
+                    "group": "Imports",
+                    "pages": [
+                      {
+                        "group": "Overview",
+                        "pages": [
+                          "overview-imports"
+                        ]
+                      },
+                      {
+                        "group": "Data Warehouse",
+                        "pages": [
+                          "bigquery-imports",
+                          "databricks-imports",
+                          "snowflake-imports",
+                          "import-datetime-attributes"
+                        ]
+                      },
+                      {
+                        "group": "File Based Imports",
+                        "pages": [
+                          "import-user-data-using-csv",
+                          "import-event-data-using-csv",
+                          "s3-imports",
+                          "sftp-imports",
+                          "using-pgp-encryption-in-moengage",
+                          "auxiliary-data"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Exports",
+                    "pages": [
+                      {
+                        "group": "Events",
+                        "pages": [
+                          {
+                            "group": "Data Warehouse",
+                            "pages": [
+                              "bigquery-exports",
+                              "databricks-exports",
+                              "sftp-exports",
+                              "snowflake-exports",
+                              "s3-exports",
+                              "redshift-exports",
+                              "google-cloud-storage-gcs-exports"
+                            ]
+                          },
+                          "streams",
+                          "data-export-glossary",
+                          "introduction-event-data-exports"
+                        ]
+                      },
+                      {
+                        "group": "Segments",
+                        "pages": [
+                          "outbound-segment-sync",
+                          "syncing-segments-from-one-moengage-app-to-another"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Computed Traits",
+                    "pages": [
+                      "computed-traits-overview",
+                      "create-a-computed-trait"
+                    ]
+                  },
+                  {
+                    "group": "Privacy",
+                    "pages": [
+                      {
+                        "group": "Personally Identifiable Information (PII)",
+                        "pages": [
+                          "untitled",
+                          "personal-data-or-personally-identifiable-information-pii",
+                          "pii-data-encryption",
+                          "pii-masking",
+                          "pii-tokenized-sending",
+                          "pii-tokenized-sending-bulk-draft",
+                          "pii-masking-on-personalised-preview",
+                          "pii-data-centers"
+                        ]
+                      },
+                      "ccpa",
+                      "gdpr",
+                      "apple-privacy-manifest-update",
+                      "android-advertising-id-tracking"
+                    ]
+                  },
+                  {
+                    "group": "FAQs",
+                    "pages": [
+                      "why-are-location-values-not-updated-on-the-user-profile",
+                      "how-to-use-the-delete-api-through-a-connector-campaign-to-delete-multiple-user-profiles",
+                      "why-does-the-periodic-sftp-import-fail-with-a-error",
+                      "why-is-the-user-import-status-showing-as-processing",
+                      "why-does-a-nonetype-comparison-error-occur-during-sftp-s3-import",
+                      "why-creating-a-user-again-after-deletion-using-the-open-gdpr-api-is-not-possible",
+                      "why-is-an-anonymous-user-profile-created-with-an-uninstall-event-linked-to-a-campaign-id",
+                      "why-are-event-data-uploads-from-s3-failing-due-to-a-timeout-error",
+                      "how-to-generate-an-auth-token-for-the-data-api",
+                      "how-to-verify-user-deletion-in-moengage",
+                      "what-is-the-importance-of-the-moengage-api-key-and-what-happens-if-it-is-updated",
+                      "why-is-the-new-data-type-not-reflecting-in-data-management",
+                      "why-does-the-empty-rows-error-occur-when-importing-a-file",
+                      "what-unique-id-values-does-the-system-accept",
+                      "what-are-the-key-points-of-the-moengage-data-tracking-policy",
+                      "why-are-users-not-merged-after-using-the-user-merge-api",
+                      "why-are-new-events-or-user-attributes-not-reflected-on-the-dashboard",
+                      "how-to-fix-common-errors-with-simple-storage-service-s3-import",
+                      "what-are-the-common-file-import-errors-in-moengage",
+                      "why-is-domain-whitelisting-recommended-over-ip-whitelisting-for-the-data-api",
+                      "why-does-an-error-appear-in-the-preview-file-for-import",
+                      "what-are-the-key-distinctions-between-encryption-and-masking-on-the-data-management-page",
+                      "error-messages-in-the-browser-console-due-to-cors-policy",
+                      "event-category-name-update",
+                      "how-can-i-import-custom-data-to-moengage",
+                      "triggered-campaigns-not-working-on-s2s-events-how-to-resolve"
+                    ]
+                  }
                 ]
               }
             ]
