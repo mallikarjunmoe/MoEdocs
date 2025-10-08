@@ -129,71 +129,71 @@
                   {
                     "group": "Overview",
                     "pages": [
-                      "moengage-overview",
-                      "terms-to-know",
-                      "feature-or-product-in-beta"
+                      "hc/en-us/articles/moengage-overview",
+                      "hc/en-us/articles/terms-to-know",
+                      "hc/en-us/articles/feature-or-product-in-beta"
                     ]
                   },
                   {
                     "group": "Initial Setup",
                     "pages": [
-                      "sign-up-with-moengage-or-create-a-new-account-in-moengage",
-                      "set-up-2-step-verification-on-your-device",
-                      "finish-your-account-setup-as-an-invited-user",
-                      "log-in-to-moengage",
-                      "dashboard-overview",
-                      "live-and-test-environments",
-                      "manage-your-profile",
-                      "manage-your-workspaces",
-                      "navigate-to-your-account-s-login-page",
-                      "forgot-password",
-                      "reset-2-step-verification-on-your-device",
-                      "recovery-codes",
-                      "suggest-a-feature"
+                      "hc/en-us/articles/sign-up-with-moengage-or-create-a-new-account-in-moengage",
+                      "hc/en-us/articles/set-up-2-step-verification-on-your-device",
+                      "hc/en-us/articles/finish-your-account-setup-as-an-invited-user",
+                      "hc/en-us/articles/log-in-to-moengage",
+                      "hc/en-us/articles/dashboard-overview",
+                      "hc/en-us/articles/live-and-test-environments",
+                      "hc/en-us/articles/manage-your-profile",
+                      "hc/en-us/articles/manage-your-workspaces",
+                      "hc/en-us/articles/navigate-to-your-account-s-login-page",
+                      "hc/en-us/articles/forgot-password",
+                      "hc/en-us/articles/reset-2-step-verification-on-your-device",
+                      "hc/en-us/articles/recovery-codes",
+                      "hc/en-us/articles/suggest-a-feature"
                     ]
                   },
                   {
                     "group": "Migrate to MoEngage",
                     "pages": [
-                      "migrate-or-transfer-push-tokens"
+                      "hc/en-us/articles/migrate-or-transfer-push-tokens"
                     ]
                   },
                   {
                     "group": "Integration",
                     "pages": [
-                      "default-android-sdk",
-                      "default-web-sdk",
-                      "default-ios-sdk",
-                      "shopify",
-                      "magento",
-                      "woocommerce",
-                      "integration-setup",
-                      "test-users",
-                      "events-import-automation",
-                      "limits-on-data-tracking-wip",
-                      "validating-android-integration",
-                      "integration-checklist",
-                      "reinstall-tracking"
+                      "hc/en-us/articles/default-android-sdk",
+                      "hc/en-us/articles/default-web-sdk",
+                      "hc/en-us/articles/default-ios-sdk",
+                      "hc/en-us/articles/shopify",
+                      "hc/en-us/articles/magento",
+                      "hc/en-us/articles/woocommerce",
+                      "hc/en-us/articles/integration-setup",
+                      "hc/en-us/articles/test-users",
+                      "hc/en-us/articles/events-import-automation",
+                      "hc/en-us/articles/limits-on-data-tracking-wip",
+                      "hc/en-us/articles/validating-android-integration",
+                      "hc/en-us/articles/integration-checklist",
+                      "hc/en-us/articles/reinstall-tracking"
                     ]
                   },
                   {
                     "group": "Integration Validation",
                     "pages": [
-                      "android-native-integration-validation",
-                      "moengage-integration-validation-and-tracker",
-                      "install-uninstall-reinstall-integration-validation",
-                      "user-attribute-profile-integration-validation",
-                      "user-events-integration-validation",
-                      "android-push-notifications-integration-validation",
-                      "ios-push-notifications-integration-validation",
-                      "push-templates-integration-validation",
-                      "in-app-notifications-integration-validation"
+                      "hc/en-us/articles/android-native-integration-validation",
+                      "hc/en-us/articles/moengage-integration-validation-and-tracker",
+                      "hc/en-us/articles/install-uninstall-reinstall-integration-validation",
+                      "hc/en-us/articles/user-attribute-profile-integration-validation",
+                      "hc/en-us/articles/user-events-integration-validation",
+                      "hc/en-us/articles/android-push-notifications-integration-validation",
+                      "hc/en-us/articles/ios-push-notifications-integration-validation",
+                      "hc/en-us/articles/push-templates-integration-validation",
+                      "hc/en-us/articles/in-app-notifications-integration-validation"
                     ]
                   },
                   {
                     "group": "FAQs",
                     "pages": [
-                      "faqs"
+                      "hc/en-us/articles/faqs"
                     ]
                   }
                 ]
@@ -207,43 +207,43 @@
                       {
                         "group": "General Settings",
                         "pages": [
-                          "workspace-settings"
+                          "hc/en-us/articles/workspace-settings"
                         ]
                       },
                       {
                         "group": "API Keys",
                         "pages": [
-                          "api-keys",
-                          "api-key-dashboard"
+                          "hc/en-us/articles/api-keys",
+                          "hc/en-us/articles/api-key-dashboard"
                         ]
                       },
                       {
                         "group": "Portfolio",
                         "pages": [
-                          "portfolio"
+                          "hc/en-us/articles/portfolio"
                         ]
                       },
                       {
                         "group": "Team Management",
                         "pages": [
-                          "manage-members",
-                          "access-role",
-                          "teams-in-moengage",
-                          "teams-2-0-in-moengage",
-                          "campaign-approval-workflow"
+                          "hc/en-us/articles/manage-members",
+                          "hc/en-us/articles/access-role",
+                          "hc/en-us/articles/teams-in-moengage",
+                          "hc/en-us/articles/teams-2-0-in-moengage",
+                          "hc/en-us/articles/campaign-approval-workflow"
                         ]
                       },
                       {
                         "group": "Audit Logs",
                         "pages": [
-                          "audit-logs"
+                          "hc/en-us/articles/audit-logs"
                         ]
                       },
                       {
                         "group": "Security",
                         "pages": [
-                          "overview",
-                          "set-up-the-login-method",
+                          "hc/en-us/articles/overview",
+                          "hc/en-us/articles/set-up-the-login-method",
                           "2-step-verification-or-two-factor-authentication-2fa",
                           "firewall",
                           "moengage-access",

@@ -1,0 +1,280 @@
+---
+title: "Default Web SDK"
+description: "Learn how to integrate the default Web SDK for MoEngage"
+---
+
+# Default Web SDK
+
+The MoEngage Web SDK provides comprehensive customer engagement features for web applications, enabling push notifications, in-app messaging, and user tracking.
+
+## Overview
+
+### What is the Web SDK?
+The MoEngage Web SDK is a JavaScript library that enables:
+- **Web Push Notifications**: Send and receive push notifications in browsers
+- **In-App Messaging**: Display in-app messages and campaigns
+- **User Tracking**: Track user behavior and events
+- **Analytics**: Collect and analyze user data
+- **Personalization**: Deliver personalized experiences
+
+### Key Features
+- **Cross-Browser Support**: Works on all modern browsers
+- **Service Worker**: Uses service workers for push notifications
+- **Rich Notifications**: Support for rich media notifications
+- **Deep Linking**: Handle deep links and navigation
+- **Privacy Compliant**: GDPR and privacy compliant
+
+## Installation
+
+### CDN Integration
+Include the SDK via CDN:
+
+```html
+<script src="https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js"></script>
+```
+
+### NPM Installation
+Install via npm:
+
+```bash
+npm install moengage-web-sdk
+```
+
+### Manual Download
+Download the SDK file and include it in your project:
+
+```html
+<script src="path/to/moe_webSdk.min.js"></script>
+```
+
+## Configuration
+
+### Step 1: Initialize SDK
+Initialize the SDK with your App ID:
+
+```javascript
+MoEngage.initialize({
+    appId: 'YOUR_APP_ID',
+    debug: true // Enable for development
+});
+```
+
+### Step 2: Configure Push Notifications
+Set up push notifications:
+
+```javascript
+MoEngage.initialize({
+    appId: 'YOUR_APP_ID',
+    push: {
+        enabled: true,
+        vapidKey: 'YOUR_VAPID_KEY'
+    }
+});
+```
+
+### Step 3: Set Up Service Worker
+Create a service worker file (`sw.js`):
+
+```javascript
+importScripts('https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js');
+
+MoEngage.initialize({
+    appId: 'YOUR_APP_ID'
+});
+```
+
+## Basic Usage
+
+### User Identification
+Identify users with unique IDs:
+
+```javascript
+MoEngage.setUserId('user123');
+MoEngage.setUserAttribute('email', 'user@example.com');
+MoEngage.setUserAttribute('name', 'John Doe');
+```
+
+### Event Tracking
+Track user events:
+
+```javascript
+MoEngage.trackEvent('Purchase', {
+    amount: 99.99,
+    currency: 'USD',
+    product_id: 'product123'
+});
+```
+
+### Push Notifications
+Request push notification permission:
+
+```javascript
+MoEngage.requestPushPermission()
+    .then(() => {
+        console.log('Push permission granted');
+    })
+    .catch((error) => {
+        console.log('Push permission denied:', error);
+    });
+```
+
+## Advanced Features
+
+### In-App Messaging
+Display in-app messages:
+
+```javascript
+MoEngage.showInApp();
+```
+
+### Deep Linking
+Handle deep links:
+
+```javascript
+MoEngage.onDeepLink((url) => {
+    console.log('Deep link received:', url);
+    // Handle the deep link
+});
+```
+
+### User Attributes
+Set user attributes:
+
+```javascript
+MoEngage.setUserAttribute('age', 25);
+MoEngage.setUserAttribute('location', 'New York');
+MoEngage.setUserAttribute('subscription', 'premium');
+```
+
+## Customization
+
+### Notification Styling
+Customize notification appearance:
+
+```javascript
+MoEngage.initialize({
+    appId: 'YOUR_APP_ID',
+    push: {
+        enabled: true,
+        icon: 'path/to/icon.png',
+        badge: 'path/to/badge.png'
+    }
+});
+```
+
+### Event Properties
+Add custom properties to events:
+
+```javascript
+MoEngage.trackEvent('Product View', {
+    category: 'electronics',
+    brand: 'Samsung',
+    price: 299.99
+});
+```
+
+## Testing
+
+### Test Mode
+Enable test mode for development:
+
+```javascript
+MoEngage.initialize({
+    appId: 'YOUR_APP_ID',
+    debug: true,
+    test: true
+});
+```
+
+### Debug Logs
+Enable debug logging:
+
+```javascript
+MoEngage.initialize({
+    appId: 'YOUR_APP_ID',
+    debug: true
+});
+```
+
+## Best Practices
+
+### Performance
+- **Lazy Loading**: Load SDK only when needed
+- **Minification**: Use minified version in production
+- **Caching**: Implement proper caching strategies
+- **Error Handling**: Use proper error handling
+
+### Privacy
+- **User Consent**: Obtain user consent before tracking
+- **Data Minimization**: Collect only necessary data
+- **Secure Storage**: Store sensitive data securely
+- **GDPR Compliance**: Ensure GDPR compliance
+
+### Security
+- **HTTPS**: Always use HTTPS in production
+- **Content Security Policy**: Implement CSP headers
+- **Input Validation**: Validate all user inputs
+- **Secure Communication**: Use secure communication channels
+
+## Troubleshooting
+
+### Common Issues
+- **SDK Not Loading**: Check if SDK is properly loaded
+- **Push Notifications Not Working**: Verify browser support and permissions
+- **Events Not Tracking**: Check event tracking implementation
+- **In-App Messages Not Showing**: Verify in-app message configuration
+
+### Debug Steps
+1. **Check Console**: Review browser console for errors
+2. **Verify Configuration**: Ensure all configurations are correct
+3. **Test on Different Browsers**: Test on various browsers
+4. **Check Network**: Verify network connectivity
+
+## Browser Support
+
+### Supported Browsers
+- **Chrome**: Version 50+
+- **Firefox**: Version 44+
+- **Safari**: Version 16+
+- **Edge**: Version 17+
+
+### Feature Support
+- **Push Notifications**: Chrome, Firefox, Safari, Edge
+- **Service Workers**: Chrome, Firefox, Safari, Edge
+- **Web App Manifest**: Chrome, Firefox, Safari, Edge
+
+## Migration
+
+### From Other Platforms
+If migrating from other platforms:
+1. **Export Data**: Export existing user data
+2. **Map Events**: Map existing events to MoEngage events
+3. **Test Integration**: Test the integration thoroughly
+4. **Gradual Rollout**: Roll out gradually to users
+
+### Version Updates
+When updating SDK versions:
+1. **Review Changelog**: Check what's new in the version
+2. **Test Thoroughly**: Test all functionality
+3. **Update Dependencies**: Update related dependencies
+4. **Monitor Performance**: Monitor app performance
+
+## Getting Help
+
+### Support Resources
+- **Documentation**: Comprehensive SDK documentation
+- **Sample Apps**: Example implementations
+- **Support Team**: Contact support for assistance
+- **Community**: Join the developer community
+
+### When to Contact Support
+- **Integration Issues**: Problems with SDK integration
+- **Performance Problems**: App performance issues
+- **Feature Requests**: Request new features
+- **Bug Reports**: Report bugs or issues
+
+## Next Steps
+
+- [Default iOS SDK](/default-ios-sdk)
+- [Shopify](/shopify)
+- [Magento](/magento)

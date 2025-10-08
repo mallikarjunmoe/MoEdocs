@@ -1,0 +1,245 @@
+---
+title: "Default Android SDK"
+description: "Learn how to integrate the default Android SDK for MoEngage"
+---
+
+# Default Android SDK
+
+The MoEngage Android SDK provides a comprehensive solution for integrating customer engagement features into your Android application.
+
+## Overview
+
+### What is the Android SDK?
+The MoEngage Android SDK is a library that enables:
+- **Push Notifications**: Send and receive push notifications
+- **In-App Messaging**: Display in-app messages and campaigns
+- **User Tracking**: Track user behavior and events
+- **Analytics**: Collect and analyze user data
+- **Personalization**: Deliver personalized experiences
+
+### Key Features
+- **Easy Integration**: Simple setup and configuration
+- **Rich Notifications**: Support for rich media notifications
+- **Deep Linking**: Handle deep links and navigation
+- **Offline Support**: Works offline with data synchronization
+- **Privacy Compliant**: GDPR and privacy compliant
+
+## Installation
+
+### Gradle Integration
+Add the MoEngage SDK to your app's `build.gradle` file:
+
+```gradle
+dependencies {
+    implementation 'com.moengage:moengage-android:12.6.00'
+    implementation 'com.moengage:moengage-android-sdk:12.6.00'
+}
+```
+
+### Maven Integration
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.moengage</groupId>
+    <artifactId>moengage-android</artifactId>
+    <version>12.6.00</version>
+</dependency>
+```
+
+## Configuration
+
+### Step 1: Add App ID
+Add your MoEngage App ID to your `strings.xml`:
+
+```xml
+<string name="moengage_app_id">YOUR_APP_ID</string>
+```
+
+### Step 2: Initialize SDK
+Initialize the SDK in your `Application` class:
+
+```java
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        MoEngage moEngage = new MoEngage.Builder(this, "YOUR_APP_ID")
+                .build();
+        MoEngage.initialiseDefaultInstance(moEngage);
+    }
+}
+```
+
+### Step 3: Configure Firebase
+Set up Firebase Cloud Messaging for push notifications:
+
+```java
+// In your FirebaseMessagingService
+@Override
+public void onNewToken(String token) {
+    MoEngage.getInstance().setPushToken(token);
+}
+```
+
+## Basic Usage
+
+### User Identification
+Identify users with unique IDs:
+
+```java
+MoEngage.getInstance().setUserAttribute("USER_ID", "user123");
+MoEngage.getInstance().setUserAttribute("EMAIL", "user@example.com");
+```
+
+### Event Tracking
+Track user events:
+
+```java
+MoEngage.getInstance().trackEvent("Purchase", new HashMap<String, Object>() {{
+    put("amount", 99.99);
+    put("currency", "USD");
+    put("product_id", "product123");
+}});
+```
+
+### Push Notifications
+Handle push notification clicks:
+
+```java
+@Override
+protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    MoEngage.getInstance().onNewIntent(intent);
+}
+```
+
+## Advanced Features
+
+### In-App Messaging
+Display in-app messages:
+
+```java
+MoEngage.getInstance().showInApp();
+```
+
+### Deep Linking
+Handle deep links:
+
+```java
+MoEngage.getInstance().onNewIntent(intent);
+```
+
+### User Attributes
+Set user attributes:
+
+```java
+MoEngage.getInstance().setUserAttribute("NAME", "John Doe");
+MoEngage.getInstance().setUserAttribute("AGE", 25);
+MoEngage.getInstance().setUserAttribute("LOCATION", "New York");
+```
+
+## Customization
+
+### Notification Styling
+Customize notification appearance:
+
+```java
+MoEngage.getInstance().setNotificationSmallIcon(R.drawable.notification_icon);
+MoEngage.getInstance().setNotificationLargeIcon(R.drawable.large_icon);
+```
+
+### Event Properties
+Add custom properties to events:
+
+```java
+Map<String, Object> eventProperties = new HashMap<>();
+eventProperties.put("category", "electronics");
+eventProperties.put("brand", "Samsung");
+MoEngage.getInstance().trackEvent("Product View", eventProperties);
+```
+
+## Testing
+
+### Test Mode
+Enable test mode for development:
+
+```java
+MoEngage moEngage = new MoEngage.Builder(this, "YOUR_APP_ID")
+        .enableLogs()
+        .build();
+```
+
+### Debug Logs
+Enable debug logging:
+
+```java
+MoEngage.getInstance().enableLogs();
+```
+
+## Best Practices
+
+### Performance
+- **Lazy Initialization**: Initialize SDK only when needed
+- **Background Processing**: Use background threads for heavy operations
+- **Memory Management**: Properly manage memory and resources
+
+### Privacy
+- **User Consent**: Obtain user consent before tracking
+- **Data Minimization**: Collect only necessary data
+- **Secure Storage**: Store sensitive data securely
+
+### Error Handling
+- **Try-Catch Blocks**: Use proper error handling
+- **Logging**: Log errors for debugging
+- **Fallback Mechanisms**: Implement fallback mechanisms
+
+## Troubleshooting
+
+### Common Issues
+- **SDK Not Initialized**: Ensure SDK is properly initialized
+- **Push Notifications Not Working**: Check Firebase configuration
+- **Events Not Tracking**: Verify event tracking implementation
+- **In-App Messages Not Showing**: Check in-app message configuration
+
+### Debug Steps
+1. **Check Logs**: Review debug logs for errors
+2. **Verify Configuration**: Ensure all configurations are correct
+3. **Test on Device**: Test on actual devices, not just emulators
+4. **Check Network**: Verify network connectivity
+
+## Migration
+
+### From Other Platforms
+If migrating from other platforms:
+1. **Export Data**: Export existing user data
+2. **Map Events**: Map existing events to MoEngage events
+3. **Test Integration**: Test the integration thoroughly
+4. **Gradual Rollout**: Roll out gradually to users
+
+### Version Updates
+When updating SDK versions:
+1. **Review Changelog**: Check what's new in the version
+2. **Test Thoroughly**: Test all functionality
+3. **Update Dependencies**: Update related dependencies
+4. **Monitor Performance**: Monitor app performance
+
+## Getting Help
+
+### Support Resources
+- **Documentation**: Comprehensive SDK documentation
+- **Sample Apps**: Example implementations
+- **Support Team**: Contact support for assistance
+- **Community**: Join the developer community
+
+### When to Contact Support
+- **Integration Issues**: Problems with SDK integration
+- **Performance Problems**: App performance issues
+- **Feature Requests**: Request new features
+- **Bug Reports**: Report bugs or issues
+
+## Next Steps
+
+- [Default Web SDK](/default-web-sdk)
+- [Default iOS SDK](/default-ios-sdk)
+- [Shopify](/shopify)
