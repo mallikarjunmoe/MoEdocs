@@ -1,97 +1,63 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "MoEngage API Documentation"
+description: "Complete API reference for MoEngage platform integration"
 ---
 
-## Setting up
+## Welcome to MoEngage API Documentation
 
-Get your documentation site up and running in minutes.
+Your comprehensive guide to integrating with the MoEngage platform through our REST APIs. Automate workflows, manage product catalogs, and retrieve campaign data programmatically.
+
+## Getting Started
 
 <Card
-  title="Start here"
+  title="API Overview"
   icon="rocket"
-  href="/quickstart"
+  href="/api-reference/introduction"
   horizontal
 >
-  Follow our three step quickstart guide.
+  Learn about our APIs, authentication, and how to get started with integration.
 </Card>
 
-## Make it yours
+## Available APIs
 
-Design a docs site that looks great and empowers your users.
+Our REST APIs are designed to be predictable and intuitive. Explore our primary API collections:
 
 <Columns cols={2}>
   <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
+    title="Product Catalog API"
+    icon="book-open"
     href="/api-reference/introduction"
   >
-    Auto-generate API documentation from OpenAPI specifications.
+    Manage your product catalogs, including creating catalogs, adding attributes, and ingesting or updating products.
+  </Card>
+  <Card
+    title="Campaigns API"
+    icon="chart-simple"
+    href="/api-reference/introduction"
+  >
+    Programmatically search and retrieve details for your SMS campaigns, using filters for status, creation date, and more.
+  </Card>
+  <Card
+    title="Push Templates API"
+    icon="mobile"
+    href="/api-reference/introduction"
+  >
+    Manage and retrieve push notification templates for your campaigns.
   </Card>
 </Columns>
 
-## Create beautiful pages
+## Authentication
 
-Everything you need to create world-class documentation.
+All MoEngage APIs are authenticated using a combination of Basic Authentication and a custom MOE-APPKEY header.
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+You can find your credentials in the MoEngage Dashboard under Settings > Account > APIs. For detailed examples, please see the authentication section within each API endpoint.
 
-## Need inspiration?
+## Need Help?
 
 <Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
+  title="Support"
+  icon="headset"
+  href="https://help.moengage.com/hc/en-us"
 >
-  Browse our showcase of exceptional documentation sites.
+  Get help from our support team for any integration questions.
 </Card>
