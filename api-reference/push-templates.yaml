@@ -463,4 +463,3 @@ paths:
               schema:
                 $ref: '#/components/schemas/SimpleErrorResponse'
 
-
