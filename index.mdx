@@ -20,9 +20,9 @@ Your comprehensive guide to integrating with the MoEngage platform through our R
 
 ## Available APIs
 
-Our REST APIs are designed to be predictable and intuitive. Explore our primary API collections:
+Our comprehensive REST API suite is designed to be predictable and intuitive. Explore our extensive API collections:
 
-<Columns cols={2}>
+<Columns cols={3}>
   <Card
     title="Product Catalog API"
     icon="book-open"
@@ -31,18 +31,74 @@ Our REST APIs are designed to be predictable and intuitive. Explore our primary 
     Manage your product catalogs, including creating catalogs, adding attributes, and ingesting or updating products.
   </Card>
   <Card
-    title="Campaigns API"
-    icon="chart-simple"
+    title="Push API"
+    icon="mobile"
     href="/api-reference/introduction"
   >
-    Programmatically search and retrieve details for your SMS campaigns, using filters for status, creation date, and more.
+    Send targeted push notifications to your users with advanced segmentation and personalization.
   </Card>
+  <Card
+    title="Data APIs"
+    icon="database"
+    href="/api-reference/introduction"
+  >
+    Access and manage user data, analytics, and behavioral insights for better engagement.
+  </Card>
+  <Card
+    title="Cards API"
+    icon="credit-card"
+    href="/api-reference/introduction"
+  >
+    Create and manage interactive cards for rich user experiences across platforms.
+  </Card>
+  <Card
+    title="Business Events API"
+    icon="chart-line"
+    href="/api-reference/introduction"
+  >
+    Track and analyze business events to understand user behavior and optimize campaigns.
+  </Card>
+  <Card
+    title="Recommendations API"
+    icon="lightbulb"
+    href="/api-reference/introduction"
+  >
+    Leverage AI-powered product recommendations to increase engagement and conversions.
+  </Card>
+</Columns>
+
+## Template Management APIs
+
+Streamline your communication workflows with our comprehensive template management suite:
+
+<Columns cols={2}>
   <Card
     title="Push Templates API"
     icon="mobile"
     href="/api-reference/introduction"
   >
-    Manage and retrieve push notification templates for your campaigns.
+    Create, manage, and retrieve push notification templates for consistent messaging.
+  </Card>
+  <Card
+    title="SMS Templates API"
+    icon="message"
+    href="/api-reference/introduction"
+  >
+    Design and manage SMS templates for text-based campaigns and notifications.
+  </Card>
+  <Card
+    title="Email Templates API"
+    icon="envelope"
+    href="/api-reference/introduction"
+  >
+    Build responsive email templates with advanced personalization and A/B testing.
+  </Card>
+  <Card
+    title="In-App Templates API"
+    icon="window"
+    href="/api-reference/introduction"
+  >
+    Create engaging in-app messages and notifications for better user retention.
   </Card>
 </Columns>
 
@@ -52,12 +108,42 @@ All MoEngage APIs are authenticated using a combination of Basic Authentication 
 
 You can find your credentials in the MoEngage Dashboard under Settings > Account > APIs. For detailed examples, please see the authentication section within each API endpoint.
 
+## Quick Start
+
+<Steps>
+  <Step title="Get Your API Credentials">
+    Log into your [MoEngage Dashboard](https://dashboard.moengage.com/v4) and navigate to Settings > Account > APIs to retrieve your API key and secret.
+  </Step>
+  <Step title="Choose Your API">
+    Browse our comprehensive API collection above to find the endpoints that match your integration needs.
+  </Step>
+  <Step title="Start Building">
+    Use our interactive API documentation to test endpoints and integrate MoEngage into your application.
+  </Step>
+</Steps>
+
+## Multi-Language Support
+
+This documentation is available in multiple languages to serve our global developer community:
+
+- 🇺🇸 **English** - Complete API reference and guides
+- 🇯🇵 **Japanese** - 日本語でのAPIリファレンス
+
 ## Need Help?
 
-<Card
-  title="Support"
-  icon="headset"
-  href="https://help.moengage.com/hc/en-us"
->
-  Get help from our support team for any integration questions.
-</Card>
+<Columns cols={2}>
+  <Card
+    title="Support Center"
+    icon="headset"
+    href="https://help.moengage.com/hc/en-us"
+  >
+    Get help from our support team for any integration questions or technical issues.
+  </Card>
+  <Card
+    title="Dashboard Access"
+    icon="chart-bar"
+    href="https://dashboard.moengage.com/v4"
+  >
+    Access your MoEngage dashboard to manage campaigns, view analytics, and configure settings.
+  </Card>
+</Columns>
