@@ -126,6 +126,34 @@
                   "source": "/api-reference/email-templates-2.yaml",
                   "directory": "api-reference"
                 }
+              },
+              {
+                "group": "Business Events API",
+                "openapi": {
+                  "source": "/api-reference/business-events.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "Coupons List API",
+                "openapi": {
+                  "source": "/api-reference/coupons-list.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "Recommendations API",
+                "openapi": {
+                  "source": "/api-reference/recommendations.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "Subscription Categories API",
+                "openapi": {
+                  "source": "/api-reference/subscription-categories.yaml",
+                  "directory": "api-reference"
+                }
               }
             ]
           }
@@ -224,6 +252,34 @@
                 "group": "メールテンプレートAPI v2",
                 "openapi": {
                   "source": "/api-reference/email-templates-2.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "ビジネスイベントAPI",
+                "openapi": {
+                  "source": "/api-reference/business-events.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "クーポンリストAPI",
+                "openapi": {
+                  "source": "/api-reference/coupons-list.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "レコメンデーションAPI",
+                "openapi": {
+                  "source": "/api-reference/recommendations.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "サブスクリプションカテゴリAPI",
+                "openapi": {
+                  "source": "/api-reference/subscription-categories.yaml",
                   "directory": "api-reference"
                 }
               }
