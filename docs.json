@@ -141,11 +141,17 @@
                   "directory": "api-reference"
                 }
               },
-
               {
                 "group": "GDPR/CCPA API",
                 "openapi": {
                   "source": "/api-reference/gdpr-ccpa.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "Messsage Archival API",
+                "openapi": {
+                  "source": "/api-reference/message-archival.yaml",
                   "directory": "api-reference"
                 }
               },
@@ -295,6 +301,13 @@
                 "group": "GDPR/CCPA API",
                 "openapi": {
                   "source": "/api-reference/gdpr-ccpa.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "メッセージアーカイブAPI",
+                "openapi": {
+                  "source": "/api-reference/message-archival.yaml",
                   "directory": "api-reference"
                 }
               },
