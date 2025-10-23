@@ -142,6 +142,13 @@
                 }
               },
               {
+                "group": "Messsage Archival API",
+                "openapi": {
+                  "source": "/api-reference/message-archival.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
                 "group": "Business Events API",
                 "openapi": {
                   "source": "/api-reference/business-events.yaml",
@@ -280,6 +287,13 @@
                 "group": "キャンペーンレポートと統計API",
                 "openapi": {
                   "source": "/api-reference/stats-report.yaml",
+                  "directory": "api-reference"
+                }
+              },
+              {
+                "group": "メッセージアーカイブAPI",
+                "openapi": {
+                  "source": "/api-reference/message-archival.yaml",
                   "directory": "api-reference"
                 }
               },
