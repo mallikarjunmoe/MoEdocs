@@ -410,5 +410,10 @@
       "youtube": "https://www.youtube.com/c/MoEngage_Global",
       "facebook": "https://www.facebook.com/moengage"
     }
+  },
+  "seo": {
+    "metatags": {
+      "robots": "noindex"
+    }
   }
 }
