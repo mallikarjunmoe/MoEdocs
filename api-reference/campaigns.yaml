@@ -1,0 +1,1375 @@
+openapi: 3.0.3
+info:
+  title: MoEngage Core Services API
+  description: API to create and manage campaigns and core services in MoEngage.
+  version: v1
+  contact:
+    name: MoEngage
+    url: https://help.moengage.com
+servers:
+  - url: 'https://api-0{dataCenter}.moengage.com/core-services/v1'
+    description: MoEngage Core Services API
+    variables:
+      dataCenter:
+        default: '1'
+        description: 'Your MoEngage data center (e.g., 1, 2, 3). Find this on your MoEngage dashboard.'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: |
+        HTTP Basic Authentication.
+        Use your MoEngage Workspace ID as the username and the 'Campaign/Business events' API Key as the password.
+  schemas:
+    # --- SCHEMAS FOR CREATE CAMPAIGN (Email) ---
+    CreateEmailCampaignRequest:
+      type: object
+      required:
+        - request_id
+        - channel
+        - campaign_delivery_type
+        - created_by
+        - basic_details
+        - segmentation_details
+        - connector
+        - campaign_content
+        - scheduling_details
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID. Do not reuse for 1 day on success.
+        channel:
+          type: string
+          description: The type of channel.
+          enum: [EMAIL]
+        campaign_delivery_type:
+          type: string
+          description: The type of campaign based on delivery.
+          enum: [ONE_TIME, PERIODIC, EVENT_TRIGGERED, BUSINESS_EVENT_TRIGGERED]
+        created_by:
+          type: string
+          description: Email ID of the user who created the campaign.
+          format: email
+        basic_details:
+          $ref: '#/components/schemas/BasicDetails'
+        trigger_condition:
+          $ref: '#/components/schemas/TriggerCondition'
+        segmentation_details:
+          $ref: '#/components/schemas/SegmentationDetails'
+        control_group_details:
+          $ref: '#/components/schemas/ControlGroupDetails'
+        utm_params:
+          $ref: '#/components/schemas/UtmParams'
+        connector:
+          $ref: '#/components/schemas/ConnectorDetails'
+        campaign_content:
+          $ref: '#/components/schemas/CampaignContent'
+        scheduling_details:
+          $ref: '#/components/schemas/SchedulingDetails'
+        conversion_goal_details:
+          $ref: '#/components/schemas/ConversionGoalDetails'
+        delivery_controls:
+          $ref: '#/components/schemas/DeliveryControls'
+        campaign_audience_limit:
+          $ref: '#/components/schemas/CampaignAudienceLimit'
+
+    BasicDetails:
+      type: object
+      required:
+        - content_type
+        - name
+        - user_attribute_identifier
+      properties:
+        business_event:
+          type: string
+          description: Business event to be mapped to the campaign. Required for business event-triggered campaigns.
+        content_type:
+          type: string
+          description: Type of content in the campaign.
+          enum: [PROMOTIONAL, TRANSACTIONAL]
+        name:
+          type: string
+          description: Name of the campaign.
+        subscription_category:
+          type: string
+          description: Subscription category for communication. Mandatory for promotional email campaigns.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags for describing the campaign's theme.
+        team:
+          type: string
+          description: Name of a group of users collaborating on the campaign.
+        user_attribute_identifier:
+          type: string
+          description: The user attribute that stores the email address. (e.g., "MOE_EMAIL_ID").
+
+    TriggerCondition:
+      type: object
+      description: Trigger condition details. Required for event-triggered campaigns.
+      properties:
+        included_filters:
+          $ref: '#/components/schemas/SegmentationFilterGroup'
+        secondary_included_filters:
+          $ref: '#/components/schemas/SegmentationFilterGroup'
+        trigger_delay_type:
+          type: string
+          description: Type of triggered delay.
+          enum: [DELAY, ASAP, INTELLIGENT_DELAY]
+        trigger_delay_value:
+          type: integer
+          description: Value of the triggered delay.
+        trigger_delay_granularity:
+          type: string
+          description: Granularity of the triggered delay.
+          enum: [DAYS, HOURS, MINUTES]
+        trigger_relation:
+          type: string
+          description: Trigger relation with delay.
+          enum: [BEFORE, AFTER]
+        trigger_attr:
+          type: object
+          description: Attribute value of the trigger.
+        intelligent_delay_optimization:
+           $ref: '#/components/schemas/IntelligentDelayOptimization'
+
+    IntelligentDelayOptimization:
+      type: object
+      description: Configuration for INTELLIGENT_DELAY trigger_delay_type.
+      required:
+        - min_delay_value
+        - min_delay_granularity
+        - max_delay_value
+        - max_delay_granularity
+      properties:
+        min_delay_value:
+          type: integer
+        min_delay_granularity:
+          type: string
+          enum: [MINUTES, HOURS]
+        max_delay_value:
+          type: integer
+        max_delay_granularity:
+          type: string
+          enum: [HOURS, DAYS]
+
+    SegmentationDetails:
+      type: object
+      properties:
+        excluded_filters:
+          $ref: '#/components/schemas/SegmentationFilterGroup'
+        included_filters:
+          $ref: '#/components/schemas/SegmentationFilterGroup'
+        is_all_user_campaign:
+          type: boolean
+          description: Indicates if all users should be included in the campaign.
+        send_campaign_to_opt_out_users:
+          type: boolean
+          description: Indicates if the campaign is sent to users who have opted out.
+
+    SegmentationFilterGroup:
+      type: object
+      description: A group of filters combined by a logical operator.
+      required:
+        - filter_operator
+        - filters
+      properties:
+        filter_operator:
+          type: string
+          description: Logical operator to group the filters.
+          enum: [and, or]
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterObject'
+
+    FilterObject:
+      type: object
+      description: A single filter criterion.
+      required:
+        - filter_type
+      properties:
+        data_type:
+          type: string
+          description: Data type of the attribute (e.g., string, double, datetime, bool). Required for user_attributes/action_attributes.
+        category:
+          type: string
+          description: The category of the attribute. Required for user_attributes.
+        name:
+          type: string
+          description: The name of the attribute or segment. Required for user_attributes/action_attributes/custom_segments.
+        filter_type:
+          type: string
+          description: The type of filter being applied (e.g., user_attributes, actions, custom_segments).
+        case_sensitive:
+          type: boolean
+          description: Indicates case sensitivity. Optional for user_attributes/action_attributes.
+        operator:
+          type: string
+          description: The operator (e.g., is, in, exists). Required for user_attributes/action_attributes.
+        value:
+          oneOf:
+            - type: string
+            - type: boolean
+            - type: number
+            - type: array
+              items:
+                type: string
+          description: The value for the filter. (Required for most operators).
+        project_name:
+          type: string
+          description: Project name if Portfolio feature is enabled. Optional for user_attributes/action_attributes.
+        negate:
+          type: boolean
+          description: Whether to negate the filter condition.
+        action_name:
+          type: string
+          description: Name of the action. Required for 'actions'.
+        execution:
+          type: object
+          required: [type, count]
+          properties:
+            count:
+              type: integer
+            type:
+              type: string
+              enum: [atleast]
+          description: Execution criteria. Required for 'actions'.
+        executed:
+          type: boolean
+          description: Whether the action was executed. Required for 'actions'.
+        attributes:
+          type: object
+          properties:
+            filters:
+              type: array
+              items:
+                type: object
+                required: [filter_type, name, operator, value]
+                properties:
+                  data_type: { type: string }
+                  filter_type: { type: string, enum: [action_attributes] }
+                  name: { type: string }
+                  negate: { type: boolean }
+                  operator: { type: string }
+                  value: { oneOf: [{type: string},{type: boolean},{type: number}]}
+                  case_sensitive: { type: boolean }
+            filter_operator:
+              type: string
+              enum: [and, or]
+          description: Attributes of the action. Required for 'actions'.
+        condition:
+          type: string
+          enum: [IF]
+          description: Condition associated with the action filter.
+        id:
+          type: string
+          description: The ID of the custom segment. Required for 'custom_segments'.
+
+    ControlGroupDetails:
+      type: object
+      properties:
+        is_campaign_control_group_enabled:
+          type: boolean
+          description: Whether the campaign control group is enabled.
+        campaign_control_group_percentage:
+          type: number
+          description: Percentage of users for the campaign control group. Required if is_campaign_control_group_enabled is true.
+        is_global_control_group_enabled:
+          type: boolean
+          description: Whether the global control group is enabled.
+
+    UtmParams:
+      type: object
+      description: UTM parameters for tracking. utm_source and utm_medium are required if this object is included.
+      properties:
+        utm_source:
+          type: string
+          description: Source of the traffic (e.g., Google, Instagram).
+        utm_medium:
+          type: string
+          description: Channel type (e.g., Push, SMS, Email).
+        utm_campaign:
+          type: string
+          description: Name of the campaign.
+        utm_term:
+          type: string
+          description: Search terms for paid traffic.
+        utm_content:
+          type: string
+          description: Differentiates links pointing to the same URL.
+      additionalProperties:
+        type: string
+        description: Allows for additional custom UTM parameters like utm_cust, utm_custom (up to 5).
+
+    ConnectorDetails:
+      type: object
+      required:
+        - connector_name
+        - connector_type
+      properties:
+        connector_name:
+          type: string
+          description: The connector service you are using.
+        connector_type:
+          type: string
+          description: The type of connector you are using.
+
+    CampaignContent:
+      type: object
+      required:
+        - content
+      properties:
+        content:
+          description: Contains the email content, which can be a single email or multiple locales and variations.
+          anyOf:
+            - $ref: '#/components/schemas/EmailWrapper'
+            - $ref: '#/components/schemas/LocaleContent'
+        locales:
+          type: array
+          items:
+            type: string
+          description: List of locales used in the campaign (e.g., "karnataka", "default").
+        variation_details:
+          $ref: '#/components/schemas/VariationDetails'
+
+    EmailWrapper:
+      type: object
+      description: Wrapper for a single email content object.
+      properties:
+        email:
+          $ref: '#/components/schemas/EmailDetails'
+
+    LocaleContent:
+      type: object
+      description: A map of locale names to their respective variation content.
+      additionalProperties:
+        $ref: '#/components/schemas/VariationContent'
+
+    VariationContent:
+      type: object
+      description: A map of variation names (e.g., "variation_1") to their email content.
+      additionalProperties:
+        $ref: '#/components/schemas/EmailWrapper'
+
+    EmailDetails:
+      type: object
+      description: Details for the email content. Either custom_template_id OR html_content is required. subject, sender_name, from_address, reply_to_address may not be required if custom_template_id is used.
+      required:
+        - from_address
+        - reply_to_address
+        - sender_name
+        - subject
+      properties:
+        attachments:
+          type: array
+          items:
+            type: object
+            required: [file_type, url]
+            properties:
+              file_type:
+                type: string
+                enum: [URL, PERSONALIZED_ATTACHMENT]
+              url:
+                type: string
+                format: url
+        bcc_ids:
+          type: array
+          items:
+            type: string
+            format: email
+        cc_ids:
+          type: array
+          items:
+            type: string
+            format: email
+        from_address:
+          type: string
+          format: email
+          description: Sender's email address.
+        custom_template_id:
+          type: string
+          description: ID of a custom template. Use this OR html_content.
+        custom_template_version:
+          type: integer
+          description: Version of the custom template.
+        html_content:
+          type: string
+          description: HTML content of the email. Use this OR custom_template_id.
+        preview_text:
+          type: string
+          description: Preview text of the campaign.
+        reply_to_address:
+          type: string
+          format: email
+          description: The reply-to address of the campaign.
+        sender_name:
+          type: string
+          description: Name of the sender.
+        subject:
+          type: string
+          description: Subject line of the campaign.
+
+    VariationDetails:
+      type: object
+      required:
+        - distribution_type
+        - no_of_variations
+      properties:
+        distribution_type:
+          type: string
+          enum: [SHERPA, MANUAL]
+        manual_distribution_percentage:
+          type: object
+          description: |
+            Percentage of manual distribution (e.g., {"variation_1": "40", "variation_2": "60"}).
+            Required if distribution_type is MANUAL and no_of_variations > 1.
+          additionalProperties:
+            type: string
+        no_of_variations:
+          type: number
+          description: Number of variations of the campaign.
+        sherpa_campaign_duration:
+          type: number
+          description: Sherpa campaign duration. Required if distribution_type is SHERPA.
+        sherpa_distribution_metric:
+          type: string
+          description: Sherpa distribution metric. Required if distribution_type is SHERPA.
+          enum: [OPEN RATE, CLICK RATE, BOTH]
+
+    SchedulingDetails:
+      type: object
+      required:
+        - delivery_type
+      properties:
+        bts_details:
+          $ref: '#/components/schemas/BtsDetails'
+        delivery_type:
+          type: string
+          description: When to deliver your campaign (e.g., AT_FIXED_TIME, ASAP, SEND_IN_BTS, SEND_IN_USER_TIMEZONE).
+        expiry_time:
+          type: string
+          description: Expiry time of your campaign. ISO 8601 format (YYYY-MM-DDTHH:mm:ss).
+          format: date-time
+        periodic_details:
+          $ref: '#/components/schemas/PeriodicDetails'
+        start_time:
+          type: string
+          description: Start time of your campaign. ISO 8601 format (YYYY-MM-DDTHH:mm:ss). Required for AT_FIXED_TIME, SEND_IN_USER_TIMEZONE, SEND_IN_BTS.
+          format: date-time
+        user_timezone_details:
+          $ref: '#/components/schemas/UserTimezoneDetails'
+        timezone:
+          type: string
+          example: "UTC"
+
+    BtsDetails:
+      type: object
+      description: Best Time to Send (BTS) details. Required if delivery_type is SEND_IN_BTS.
+      required:
+        - send_in_bts
+        - if_user_bts_outside_time_window
+        - if_user_bts_is_not_available
+      properties:
+        if_user_bts_is_not_available:
+          type: string
+          enum: [CAMPAIGN_START_TIME, SEND_MESSAGE_AT_START_TIME]
+        if_user_bts_outside_time_window:
+          type: string
+          enum: [CAMPAIGN_START_END_TIME, SEND_MESSAGE_AT_START_OR_END_TIME]
+        send_in_bts:
+          type: boolean
+        window_end_time:
+          type: string
+          example: "6:43 am"
+
+    PeriodicDetails:
+      type: object
+      description: Required if campaign_delivery_type is PERIODIC.
+      required:
+        - sending_frequency
+        - repeat_frequency
+      properties:
+        no_of_occurences:
+          type: number
+        repeat_frequency:
+          type: number
+        repeat_on_date_of_month:
+          type: array
+          items:
+            type: number
+        repeat_on_days_of_week_for_month:
+          type: array
+          items:
+            type: object
+            required: [week_granularity, repeat_on_days_of_week]
+            properties:
+              week_granularity:
+                type: string
+                enum: [FIRST, SECOND, THIRD, FOURTH, LAST]
+              repeat_on_days_of_week:
+                type: array
+                items:
+                  type: string
+                  enum: [MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY]
+        repeat_on_days_of_week:
+          type: array
+          items:
+            type: string
+            enum: [MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY]
+        sending_frequency:
+          type: string
+          enum: [DAILY, WEEKLY, MONTHLY]
+
+    UserTimezoneDetails:
+      type: object
+      description: Required if delivery_type is SEND_IN_USER_TIMEZONE.
+      required:
+        - send_in_user_timezone
+        - send_if_user_timezone_has_passed
+      properties:
+        send_if_user_timezone_has_passed:
+          type: boolean
+        send_in_user_timezone:
+          type: boolean
+
+    ConversionGoalDetails:
+      type: object
+      properties:
+        attribution_window_in_hours:
+          type: number
+        goals:
+          type: array
+          items:
+            $ref: '#/components/schemas/GoalItem'
+
+    GoalItem:
+      type: object
+      required:
+        - goal_name
+        - goal_event_name
+        - is_primary_goal
+      properties:
+        goal_event_attribute:
+          $ref: '#/components/schemas/GoalEventAttribute'
+        goal_event_name:
+          type: string
+        goal_name:
+          type: string
+        is_primary_goal:
+          type: boolean
+        revenue_attribute:
+          type: string
+        revenue_currency:
+          type: string
+        _id:
+          type: string
+
+    GoalEventAttribute:
+      type: object
+      required:
+        - name
+        - condition
+        - value
+        - is_case_sensitive
+      properties:
+        condition:
+          type: string
+        is_case_sensitive:
+          type: boolean
+        name:
+          type: string
+        value:
+          type: string
+        data_type:
+          type: string
+        negate:
+          type: boolean
+        _id:
+          type: string
+
+    DeliveryControls:
+      type: object
+      required:
+        - campaign_throttle_rpm
+      properties:
+        bypass_dnd:
+          type: boolean
+        campaign_throttle_rpm:
+          type: number
+        count_for_frequency_capping:
+          type: boolean
+        ignore_frequency_capping:
+          type: boolean
+        minimum_delay_between_two_notification_in_hour:
+          type: number
+
+    CampaignAudienceLimit:
+      type: object
+      required:
+        - limit
+        - metrics
+        - frequency
+      properties:
+        limit:
+          type: integer
+        metrics:
+          type: string
+        frequency:
+          type: string
+
+    CreateCampaignSuccessResponse:
+      type: object
+      properties:
+        campaign_id:
+          type: string
+          description: Unique ID corresponding to a successful campaign creation.
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            target:
+              type: string
+            details:
+              type: array
+              items:
+                $ref: '#/components/schemas/ErrorDetail'
+            request_id:
+              type: string
+
+    ErrorDetail:
+      type: object
+      properties:
+        target:
+          type: string
+        message:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: object
+                properties:
+                  code: { type: string }
+                  target: { type: string }
+                  message: { type: string }
+        code:
+          type: string
+
+security:
+  - basicAuth: []
+tags:
+  - name: Campaigns
+    description: Use these APIs to create and manage your campaigns.
+paths:
+  /campaigns:
+    post:
+      tags:
+        - Campaigns
+      summary: Create Campaign
+      description: Use this API to create an Email or Push campaign in MoEngage. The specific fields required depend on the `channel` (EMAIL or PUSH) and `campaign_delivery_type`.
+      operationId: createCampaign
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          description: This is the workspace ID (earlier APP ID) of your MoEngage workspace.
+          schema:
+            type: string
+      requestBody:
+        description: Payload to create a new campaign. Structure depends on the channel.
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/CreateEmailCampaignRequest'
+                - $ref: '#/components/schemas/CreatePushCampaignRequest'
+            examples:
+              emailOneTimeCampaign:
+                summary: One-Time Email Campaign
+                value:
+                  request_id: "dfgdbddddu123"
+                  channel: "EMAIL"
+                  campaign_delivery_type: "ONE_TIME"
+                  created_by: "john.doe@example.com"
+                  basic_details: { name: "Test Name 1", tags: ["activation"], content_type: "PROMOTIONAL", subscription_category: "music", team: "campaign_core", user_attribute_identifier: "MOE_EMAIL_ID" }
+                  segmentation_details: { included_filters: { filter_operator: "and", filters: [{ data_type: "string", category: "Tracked Standard Attribute", name: "uid", value: "John_Ios", filter_type: "user_attributes", case_sensitive: false, operator: "is" }] } }
+                  control_group_details: { is_global_control_group_enabled: true, is_campaign_control_group_enabled: true, campaign_control_group_percentage: 5 }
+                  connector: { connector_type: "SENDGRID", connector_name: "default" }
+                  campaign_content: { content: { email: { subject: "Scheduled Campaign - BT", preview_text: "Scheduled Campaign - BT", sender_name: "Scheduled Campaign - BT", from_address: "sender@example.com", reply_to_address: "john.doe@example.com", html_content: "<!DOCTYPE html><html><body><p>Test User</p></body></html>" } } }
+                  scheduling_details: { delivery_type: "AT_FIXED_TIME", start_time: "2024-06-21T12:59:00" }
+                  conversion_goal_details: { attribution_window_in_hours: 36, goals: [{ goal_name: "Goal 1", goal_event_name: "NOTIFICATION_RECEIVED_MOE", is_primary_goal: true }] }
+                  delivery_controls: { ignore_frequency_capping: true, count_for_frequency_capping: true, campaign_throttle_rpm: 2000 }
+              emailEventTriggeredCampaign:
+                summary: Event-Triggered Email Campaign
+                value:
+                  request_id: "varw2228"
+                  channel: "EMAIL"
+                  campaign_delivery_type: "EVENT_TRIGGERED"
+                  created_by: "john.doe@example.com"
+                  basic_details: { name: "Trigger based campaigns", content_type: "PROMOTIONAL", subscription_category: "music", user_attribute_identifier: "MOE_EMAIL_ID" }
+                  trigger_condition: { included_filters: { filter_operator: "and", filters: [{ filter_type: "actions", action_name: "settingsauto", execution: { count: 1, type: "atleast" }, executed: true }] }, trigger_delay_type: "ASAP" }
+                  segmentation_details: { included_filters: { filter_operator: "and", filters: [{ data_type: "string", category: "Tracked Standard Attribute", name: "u_em", filter_type: "user_attributes", operator: "exists" }] } }
+                  connector: { connector_type: "SENDGRID", connector_name: "default" }
+                  campaign_content: { content: { email: { subject: "abc", preview_text: "abc", sender_name: "abc", from_address: "sender@example.com", reply_to_address: "john.doe@example.com", html_content: "<!DOCTYPE html><html><body><p>Triggered email campaign</p></body></html>" } } }
+                  scheduling_details: { delivery_type: "AT_FIXED_TIME", start_time: "2024-06-27T16:45:00", expiry_time: "2024-06-28T13:32:00" }
+                  delivery_controls: { campaign_throttle_rpm: 3000 }
+              pushOneTimeBasic:
+                summary: One-Time Push (Basic Android)
+                value:
+                  request_id: "push-123"
+                  channel: "PUSH"
+                  campaign_delivery_type: "ONE_TIME"
+                  created_by: "jane.doe@example.com"
+                  basic_details: { name: "Android Push Test", platforms: ["ANDROID"], platform_specific_details: { android: { push_amp_plus_enabled: true } } }
+                  campaign_content: { content: { push: { android: { template_type: "BASIC", basic_details: { notification_channel: "general", title: "Basic Push Title", message: "Hello from Android!", default_click_action: "DEEPLINKING", default_click_action_value: "myapp://screen1" }, buttons: [{ btn_name: "Open App", click_action_type: "RICH_LANDING", click_action_value: "https://example.com" }] } } } }
+                  segmentation_details: { included_filters: { filter_operator: "and", filters: [{ data_type: "string", category: "Tracked Standard Attribute", name: "uid", value: "USER_XYZ", filter_type: "user_attributes", operator: "is" }] } }
+                  scheduling_details: { delivery_type: "ASAP" }
+                  delivery_controls: { campaign_throttle_rpm: 20000, ignore_frequency_capping: true }
+                  advanced: { expiration_settings: { expire_notification_after_value: 1, expire_notification_after_type: "DAY", remove_from_inbox_after_value: 3, remove_from_inbox_after_type: "DAY" } }
+              pushPeriodicCarouselIos:
+                summary: Periodic Push (iOS Carousel)
+                value:
+                  request_id: "periodic-ios-456"
+                  channel: "PUSH"
+                  campaign_delivery_type: "PERIODIC"
+                  created_by: "jane.doe@example.com"
+                  basic_details: { name: "iOS Carousel Weekly", platforms: ["IOS"], platform_specific_details: { ios: { send_to_all_eligible_device: true } } }
+                  campaign_content: { content: { push: { ios: { template_type: "SIMPLE_IMAGE_CAROUSEL", basic_details: { title: "Weekly Deals", message: "Check out these offers!", carousel_content: { slider_transition: "MANUAL", slide_data: [{ image_url: "https://example.com/image1.jpg", image_click_action: "DEEPLINKING", image_click_action_value: "myapp://product/1" }, { image_url: "https://example.com/image2.jpg", image_click_action: "DEEPLINKING", image_click_action_value: "myapp://product/2" }] }, default_click_action: "DEEPLINKING", default_click_action_value: "myapp://home" }, advanced: { enable_ios_badge: true }, template_backup: { title: "Weekly Deals Backup", message: "Check out these offers! Backup", default_click_action: "DEEPLINKING", default_click_action_value: "myapp://home" } } } } }
+                  segmentation_details: { is_all_user_campaign: true }
+                  scheduling_details: { delivery_type: "AT_FIXED_TIME", start_time: "2025-11-01T09:00:00", periodic_details: { sending_frequency: "WEEKLY", repeat_frequency: 1, repeat_on_days_of_week: ["MONDAY"] } }
+                  delivery_controls: { campaign_throttle_rpm: 50000 }
+                  advanced: {}
+      responses:
+        '201':
+          description: Campaign Created Successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCampaignSuccessResponse'
+              example:
+                campaign_id: "667d3b0b00f13b7b4b123456"
+        '400':
+          description: Bad Request. Required parameters are missing or invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: { code: "400 Bad Request", message: "request_id key is mandatory field", target: "request_id", details: [{ target: "request_id", message: "request_id key is mandatory field" }], request_id: "11" }
+        '401':
+          description: Authentication Failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: { code: "401 Authentication error", message: "Authentication required", request_id: "" }
+        '429':
+          description: Rate Limit Breach.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: { code: "429 conflict", message: "rate_limit", details: [{ target: "rate_limit", message: "Rate limiting breached" }], request_id: "3UXNNGsqV" }
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /campaigns/{campaign_id}:
+    patch:
+      tags:
+        - Campaigns
+      summary: Update Campaign
+      description: |
+        Updates an existing Email or Push campaign created via the API.
+        Provide only the fields you want to change. If updating a nested field (e.g., email subject), the entire parent object (e.g., `campaign_content`) must be provided with the updated value.
+        Cannot update campaigns created via the UI.
+        Restrictions apply based on campaign status (e.g., cannot update segmentation if active).
+      operationId: updateCampaign
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          description: Your MoEngage Workspace ID.
+          schema:
+            type: string
+        - name: campaign_id
+          in: path
+          required: true
+          description: The ID of the campaign to update.
+          schema:
+            type: string
+      requestBody:
+        description: Fields to update in the campaign. Structure depends on the campaign channel (deduced from existing campaign or provided).
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCampaignRequest'
+            examples:
+              updateEmailSegmentation:
+                summary: Update Email Segmentation (if Scheduled)
+                value:
+                  request_id: "update-seg-123"
+                  updated_by: "updater@example.com"
+                  segmentation_details:
+                    included_filters:
+                      filter_operator: "or"
+                      filters:
+                        - data_type: "string"
+                          category: "Tracked Standard Attribute"
+                          name: "uid"
+                          value: ["John_Ios", "Jane_Android"]
+                          filter_type: "user_attributes"
+                          operator: "in"
+              updatePushContent:
+                summary: Update Push Content
+                value:
+                  request_id: "update-push-content-456"
+                  updated_by: "updater@example.com"
+                  campaign_content: # Must send the whole campaign_content object
+                    content:
+                      push:
+                        android:
+                          template_type: "BASIC"
+                          basic_details:
+                            notification_channel: "promotions" # Changed channel
+                            title: "Updated Push Title!" # Changed title
+                            message: "Check out the new deals." # Changed message
+                            default_click_action: "DEEPLINKING"
+                            default_click_action_value: "myapp://deals" # Changed link
+      responses:
+        '204':
+          description: Campaign updated successfully. No content returned.
+        '400':
+          description: Bad Request (e.g., invalid field, trying to update restricted field based on status).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication Failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Campaign Not Found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /campaigns/search:
+    post:
+      tags:
+        - Campaigns
+      summary: Get Campaign Details
+      description: |
+        Fetches a list of campaigns based on specified filter criteria.
+        You can filter by channel (EMAIL, PUSH, SMS), status, creation date, name, ID, tags, or creator.
+        Supports pagination.
+      operationId: searchCampaigns
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          description: This is the workspace ID (earlier APP ID) of your MoEngage workspace.
+          schema:
+            type: string
+      requestBody:
+        description: Search criteria for campaigns.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCampaignsRequest'
+            examples:
+              filterByEmailChannel:
+                summary: Filter by Email Channel
+                value:
+                  campaign_fields:
+                    channels: ["EMAIL"]
+                  limit: 5
+                  page: 1
+                  request_id: "search-email-123"
+              filterByPushDeliveryType:
+                summary: Filter by Push Delivery Type
+                value:
+                  campaign_fields:
+                    channels: ["PUSH"]
+                    delivery_type: ["PERIODIC"]
+                  limit: 10
+                  page: 1
+                  request_id: "search-push-periodic-456"
+              filterBySmsCreatedDate:
+                summary: Filter by SMS Creation Date
+                value:
+                  campaign_fields:
+                    channels: ["SMS"]
+                    created_date:
+                      from_date: "2024-06-16"
+                      to_date: "2024-06-21"
+                  limit: 15
+                  page: 1
+                  request_id: "search-sms-date-789"
+      responses:
+        '200':
+          description: Successfully retrieved campaign details.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CampaignDetailsResponse'
+              example: # Based on the Email example provided
+                - channel: "EMAIL"
+                  created_by: "john.doe@example.com"
+                  campaign_delivery_type: "PERIODIC"
+                  basic_details: { name: "happy flow campaigns api", content_type: "PROMOTIONAL", team: "campaign_core", tags: ["activation"], subscription_category: "music", user_attribute_identifier: "MOE_EMAIL_ID" }
+                  segmentation_details: { is_all_user_campaign: false, included_filters: { filter_operator: "and", filters: [{ data_type: "string", category: "Tracked Standard Attribute", name: "u_em", filter_type: "user_attributes", operator: "exists" }] } }
+                  control_group_details: { is_global_control_group_enabled: false, is_campaign_control_group_enabled: true, campaign_control_group_percentage: 2.0 }
+                  connector: { connector_type: "SENDGRID", connector_name: "default" }
+                  campaign_content: { locales: ["default", "karnataka", "SampleTest"], variation_details: { _id: "66865b85334643c3eb73ba73" }, content: { karnataka: { email: { subject: "abca locale karntaka", preview_text: "abc", sender_name: "abc", from_address: "john.doe@example.com", reply_to_address: "john.doe@example.com", html_content: "<!...>" } } } } # Content simplified
+                  conversion_goal_details: { attribution_window_in_hours: 39, goals: [{ goal_name: "Goal 1", goal_event_name: "NOTIFICATION_RECEIVED_MOE", is_primary_goal: true }] } # Simplified
+                  scheduling_details: { delivery_type: "AT_FIXED_TIME", start_time: "2024-07-04T20:32:00", expiry_time: "2034-06-07T20:32:00", periodic_details: { sending_frequency: "MONTHLY", repeat_frequency: 1 } } # Simplified
+                  delivery_controls: { bypass_dnd: false, ignore_frequency_capping: true, count_for_frequency_capping: true, minimum_delay_between_two_notification_in_hour: 2, campaign_throttle_rpm: 3000 }
+                  campaign_id: "{Campaign_ID}"
+                  status: "Active"
+                  created_at: "2024-07-04 08:00:54.847000"
+                  sent_time: "2024-07-04 20:32:00"
+        '400':
+          description: Bad Request. Required parameters are missing or invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: { code: "400 Bad Request", message: "request_id key is mandatory field", target: "request_id", details: [{ target: "request_id", message: "request_id key is mandatory field" }], request_id: "11" }
+        '401':
+          description: Authentication Failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /campaigns/test:
+    post:
+      tags:
+        - Campaigns
+      summary: Test Campaign
+      description: |
+        Sends a test version of an Email or Push campaign to specified users or identifiers.
+        Allows overriding personalization details for the test send.
+        Can only test campaigns created via the API.
+      operationId: testCampaign
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          description: Your MoEngage Workspace ID.
+          schema:
+            type: string
+      requestBody:
+        description: Test campaign configuration, including content and target identifiers.
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/TestEmailCampaignRequest'
+                - $ref: '#/components/schemas/TestPushCampaignRequest'
+            examples:
+              testEmailToUsers:
+                summary: Test Email Campaign to Specific UIDs
+                value:
+                  request_id: "test-email-uid-1"
+                  channel: "EMAIL"
+                  basic_details: { name: "Test Email for UIDs", user_attribute_identifier: "MOE_EMAIL_ID", content_type: "PROMOTIONAL" }
+                  connector: { connector_type: "SENDGRID", connector_name: "default" }
+                  campaign_content: { content: { email: { subject: "Test Email Subject", html_content: "<p>Hello {{UserAttribute['First Name']}}!</p>", from_address: "test@example.com", reply_to_address: "test@example.com", sender_name: "Tester" } } }
+                  test_campaign_meta:
+                    identifier: "USER_ATTRIBUTE_UNIQUE_ID"
+                    identifier_values: ["user_123", "user_456"]
+              testPushWithPersonalizationOverride:
+                summary: Test Push Campaign with Personalization Override
+                value:
+                  request_id: "test-push-perso-2"
+                  channel: "PUSH"
+                  basic_details: { name: "Test Push Personalization", platforms: ["ANDROID"] }
+                  campaign_content: { content: { push: { android: { template_type: "BASIC", basic_details: { notification_channel: "general", title: "Hi {{UserAttribute['name']}}!", message: "Special offer for {{EventAttribute['product_name']}}!", default_click_action: "DEEPLINKING", default_click_action_value: "app://product" } } } } }
+                  personalization_details:
+                    user_attributes: { name: "Test User" }
+                    event_attributes: { product_name: "Awesome Gadget" }
+                  test_campaign_meta:
+                    identifier: "USER_ATTRIBUTE_USER_EMAIL"
+                    identifier_values": ["test.user@example.com"]
+                    variation: "variation_1"
+      responses:
+        '200':
+          description: Test campaign sent successfully. Response indicates status for each identifier.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestCampaignSuccessResponse'
+              example:
+                data:
+                  "user_123": { status: "success" }
+                  "test.user@example.com": { status: "success" }
+                  "failed.user@example.com": { status: "failure", failure_reason: "Invalid email" }
+                message: "Test campaign created successfully"
+        '400':
+          description: Bad Request (e.g., missing fields, invalid identifier).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication Failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /campaigns/meta:
+    post:
+      tags:
+        - Campaigns
+      summary: Get Campaign Meta and Reachability
+      description: Get details and reachability for scheduled campaigns.
+      operationId: getCampaignMeta
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          description: Your MoEngage Workspace ID.
+          schema:
+            type: string
+      requestBody:
+        description: Search criteria for campaign metadata.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignMetaRequest'
+            example:
+              request_id: "meta-123"
+              page: 1
+              limit: 15
+              campaign_fields:
+                channels: ["EMAIL"]
+                status: ["SCHEDULED"]
+                created_date:
+                  from_date: "2024-11-22"
+                  to_date: "2024-11-29"
+      responses:
+        '200':
+          description: Successfully retrieved campaign metadata.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CampaignMetaResponse'
+              examples:
+                scheduledCampaign:
+                  summary: Scheduled Campaign with Reachability
+                  value:
+                    - campaign_id: "{{Campaign_id}}"
+                      channel: "SMS"
+                      platform: []
+                      created_by: "john.doe@abc.com"
+                      campaign_delivery_type: "ONE_TIME"
+                      campaign_name: "{{Campaign_name}}"
+                      campaign_team: "{{Campaign_team}}"
+                      campaign_tags": []
+                      campaign_status: "Scheduled"
+                      campaign_start_time: "2024-11-28T12:18:00"
+                      reachability_details:
+                        count: 18182
+                        last_updated_time: "2024-11-27T09:05:42.661000"
+                retiredCampaign:
+                  summary: Non-Scheduled Campaign
+                  value:
+                    - campaign_id: "{{Campaign_id}}"
+                      channel: "WHATSAPP"
+                      platform: []
+                      created_by: "johndoe@abc.com"
+                      campaign_delivery_type": "ONE_TIME"
+                      campaign_name: "{{Campaign_name}}"
+                      campaign_team: "{{Campaign_team}}"
+                      campaign_tags": []
+                      campaign_status: "Retired"
+                      campaign_start_time: "2024-11-18T05:50:00"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication Failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /campaigns/status:
+    post:
+      tags:
+        - Campaigns
+      summary: Change Campaign Status
+      description: |
+        Change the status of one or more campaigns (max 10 per request).
+        - `STOP`: Use for scheduled One-time campaigns.
+        - `PAUSE`: Use for running Periodic, Event-triggered, Device-triggered, or Location-triggered campaigns.
+        - `RESUME`: Use for paused Periodic, Event-triggered, Device-triggered, or Location-triggered campaigns.
+      operationId: changeCampaignStatus
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          description: Your MoEngage Workspace ID.
+          schema:
+            type: string
+      requestBody:
+        description: The action to perform and the list of campaign IDs.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeCampaignStatusRequest'
+            examples:
+              pauseCampaigns:
+                summary: Pause Campaigns
+                value:
+                  action: "PAUSE"
+                  campaign_ids: ["campaign_id_1", "campaign_id_2"]
+                  request_id: "pause-req-123"
+              stopCampaign:
+                summary: Stop a Scheduled Campaign
+                value:
+                  action: "STOP"
+                  campaign_ids: ["one-time-campaign-id-456"]
+                  request_id: "stop-req-456"
+      responses:
+        '200':
+          description: Status change request processed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '400':
+          description: Bad Request (e.g., invalid action, too many IDs).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication Failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /campaigns/{parent_campaign_id}/executions:
+    post:
+      tags:
+        - Campaigns
+      summary: Get Child Campaign Executions
+      description: Get child campaign details (executions) of a Periodic or Business Event-triggered campaign.
+      operationId: getChildCampaignExecutions
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          description: Your MoEngage Workspace ID.
+          schema:
+            type: string
+        - name: parent_campaign_id
+          in: path
+          required: true
+          description: The ID of the parent (Periodic or Business Event-triggered) campaign.
+          schema:
+            type: string
+      requestBody:
+        description: Pagination and request ID.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetChildCampaignsRequest'
+            example:
+              request_id: "get-children-123"
+              page: 1
+              limit: 15
+      responses:
+        '200':
+          description: Successfully retrieved child campaign executions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChildCampaignsResponse'
+              example:
+                executions:
+                  - campaign_id: "{Child_Campaign_ID_1}"
+                    sent_time: "2024-06-24T14:30:18.908000"
+                    status: "Sent"
+                  - campaign_id: "{Child_Campaign_ID_2}"
+                    sent_time: "2024-06-24T15:27:45.971000"
+                    status: "Sent"
+                total_instances: 8
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication Failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Parent campaign not found or not applicable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /personalization/preview:
+    post:
+      tags:
+        - Campaigns
+      summary: Get Personalized Preview
+      description: Preview personalized content for a specific user, either by providing the content payload directly or by referencing a Custom Template.
+      operationId: getPersonalizedPreview
+      parameters:
+        - name: MOE-APPKEY
+          in: header
+          required: true
+          description: Your MoEngage Workspace ID.
+          schema:
+            type: string
+        - name: data-compression
+          in: header
+          required: false
+          description: Set to 'true' if the `personalization_content.payload` is Gzip compressed and Base64 encoded.
+          schema:
+            type: boolean
+      requestBody:
+        description: The content to personalize and the user/personalization details.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalizationPreviewRequest'
+            examples:
+              withUserAttribute:
+                summary: Preview with User Attribute
+                value:
+                  request_id: "preview-user-attr-1"
+                  personalization_details: { event_name: "MOE_USER_PROFILE_UPDATED", channel: "EMAIL", user_attributes: { Gender: "Female" } }
+                  personalization_content: { payload: { user_attribute_personalization: "<p>Hi {{UserAttribute['First Name']}}, your gender is {{UserAttribute['Gender']}}.</p>" } }
+                  user_details: { identifier: "ID", identifier_value: "JOHN012" }
+              withCustomTemplate:
+                summary: Preview with Custom Template
+                value:
+                  request_id: "preview-template-2"
+                  personalization_details: { event_name: "App_Opened", channel: "PUSH", user_attributes: { "First Name": "John" } }
+                  personalization_content: { custom_template_data: { template_id: "5b7d04c6-8ddc-4957-80d9-c67266079609", version: "1" } }
+                  user_details: { identifier: "ID", identifier_value: "JOHN012" }
+      responses:
+        '200':
+          description: Successfully retrieved personalized content preview.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalizationPreviewResponse'
+              examples:
+                userAttributeResult:
+                  summary: User Attribute Result
+                  value: { personalized_content: { payload: { user_attribute_personalization: "<p>Hi Jane, your gender is Female.</p>" } } }
+                customTemplateResult:
+                  summary: Custom Template Result
+                  value: { personalized_content: { payload: { data: [{}] } } }
+                contentApiResult:
+                  summary: Content API Result
+                  value: { personalized_content: { payload: { content_api: "{'name': 'Delhi', ...}" } } }
+        '400':
+          description: Bad Request (e.g., missing fields, invalid template ID).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication Failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
