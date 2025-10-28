@@ -51,6 +51,46 @@
                 }
               },
               {
+                "group": "Content",
+                "pages": [
+                  {
+                    "group": "Custom In-App Templates",
+                    "openapi": {
+                      "source": "/api-reference/in-app-templates.yaml",
+                      "directory": "api-reference"
+                    }
+                  },
+                  {
+                    "group": "Custom SMS Templates",
+                    "openapi": {
+                      "source": "/api-reference/sms-templates.yaml",
+                      "directory": "api-reference"
+                    }
+                  },
+                  {
+                    "group": "Custom Email Templates",
+                    "openapi": {
+                      "source": "/api-reference/email-templates-1.yaml",
+                      "directory": "api-reference"
+                    }
+                  },
+                  {
+                    "group": "Custom Push Templates",
+                    "openapi": {
+                      "source": "/api-reference/push-templates.yaml",
+                      "directory": "api-reference"
+                    }
+                  },
+                  {
+                    "group": "Custom Content Blocks",
+                    "openapi": {
+                      "source": "/api-reference/content-blocks.yaml",
+                      "directory": "api-reference"
+                    }
+                  }
+                ]
+              },
+              {
                 "group": "Catalog API",
                 "openapi": {
                   "source": "/api-reference/catalog.yaml",
