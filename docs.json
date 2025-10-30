@@ -54,55 +54,74 @@
                 "group": "Content",
                 "pages": [
                   {
-                    "group": "Custom In-App Templates",
+                    "group": "Templates",
+                    "pages": [
+                      {
+                        "group": "Custom In-App Templates",
+                        "openapi": {
+                          "source": "/api-reference/in-app-templates.yaml",
+                          "directory": "api-reference"
+                        }
+                      },
+                      {
+                        "group": "Custom OSM Templates",
+                        "openapi": {
+                          "source": "/api-reference/osm-templates.yaml",
+                          "directory": "api-reference"
+                        }
+                      },                            
+                      {
+                        "group": "Custom SMS Templates",
+                        "openapi": {
+                          "source": "/api-reference/sms-templates.yaml",
+                          "directory": "api-reference"
+                        }
+                      },
+                      {
+                        "group": "Custom Email Templates",
+                        "openapi": {
+                          "source": "/api-reference/email-templates-1.yaml",
+                          "directory": "api-reference"
+                        }
+                      },
+                      {
+                        "group": "Custom Push Templates",
+                        "openapi": {
+                          "source": "/api-reference/push-templates.yaml",
+                          "directory": "api-reference"
+                        }
+                      },
+                      {
+                        "group": "Custom Content Blocks",
+                        "openapi": {
+                          "source": "/api-reference/content-blocks.yaml",
+                          "directory": "api-reference"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Recommendations API",
                     "openapi": {
-                      "source": "/api-reference/in-app-templates.yaml",
+                      "source": "/api-reference/recommendations.yaml",
                       "directory": "api-reference"
                     }
                   },
                   {
-                    "group": "Custom OSM Templates",
+                    "group": "Coupons List API",
                     "openapi": {
-                      "source": "/api-reference/osm-templates.yaml",
-                      "directory": "api-reference"
-                    }
-                  },                            
-                  {
-                    "group": "Custom SMS Templates",
-                    "openapi": {
-                      "source": "/api-reference/sms-templates.yaml",
+                      "source": "/api-reference/coupons-list.yaml",
                       "directory": "api-reference"
                     }
                   },
                   {
-                    "group": "Custom Email Templates",
+                    "group": "Catalog API",
                     "openapi": {
-                      "source": "/api-reference/email-templates-1.yaml",
-                      "directory": "api-reference"
-                    }
-                  },
-                  {
-                    "group": "Custom Push Templates",
-                    "openapi": {
-                      "source": "/api-reference/push-templates.yaml",
-                      "directory": "api-reference"
-                    }
-                  },
-                  {
-                    "group": "Custom Content Blocks",
-                    "openapi": {
-                      "source": "/api-reference/content-blocks.yaml",
+                      "source": "/api-reference/catalog.yaml",
                       "directory": "api-reference"
                     }
                   }
                 ]
-              },
-              {
-                "group": "Catalog API",
-                "openapi": {
-                  "source": "/api-reference/catalog.yaml",
-                  "directory": "api-reference"
-                }
               },
               {
                 "group": "Push API",
@@ -120,10 +139,29 @@
               },
               {
                 "group": "Data APIs",
-                "openapi": {
-                  "source": "/api-reference/data.yaml",
-                  "directory": "api-reference"
-                }
+                "pages": [
+                  {
+                    "group": "Data APIs",
+                    "openapi": {
+                      "source": "/api-reference/data.yaml",
+                      "directory": "api-reference"
+                    }
+                  },
+                  {
+                    "group": "GDPR/CCPA API",
+                    "openapi": {
+                      "source": "/api-reference/gdpr-ccpa.yaml",
+                      "directory": "api-reference"
+                    }
+                  },
+                  {
+                    "group": "Subscription Categories API",
+                    "openapi": {
+                      "source": "/api-reference/subscription-categories.yaml",
+                      "directory": "api-reference"
+                    }
+                  }
+                ]
               },
               {
                 "group": "Inform API",
@@ -168,13 +206,6 @@
                 }
               },
               {
-                "group": "GDPR/CCPA API",
-                "openapi": {
-                  "source": "/api-reference/gdpr-ccpa.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
                 "group": "Messsage Archival API",
                 "openapi": {
                   "source": "/api-reference/message-archival.yaml",
@@ -182,37 +213,9 @@
                 }
               },
               {
-                "group": "Email Subscription Management API",
-                "openapi": {
-                  "source": "/api-reference/email-subscription.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
                 "group": "Business Events API",
                 "openapi": {
                   "source": "/api-reference/business-events.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
-                "group": "Coupons List API",
-                "openapi": {
-                  "source": "/api-reference/coupons-list.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
-                "group": "Recommendations API",
-                "openapi": {
-                  "source": "/api-reference/recommendations.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
-                "group": "Subscription Categories API",
-                "openapi": {
-                  "source": "/api-reference/subscription-categories.yaml",
                   "directory": "api-reference"
                 }
               }
@@ -243,48 +246,74 @@
                 "group": "コンテンツ",
                 "pages": [
                   {
-                    "group": "カスタムアプリ内テンプレート",
+                    "group": "テンプレート",
+                    "pages": [
+                      {
+                        "group": "カスタムアプリ内テンプレート",
+                        "openapi": {
+                          "source": "/api-reference/in-app-templates.yaml",
+                          "directory": "api-reference"
+                        }
+                      },
+                      {
+                        "group": "カスタムOSMテンプレート",
+                        "openapi": {
+                          "source": "/api-reference/osm-templates.yaml",
+                          "directory": "api-reference"
+                        }
+                      },
+                      {
+                        "group": "カスタムSMSテンプレート",
+                        "openapi": {
+                          "source": "/api-reference/sms-templates.yaml",
+                          "directory": "api-reference"
+                        }
+                      },
+                      {
+                        "group": "カスタムメールテンプレート",
+                        "openapi": {
+                          "source": "/api-reference/email-templates-1.yaml",
+                          "directory": "api-reference"
+                        }
+                      },
+                      {
+                        "group": "カスタムプッシュテンプレート",
+                        "openapi": {
+                          "source": "/api-reference/push-templates.yaml",
+                          "directory": "api-reference"
+                        }
+                      },
+                      {
+                        "group": "カスタムコンテンツブロック",
+                        "openapi": {
+                          "source": "/api-reference/content-blocks.yaml",
+                          "directory": "api-reference"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "group": "レコメンデーションAPI",
                     "openapi": {
-                      "source": "/api-reference/in-app-templates.yaml",
+                      "source": "/api-reference/recommendations.yaml",
                       "directory": "api-reference"
                     }
                   },
                   {
-                    "group": "カスタムSMSテンプレート",
+                    "group": "クーポンリストAPI",
                     "openapi": {
-                      "source": "/api-reference/sms-templates.yaml",
+                      "source": "/api-reference/coupons-list.yaml",
                       "directory": "api-reference"
                     }
                   },
                   {
-                    "group": "カスタムメールテンプレート",
+                    "group": "カタログAPI",
                     "openapi": {
-                      "source": "/api-reference/email-templates-1.yaml",
-                      "directory": "api-reference"
-                    }
-                  },
-                  {
-                    "group": "カスタムプッシュテンプレート",
-                    "openapi": {
-                      "source": "/api-reference/push-templates.yaml",
-                      "directory": "api-reference"
-                    }
-                  },
-                  {
-                    "group": "カスタムコンテンツブロック",
-                    "openapi": {
-                      "source": "/api-reference/content-blocks.yaml",
+                      "source": "/api-reference/catalog.yaml",
                       "directory": "api-reference"
                     }
                   }
                 ]
-              },
-              {
-                "group": "カタログAPI",
-                "openapi": {
-                  "source": "/api-reference/catalog.yaml",
-                  "directory": "api-reference"
-                }
               },
               {
                 "group": "プッシュAPI",
@@ -302,10 +331,29 @@
               },
               {
                 "group": "データAPI",
-                "openapi": {
-                  "source": "/api-reference/data.yaml",
-                  "directory": "api-reference"
-                }
+                "pages": [
+                  {
+                    "group": "データAPI",
+                    "openapi": {
+                      "source": "/api-reference/data.yaml",
+                      "directory": "api-reference"
+                    }
+                  },
+                  {
+                    "group": "GDPR/CCPA API",
+                    "openapi": {
+                      "source": "/api-reference/gdpr-ccpa.yaml",
+                      "directory": "api-reference"
+                    }
+                  },
+                  {
+                    "group": "サブスクリプションカテゴリAPI",
+                    "openapi": {
+                      "source": "/api-reference/subscription-categories.yaml",
+                      "directory": "api-reference"
+                    }
+                  }
+                ]
               },
               {
                 "group": "インフォームAPI",
@@ -378,13 +426,6 @@
                 }
               },
               {
-                "group": "GDPR/CCPA API",
-                "openapi": {
-                  "source": "/api-reference/gdpr-ccpa.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
                 "group": "メッセージアーカイブAPI",
                 "openapi": {
                   "source": "/api-reference/message-archival.yaml",
@@ -392,37 +433,9 @@
                 }
               },
               {
-                "group": "メール購読管理API",
-                "openapi": {
-                  "source": "/api-reference/email-subscription.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
                 "group": "ビジネスイベントAPI",
                 "openapi": {
                   "source": "/api-reference/business-events.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
-                "group": "クーポンリストAPI",
-                "openapi": {
-                  "source": "/api-reference/coupons-list.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
-                "group": "レコメンデーションAPI",
-                "openapi": {
-                  "source": "/api-reference/recommendations.yaml",
-                  "directory": "api-reference"
-                }
-              },
-              {
-                "group": "サブスクリプションカテゴリAPI",
-                "openapi": {
-                  "source": "/api-reference/subscription-categories.yaml",
                   "directory": "api-reference"
                 }
               }
